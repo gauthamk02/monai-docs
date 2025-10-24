@@ -1,0 +1,20 @@
+monai.transforms.io.dictionary
+==============================
+
+.. automodule:: monai.transforms.io.dictionary
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      LoadImageD
+      LoadImageDict
+      LoadImaged
+      SaveImageD
+      SaveImageDict
+      SaveImaged
+      WriteFileMappingD
+      WriteFileMappingDict
+      WriteFileMappingd
+   

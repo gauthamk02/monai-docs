@@ -1,0 +1,20 @@
+monai.transforms.regularization.dictionary
+==========================================
+
+.. automodule:: monai.transforms.regularization.dictionary
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CutMixD
+      CutMixDict
+      CutMixd
+      CutOutD
+      CutOutDict
+      CutOutd
+      MixUpD
+      MixUpDict
+      MixUpd
+   

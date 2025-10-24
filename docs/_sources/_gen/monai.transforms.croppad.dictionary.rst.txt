@@ -1,0 +1,65 @@
+monai.transforms.croppad.dictionary
+===================================
+
+.. automodule:: monai.transforms.croppad.dictionary
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BorderPadD
+      BorderPadDict
+      BorderPadd
+      BoundingRectD
+      BoundingRectDict
+      BoundingRectd
+      CenterScaleCropD
+      CenterScaleCropDict
+      CenterScaleCropd
+      CenterSpatialCropD
+      CenterSpatialCropDict
+      CenterSpatialCropd
+      CropD
+      CropDict
+      CropForegroundD
+      CropForegroundDict
+      CropForegroundd
+      Cropd
+      DivisiblePadD
+      DivisiblePadDict
+      DivisiblePadd
+      PadD
+      PadDict
+      Padd
+      RandCropByLabelClassesD
+      RandCropByLabelClassesDict
+      RandCropByLabelClassesd
+      RandCropByPosNegLabelD
+      RandCropByPosNegLabelDict
+      RandCropByPosNegLabeld
+      RandCropD
+      RandCropDict
+      RandCropd
+      RandScaleCropD
+      RandScaleCropDict
+      RandScaleCropd
+      RandSpatialCropD
+      RandSpatialCropDict
+      RandSpatialCropSamplesD
+      RandSpatialCropSamplesDict
+      RandSpatialCropSamplesd
+      RandSpatialCropd
+      RandWeightedCropD
+      RandWeightedCropDict
+      RandWeightedCropd
+      ResizeWithPadOrCropD
+      ResizeWithPadOrCropDict
+      ResizeWithPadOrCropd
+      SpatialCropD
+      SpatialCropDict
+      SpatialCropd
+      SpatialPadD
+      SpatialPadDict
+      SpatialPadd
+   

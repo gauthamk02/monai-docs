@@ -1,0 +1,51 @@
+monai.transforms.intensity.array
+================================
+
+.. automodule:: monai.transforms.intensity.array
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      AdjustContrast
+      ClipIntensityPercentiles
+      ComputeHoVerMaps
+      DetectEnvelope
+      ForegroundMask
+      GaussianSharpen
+      GaussianSmooth
+      GibbsNoise
+      HistogramNormalize
+      IntensityRemap
+      KSpaceSpikeNoise
+      MaskIntensity
+      MedianSmooth
+      NormalizeIntensity
+      RandAdjustContrast
+      RandBiasField
+      RandCoarseDropout
+      RandCoarseShuffle
+      RandCoarseTransform
+      RandGaussianNoise
+      RandGaussianSharpen
+      RandGaussianSmooth
+      RandGibbsNoise
+      RandHistogramShift
+      RandIntensityRemap
+      RandKSpaceSpikeNoise
+      RandRicianNoise
+      RandScaleIntensity
+      RandScaleIntensityFixedMean
+      RandShiftIntensity
+      RandStdShiftIntensity
+      SavitzkyGolaySmooth
+      ScaleIntensity
+      ScaleIntensityFixedMean
+      ScaleIntensityRange
+      ScaleIntensityRangePercentiles
+      ShiftIntensity
+      StdShiftIntensity
+      ThresholdIntensity
+      UltrasoundConfidenceMapTransform
+   

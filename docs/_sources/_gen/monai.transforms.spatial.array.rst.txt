@@ -1,0 +1,41 @@
+monai.transforms.spatial.array
+==============================
+
+.. automodule:: monai.transforms.spatial.array
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Affine
+      AffineGrid
+      ConvertBoxToPoints
+      ConvertPointsToBoxes
+      Flip
+      GridDistortion
+      GridPatch
+      GridSplit
+      Orientation
+      Rand2DElastic
+      Rand3DElastic
+      RandAffine
+      RandAffineGrid
+      RandAxisFlip
+      RandDeformGrid
+      RandFlip
+      RandGridDistortion
+      RandGridPatch
+      RandRotate
+      RandRotate90
+      RandSimulateLowResolution
+      RandZoom
+      Resample
+      ResampleToMatch
+      Resize
+      Rotate
+      Rotate90
+      Spacing
+      SpatialResample
+      Zoom
+   

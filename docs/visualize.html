@@ -1,0 +1,1286 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Visualizations &#8212; MONAI 1.5.1 Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=26ac546f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=cb7e6255"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'visualize';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Utilities" href="utils.html" />
+    <link rel="prev" title="Event handlers" href="handlers.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-light" alt="MONAI 1.5.1 Documentation - Home"/>
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-dark pst-js-only" alt="MONAI 1.5.1 Documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="apps.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto3dseg.html">Auto3dseg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fl.html">Federated Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bundle.html">Model Bundle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="losses.html">Loss functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks.html">Network architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="engines.html">Engines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inferers.html">Inference methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Event handlers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="api.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Visualizations</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="visualizations">
+<span id="visualize"></span><h1>Visualizations<a class="headerlink" href="#visualizations" title="Link to this heading">#</a></h1>
+<section id="module-monai.visualize.img2tensorboard">
+<span id="tensorboard-visuals"></span><h2>Tensorboard visuals<a class="headerlink" href="#module-monai.visualize.img2tensorboard" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.visualize.img2tensorboard.add_animated_gif">
+<span class="sig-prename descclassname"><span class="pre">monai.visualize.img2tensorboard.</span></span><span class="sig-name descname"><span class="pre">add_animated_gif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/img2tensorboard.py#L116-L143"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.img2tensorboard.add_animated_gif" title="Link to this definition">#</a></dt>
+<dd><p>Creates an animated gif out of an image tensor in ‘CHWD’ format and writes it with SummaryWriter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>writer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">SummaryWriter</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SummaryWriter</span></code>]) – Tensorboard SummaryWriter to write to</p></li>
+<li><p><strong>tag</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Data identifier</p></li>
+<li><p><strong>image_tensor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – tensor for the image to add, expected to be in <cite>CHWD</cite> format</p></li>
+<li><p><strong>max_out</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – maximum number of image channels to animate through</p></li>
+<li><p><strong>frame_dim</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the dimension used as frames for GIF image, expect input data shape as <cite>CHWD</cite>,
+default to <cite>-3</cite> (the first spatial dim)</p></li>
+<li><p><strong>scale_factor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – amount to multiply values by. If the image data is between 0 and 1, using 255 for this value will
+scale it to displayable range</p></li>
+<li><p><strong>global_step</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – Global step value to record</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.visualize.img2tensorboard.make_animated_gif_summary">
+<span class="sig-prename descclassname"><span class="pre">monai.visualize.img2tensorboard.</span></span><span class="sig-name descname"><span class="pre">make_animated_gif_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/img2tensorboard.py#L80-L113"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.img2tensorboard.make_animated_gif_summary" title="Link to this definition">#</a></dt>
+<dd><p>Creates an animated gif out of an image tensor in ‘CHWD’ format and returns Summary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Data identifier</p></li>
+<li><p><strong>image</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – The image, expected to be in <cite>CHWD</cite> format</p></li>
+<li><p><strong>writer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">SummaryWriter</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SummaryWriter</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the tensorboard writer to plot image</p></li>
+<li><p><strong>max_out</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – maximum number of image channels to animate through</p></li>
+<li><p><strong>frame_dim</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the dimension used as frames for GIF image, expect input data shape as <cite>CHWD</cite>,
+default to <cite>-3</cite> (the first spatial dim)</p></li>
+<li><p><strong>scale_factor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – amount to multiply values by.
+if the image data is between 0 and 1, using 255 for this value will scale it to displayable range</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Summary</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.visualize.img2tensorboard.plot_2d_or_3d_image">
+<span class="sig-prename descclassname"><span class="pre">monai.visualize.img2tensorboard.</span></span><span class="sig-name descname"><span class="pre">plot_2d_or_3d_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_frames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'output'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/img2tensorboard.py#L146-L214"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.img2tensorboard.plot_2d_or_3d_image" title="Link to this definition">#</a></dt>
+<dd><p>Plot 2D or 3D image on the TensorBoard, 3D image will be converted to GIF image.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plot 3D or 2D image(with more than 3 channels) as separate images.
+And if writer is from TensorBoardX, data has 3 channels and <cite>max_channels=3</cite>, will plot as RGB video.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[~NdarrayTensor, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[~NdarrayTensor]]) – target data to be plotted as image on the TensorBoard.
+The data is expected to have ‘NCHW[D]’ dimensions or a list of data with <cite>CHW[D]</cite> dimensions,
+and only plot the first in the batch.</p></li>
+<li><p><strong>step</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – current step to plot in a chart.</p></li>
+<li><p><strong>writer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">SummaryWriter</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SummaryWriter</span></code>]) – specify TensorBoard or TensorBoardX SummaryWriter to plot the image.</p></li>
+<li><p><strong>index</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – plot which element in the input data batch, default is the first element.</p></li>
+<li><p><strong>max_channels</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of channels to plot.</p></li>
+<li><p><strong>frame_dim</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – if plotting 3D image as GIF, specify the dimension used as frames,
+expect input data shape as <cite>NCHWD</cite>, default to <cite>-3</cite> (the first spatial dim)</p></li>
+<li><p><strong>max_frames</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – if plot 3D RGB image as video in TensorBoardX, set the FPS to <cite>max_frames</cite>.</p></li>
+<li><p><strong>tag</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – tag of the plotted image on TensorBoard.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-monai.visualize.class_activation_maps">
+<span id="class-activation-map"></span><h2>Class activation map<a class="headerlink" href="#module-monai.visualize.class_activation_maps" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.CAM">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.class_activation_maps.</span></span><span class="sig-name descname"><span class="pre">CAM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fc_layers='fc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upsampler=&lt;function</span> <span class="pre">default_upsampler&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=&lt;function</span> <span class="pre">default_normalizer&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L218-L316"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.CAM" title="Link to this definition">#</a></dt>
+<dd><p>Compute class activation map from the last fully-connected layers before the spatial pooling.
+This implementation is based on:</p>
+<blockquote>
+<div><p>Zhou et al., Learning Deep Features for Discriminative Localization. CVPR ‘16,
+<a class="reference external" href="https://arxiv.org/abs/1512.04150">https://arxiv.org/abs/1512.04150</a></p>
+</div></blockquote>
+<p>Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># densenet 2d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.networks.nets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DenseNet121</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">CAM</span>
+
+<span class="n">model_2d</span> <span class="o">=</span> <span class="n">DenseNet121</span><span class="p">(</span><span class="n">spatial_dims</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">cam</span> <span class="o">=</span> <span class="n">CAM</span><span class="p">(</span><span class="n">nn_module</span><span class="o">=</span><span class="n">model_2d</span><span class="p">,</span> <span class="n">target_layers</span><span class="o">=</span><span class="s2">&quot;class_layers.relu&quot;</span><span class="p">,</span> <span class="n">fc_layers</span><span class="o">=</span><span class="s2">&quot;class_layers.out&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cam</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">64</span><span class="p">)))</span>
+
+<span class="c1"># resnet 2d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.networks.nets</span><span class="w"> </span><span class="kn">import</span> <span class="n">seresnet50</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">CAM</span>
+
+<span class="n">model_2d</span> <span class="o">=</span> <span class="n">seresnet50</span><span class="p">(</span><span class="n">spatial_dims</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">cam</span> <span class="o">=</span> <span class="n">CAM</span><span class="p">(</span><span class="n">nn_module</span><span class="o">=</span><span class="n">model_2d</span><span class="p">,</span> <span class="n">target_layers</span><span class="o">=</span><span class="s2">&quot;layer4&quot;</span><span class="p">,</span> <span class="n">fc_layers</span><span class="o">=</span><span class="s2">&quot;last_linear&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cam</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">64</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>N.B.: To help select the target layer, it may be useful to list all layers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">():</span> <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#monai.visualize.class_activation_maps.GradCAM" title="monai.visualize.class_activation_maps.GradCAM"><code class="xref py py-class docutils literal notranslate"><span class="pre">monai.visualize.class_activation_maps.GradCAM</span></code></a></p></li>
+</ul>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.CAM.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fc_layers='fc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upsampler=&lt;function</span> <span class="pre">default_upsampler&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=&lt;function</span> <span class="pre">default_normalizer&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L260-L288"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.CAM.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nn_module</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – the model to be visualized</p></li>
+<li><p><strong>target_layers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – name of the model layer to generate the feature map.</p></li>
+<li><p><strong>fc_layers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – a string or a callable used to get fully-connected weights to compute activation map
+from the target_layers (without pooling).  and evaluate it at every spatial location.</p></li>
+<li><p><strong>upsampler</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – An upsampling method to upsample the output image. Default is
+N dimensional linear (bilinear, trilinear, etc.) depending on num spatial
+dimensions of input.</p></li>
+<li><p><strong>postprocessing</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – a callable that applies on the upsampled output image.
+Default is normalizing between min=1 and max=0 (i.e., largest input will become 0 and
+smallest input will become 1).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.CAM.compute_map">
+<span class="sig-name descname"><span class="pre">compute_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L290-L300"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.CAM.compute_map" title="Link to this definition">#</a></dt>
+<dd><p>Compute the actual feature map with input tensor <cite>x</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – input to <cite>nn_module</cite>.</p></li>
+<li><p><strong>class_idx</strong> – index of the class to be visualized. Default to <cite>None</cite> (computing <cite>class_idx</cite> from <cite>argmax</cite>)</p></li>
+<li><p><strong>layer_idx</strong> – index of the target layer if there are multiple target layers. Defaults to -1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>activation maps (raw outputs without upsampling/post-processing.)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.GradCAM">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.class_activation_maps.</span></span><span class="sig-name descname"><span class="pre">GradCAM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upsampler=&lt;function</span> <span class="pre">default_upsampler&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=&lt;function</span> <span class="pre">default_normalizer&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">register_backward=True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L319-L384"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.GradCAM" title="Link to this definition">#</a></dt>
+<dd><p>Computes Gradient-weighted Class Activation Mapping (Grad-CAM).
+This implementation is based on:</p>
+<blockquote>
+<div><p>Selvaraju et al., Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization,
+<a class="reference external" href="https://arxiv.org/abs/1610.02391">https://arxiv.org/abs/1610.02391</a></p>
+</div></blockquote>
+<p>Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># densenet 2d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.networks.nets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DenseNet121</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">GradCAM</span>
+
+<span class="n">model_2d</span> <span class="o">=</span> <span class="n">DenseNet121</span><span class="p">(</span><span class="n">spatial_dims</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">cam</span> <span class="o">=</span> <span class="n">GradCAM</span><span class="p">(</span><span class="n">nn_module</span><span class="o">=</span><span class="n">model_2d</span><span class="p">,</span> <span class="n">target_layers</span><span class="o">=</span><span class="s2">&quot;class_layers.relu&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cam</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">64</span><span class="p">)))</span>
+
+<span class="c1"># resnet 2d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.networks.nets</span><span class="w"> </span><span class="kn">import</span> <span class="n">seresnet50</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">GradCAM</span>
+
+<span class="n">model_2d</span> <span class="o">=</span> <span class="n">seresnet50</span><span class="p">(</span><span class="n">spatial_dims</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">cam</span> <span class="o">=</span> <span class="n">GradCAM</span><span class="p">(</span><span class="n">nn_module</span><span class="o">=</span><span class="n">model_2d</span><span class="p">,</span> <span class="n">target_layers</span><span class="o">=</span><span class="s2">&quot;layer4&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cam</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">64</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>N.B.: To help select the target layer, it may be useful to list all layers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">():</span> <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#monai.visualize.class_activation_maps.CAM" title="monai.visualize.class_activation_maps.CAM"><code class="xref py py-class docutils literal notranslate"><span class="pre">monai.visualize.class_activation_maps.CAM</span></code></a></p></li>
+</ul>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.GradCAM.compute_map">
+<span class="sig-name descname"><span class="pre">compute_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L361-L367"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.GradCAM.compute_map" title="Link to this definition">#</a></dt>
+<dd><p>Compute the actual feature map with input tensor <cite>x</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – input to <cite>nn_module</cite>.</p></li>
+<li><p><strong>class_idx</strong> – index of the class to be visualized. Default to <cite>None</cite> (computing <cite>class_idx</cite> from <cite>argmax</cite>)</p></li>
+<li><p><strong>layer_idx</strong> – index of the target layer if there are multiple target layers. Defaults to -1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>activation maps (raw outputs without upsampling/post-processing.)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.GradCAMpp">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.class_activation_maps.</span></span><span class="sig-name descname"><span class="pre">GradCAMpp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upsampler=&lt;function</span> <span class="pre">default_upsampler&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=&lt;function</span> <span class="pre">default_normalizer&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">register_backward=True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L387-L412"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.GradCAMpp" title="Link to this definition">#</a></dt>
+<dd><p>Computes Gradient-weighted Class Activation Mapping (Grad-CAM++).
+This implementation is based on:</p>
+<blockquote>
+<div><p>Chattopadhyay et al., Grad-CAM++: Improved Visual Explanations for Deep Convolutional Networks,
+<a class="reference external" href="https://arxiv.org/abs/1710.11063">https://arxiv.org/abs/1710.11063</a></p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#monai.visualize.class_activation_maps.GradCAM" title="monai.visualize.class_activation_maps.GradCAM"><code class="xref py py-class docutils literal notranslate"><span class="pre">monai.visualize.class_activation_maps.GradCAM</span></code></a></p></li>
+</ul>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.GradCAMpp.compute_map">
+<span class="sig-name descname"><span class="pre">compute_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L401-L412"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.GradCAMpp.compute_map" title="Link to this definition">#</a></dt>
+<dd><p>Compute the actual feature map with input tensor <cite>x</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – input to <cite>nn_module</cite>.</p></li>
+<li><p><strong>class_idx</strong> – index of the class to be visualized. Default to <cite>None</cite> (computing <cite>class_idx</cite> from <cite>argmax</cite>)</p></li>
+<li><p><strong>layer_idx</strong> – index of the target layer if there are multiple target layers. Defaults to -1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>activation maps (raw outputs without upsampling/post-processing.)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.ModelWithHooks">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.class_activation_maps.</span></span><span class="sig-name descname"><span class="pre">ModelWithHooks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">register_forward</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">register_backward</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L50-L153"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.ModelWithHooks" title="Link to this definition">#</a></dt>
+<dd><p>A model wrapper to run model forward/backward steps and storing some intermediate feature/gradient information.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.ModelWithHooks.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">register_forward</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">register_backward</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L55-L93"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.ModelWithHooks.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nn_module</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – the model to be wrapped.</p></li>
+<li><p><strong>target_layer_names</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – the names of the layer to cache.</p></li>
+<li><p><strong>register_forward</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to cache the forward pass output corresponding to <cite>target_layer_names</cite>.</p></li>
+<li><p><strong>register_backward</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to cache the backward pass output corresponding to <cite>target_layer_names</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.ModelWithHooks.get_layer">
+<span class="sig-name descname"><span class="pre">get_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_id</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L109-L125"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.ModelWithHooks.get_layer" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>layer_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>]]) – a layer name string or a callable. If it is a callable such as <cite>lambda m: m.fc</cite>,
+this method will return the module <cite>self.model.fc</cite>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a submodule from self.model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.visualize.class_activation_maps.default_normalizer">
+<span class="sig-prename descclassname"><span class="pre">monai.visualize.class_activation_maps.</span></span><span class="sig-name descname"><span class="pre">default_normalizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/class_activation_maps.py#L31-L47"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.class_activation_maps.default_normalizer" title="Link to this definition">#</a></dt>
+<dd><p>A linear intensity scaling by mapping the (min, max) to (1, 0).
+If the input data is PyTorch Tensor, the output data will be Tensor on the same device,
+otherwise, output data will be numpy array.</p>
+<p>Note: This will flip magnitudes (i.e., smallest will become biggest and vice versa).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>~NdarrayTensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-monai.visualize.occlusion_sensitivity">
+<span id="occlusion-sensitivity"></span><h2>Occlusion sensitivity<a class="headerlink" href="#module-monai.visualize.occlusion_sensitivity" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.occlusion_sensitivity.OcclusionSensitivity">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.occlusion_sensitivity.</span></span><span class="sig-name descname"><span class="pre">OcclusionSensitivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/occlusion_sensitivity.py#L27-L350"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity" title="Link to this definition">#</a></dt>
+<dd><p>This class computes the occlusion sensitivity for a model’s prediction of a given image. By occlusion sensitivity,
+we mean how the probability of a given prediction changes as the occluded section of an image changes. This can be
+useful to understand why a network is making certain decisions.</p>
+<p>As important parts of the image are occluded, the probability of classifying the image correctly will decrease.
+Hence, more negative values imply the corresponding occluded volume was more important in the decision process.</p>
+<p>Two <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> will be returned by the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> method: an occlusion map and an image of the most probable
+class. Both images will be cropped if a bounding box used, but voxel sizes will always match the input.</p>
+<p>The occlusion map shows the inference probabilities when the corresponding part of the image is occluded. Hence,
+more -ve values imply that region was important in the decision process. The map will have shape <code class="docutils literal notranslate"><span class="pre">BCHW(D)N</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of classes to be inferred by the network. Hence, the occlusion for class <code class="docutils literal notranslate"><span class="pre">i</span></code> can
+be seen with <code class="docutils literal notranslate"><span class="pre">map[...,i]</span></code>.</p>
+<p>The most probable class is an image of the probable class when the corresponding part of the image is occluded
+(equivalent to <code class="docutils literal notranslate"><span class="pre">occ_map.argmax(dim=-1)</span></code>).</p>
+<p>See: R. R. Selvaraju et al. Grad-CAM: Visual Explanations from Deep Networks via
+Gradient-based Localization. <a class="reference external" href="https://doi.org/10.1109/ICCV.2017.74">https://doi.org/10.1109/ICCV.2017.74</a>.</p>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># densenet 2d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.networks.nets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DenseNet121</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">OcclusionSensitivity</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="n">model_2d</span> <span class="o">=</span> <span class="n">DenseNet121</span><span class="p">(</span><span class="n">spatial_dims</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">occ_sens</span> <span class="o">=</span> <span class="n">OcclusionSensitivity</span><span class="p">(</span><span class="n">nn_module</span><span class="o">=</span><span class="n">model_2d</span><span class="p">)</span>
+<span class="n">occ_map</span><span class="p">,</span> <span class="n">most_probable_class</span> <span class="o">=</span> <span class="n">occ_sens</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">64</span><span class="p">)),</span> <span class="n">b_box</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">62</span><span class="p">])</span>
+
+<span class="c1"># densenet 3d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.networks.nets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DenseNet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">OcclusionSensitivity</span>
+
+<span class="n">model_3d</span> <span class="o">=</span> <span class="n">DenseNet</span><span class="p">(</span><span class="n">spatial_dims</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">init_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">growth_rate</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">block_config</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,))</span>
+<span class="n">occ_sens</span> <span class="o">=</span> <span class="n">OcclusionSensitivity</span><span class="p">(</span><span class="n">nn_module</span><span class="o">=</span><span class="n">model_3d</span><span class="p">,</span> <span class="n">n_batch</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">occ_map</span><span class="p">,</span> <span class="n">most_probable_class</span> <span class="o">=</span> <span class="n">occ_sens</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">b_box</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">monai.visualize.occlusion_sensitivity.OcclusionSensitivity.</span></code></p></li>
+</ul>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.occlusion_sensitivity.OcclusionSensitivity.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/occlusion_sensitivity.py#L76-L120"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Occlusion sensitivity constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nn_module</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – Classification model to use for inference</p></li>
+<li><p><strong>mask_size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>]) – Size of box to be occluded, centred on the central voxel. If a single number
+is given, this is used for all dimensions. If a sequence is given, this is used for each dimension
+individually.</p></li>
+<li><p><strong>n_batch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Number of images in a batch for inference.</p></li>
+<li><p><strong>verbose</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Use progress bar (if <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> available).</p></li>
+<li><p><strong>mode</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – <p>what should the occluded region be replaced with? If a float is given, that value will be used
+throughout the occlusion. Else, <code class="docutils literal notranslate"><span class="pre">gaussian</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_img</span></code> and <code class="docutils literal notranslate"><span class="pre">mean_patch</span></code> can be supplied:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gaussian</span></code>: occluded region is multiplied by 1 - gaussian kernel. In this fashion, the occlusion
+will be 0 at the center and will be unchanged towards the edges, varying smoothly between. When
+gaussian is used, a weighted average will be used to combine overlapping regions. This will be
+done using the gaussian (not 1-gaussian) as occluded regions count more.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_patch</span></code>: occluded region will be replaced with the mean of occluded region.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_img</span></code>: occluded region will be replaced with the mean of the whole image.</p></li>
+</ul>
+</p></li>
+<li><p><strong>overlap</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – overlap between inferred regions. Should be in range 0&lt;=x&lt;1.</p></li>
+<li><p><strong>activate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, do softmax activation if num_channels &gt; 1 else do <code class="docutils literal notranslate"><span class="pre">sigmoid</span></code>. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, don’t do any
+activation. If <code class="docutils literal notranslate"><span class="pre">callable</span></code>, use callable on inferred outputs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.occlusion_sensitivity.OcclusionSensitivity.constant_occlusion">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">constant_occlusion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_size</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/occlusion_sensitivity.py#L122-L126"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.constant_occlusion" title="Link to this definition">#</a></dt>
+<dd><p>Occlude with a constant occlusion. Multiplicative is zero, additive is constant value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.occlusion_sensitivity.OcclusionSensitivity.crop_meshgrid">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">crop_meshgrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_box</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_size</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/occlusion_sensitivity.py#L227-L252"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.crop_meshgrid" title="Link to this definition">#</a></dt>
+<dd><p>Crop the meshgrid so we only perform occlusion sensitivity on a subsection of the image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<a class="reference internal" href="data.html#monai.data.MetaTensor" title="monai.data.meta_tensor.MetaTensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">MetaTensor</span></code></a>, <a class="reference internal" href="transforms.html#monai.transforms.SpatialCrop" title="monai.transforms.croppad.array.SpatialCrop"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpatialCrop</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.occlusion_sensitivity.OcclusionSensitivity.gaussian_occlusion">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gaussian_occlusion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/occlusion_sensitivity.py#L128-L149"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.gaussian_occlusion" title="Link to this definition">#</a></dt>
+<dd><p>For Gaussian occlusion, Multiplicative is 1-Gaussian, additive is zero.
+Default sigma of 0.25 empirically shown to give reasonable kernel, see here:
+<a class="github reference external" href="https://github.com/Project-MONAI/MONAI/pull/5230#discussion_r984520714">Project-MONAI/MONAI#5230</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.visualize.occlusion_sensitivity.OcclusionSensitivity.predictor">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">predictor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cropped_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occ_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/occlusion_sensitivity.py#L151-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.predictor" title="Link to this definition">#</a></dt>
+<dd><p>Predictor function to be passed to the sliding window inferer. Takes a cropped meshgrid,
+referring to the coordinates in the input image. We use the index of the top-left corner
+in combination <code class="docutils literal notranslate"><span class="pre">mask_size</span></code> to figure out which region of the image is to be occluded. The
+occlusion is performed on the original image, <code class="docutils literal notranslate"><span class="pre">x</span></code>, using <code class="docutils literal notranslate"><span class="pre">cropped_region</span> <span class="pre">*</span> <span class="pre">mul</span> <span class="pre">+</span> <span class="pre">add</span></code>. <code class="docutils literal notranslate"><span class="pre">mul</span></code>
+and <code class="docutils literal notranslate"><span class="pre">add</span></code> are sometimes pre-computed (e.g., a constant Gaussian blur), or they are
+sometimes calculated on the fly (e.g., the mean of the occluded patch). For this reason
+<code class="docutils literal notranslate"><span class="pre">occ_mode</span></code> is given. Lastly, <code class="docutils literal notranslate"><span class="pre">activate</span></code> is used to activate after each call of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cropped_grid</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>) – subsection of the meshgrid, where each voxel refers to the coordinate of
+the input image. The meshgrid is created by the <code class="docutils literal notranslate"><span class="pre">OcclusionSensitivity</span></code> class, and
+the generation of the subset is determined by <code class="docutils literal notranslate"><span class="pre">sliding_window_inference</span></code>.</p></li>
+<li><p><strong>nn_module</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – module to call on data.</p></li>
+<li><p><strong>x</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>) – the image that was originally passed into <code class="docutils literal notranslate"><span class="pre">OcclusionSensitivity.__call__</span></code>.</p></li>
+<li><p><strong>mul</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – occluded region will be multiplied by this. Can be <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> or <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p></li>
+<li><p><strong>add</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – after multiplication, this is added to the occluded region. Can be <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> or <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p></li>
+<li><p><strong>mask_size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>) – Size of box to be occluded, centred on the central voxel. Should be
+a sequence, one value for each spatial dimension.</p></li>
+<li><p><strong>occ_mode</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – might be used to calculate <code class="docutils literal notranslate"><span class="pre">mul</span></code> and <code class="docutils literal notranslate"><span class="pre">add</span></code> on the fly.</p></li>
+<li><p><strong>activate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, do softmax activation if num_channels &gt; 1 else do <code class="docutils literal notranslate"><span class="pre">sigmoid</span></code>. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, don’t do any
+activation. If <code class="docutils literal notranslate"><span class="pre">callable</span></code>, use callable on inferred outputs.</p></li>
+<li><p><strong>module_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]) – kwargs to be passed onto module when inferring</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-monai.visualize.gradient_based">
+<span id="gradient-based-saliency-maps"></span><h2>Gradient-based saliency maps<a class="headerlink" href="#module-monai.visualize.gradient_based" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.gradient_based.GuidedBackpropGrad">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.gradient_based.</span></span><span class="sig-name descname"><span class="pre">GuidedBackpropGrad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/gradient_based.py#L151-L164"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.gradient_based.GuidedBackpropGrad" title="Link to this definition">#</a></dt>
+<dd><p>Based on Springenberg and Dosovitskiy et al. <a class="reference external" href="https://arxiv.org/abs/1412.6806">https://arxiv.org/abs/1412.6806</a>,
+compute gradient-based saliency maps by backpropagating positive gradients and inputs (see <code class="docutils literal notranslate"><span class="pre">_AutoGradReLU</span></code>).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p>Springenberg and Dosovitskiy et al. Striving for Simplicity: The All Convolutional Net
+(<a class="reference external" href="https://arxiv.org/abs/1412.6806">https://arxiv.org/abs/1412.6806</a>)</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.gradient_based.GuidedBackpropSmoothGrad">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.gradient_based.</span></span><span class="sig-name descname"><span class="pre">GuidedBackpropSmoothGrad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdev_spread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/gradient_based.py#L167-L174"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.gradient_based.GuidedBackpropSmoothGrad" title="Link to this definition">#</a></dt>
+<dd><p>Compute gradient-based saliency maps based on both <code class="docutils literal notranslate"><span class="pre">GuidedBackpropGrad</span></code> and <code class="docutils literal notranslate"><span class="pre">SmoothGrad</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.gradient_based.SmoothGrad">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.gradient_based.</span></span><span class="sig-name descname"><span class="pre">SmoothGrad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdev_spread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/gradient_based.py#L103-L148"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.gradient_based.SmoothGrad" title="Link to this definition">#</a></dt>
+<dd><p>Compute averaged sensitivity map based on <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> (Gaussian additive) of noisy versions
+of the input image <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p>Smilkov et al. SmoothGrad: removing noise by adding noise <a class="reference external" href="https://arxiv.org/abs/1706.03825">https://arxiv.org/abs/1706.03825</a></p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.visualize.gradient_based.VanillaGrad">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.visualize.gradient_based.</span></span><span class="sig-name descname"><span class="pre">VanillaGrad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/gradient_based.py#L57-L100"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.gradient_based.VanillaGrad" title="Link to this definition">#</a></dt>
+<dd><p>Given an input image <code class="docutils literal notranslate"><span class="pre">x</span></code>, calling this class will perform the forward pass, then set to zero
+all activations except one (defined by <code class="docutils literal notranslate"><span class="pre">index</span></code>) and propagate back to the image to achieve a gradient-based
+saliency map.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">index</span></code> is None, argmax of the output logits will be used.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p>Simonyan et al. Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps
+(<a class="reference external" href="https://arxiv.org/abs/1312.6034">https://arxiv.org/abs/1312.6034</a>)</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-monai.visualize.utils">
+<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-monai.visualize.utils" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.visualize.utils.blend_images">
+<span class="sig-prename descclassname"><span class="pre">monai.visualize.utils.</span></span><span class="sig-name descname"><span class="pre">blend_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hsv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rescale_arrays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transparent_background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/utils.py#L164-L230"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.utils.blend_images" title="Link to this definition">#</a></dt>
+<dd><p>Blend an image and a label. Both should have the shape CHW[D].
+The image may have C==1 or 3 channels (greyscale or RGB).
+The label is expected to have C==1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – the input image to blend with label data.</p></li>
+<li><p><strong>label</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – the input label to blend with image data.</p></li>
+<li><p><strong>alpha</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – this specifies the weighting given to the label, where 0 is completely
+transparent and 1 is completely opaque. This can be given as either a
+single value or an array/tensor that is the same size as the input image.</p></li>
+<li><p><strong>cmap</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – specify colormap in the matplotlib, default to <cite>hsv</cite>, for more details, please refer to:
+<a class="reference external" href="https://matplotlib.org/2.0.2/users/colormaps.html">https://matplotlib.org/2.0.2/users/colormaps.html</a>.</p></li>
+<li><p><strong>rescale_arrays</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to rescale the array to [0, 1] first, default to <cite>True</cite>.</p></li>
+<li><p><strong>transparent_background</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if true, any zeros in the label field will not be colored.</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="_images/blend_images.png" src="_images/blend_images.png" />
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.visualize.utils.matshow3d">
+<span class="sig-prename descclassname"><span class="pre">monai.visualize.utils.</span></span><span class="sig-name descname"><span class="pre">matshow3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">volume</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize=(10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frames_per_row=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_dim=-3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_dim=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">every_n=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation='none'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value=nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/visualize/utils.py#L34-L161"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.visualize.utils.matshow3d" title="Link to this definition">#</a></dt>
+<dd><p>Create a 3D volume figure as a grid of images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>volume</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – 3D volume to display. data shape can be <cite>BCHWD</cite>, <cite>CHWD</cite> or <cite>HWD</cite>.
+Higher dimensional arrays will be reshaped into (-1, H, W, [C]), <cite>C</cite> depends on <cite>channel_dim</cite> arg.
+A list of channel-first (C, H[, W, D]) arrays can also be passed in,
+in which case they will be displayed as a padded and stacked volume.</p></li>
+<li><p><strong>fig</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – matplotlib figure or Axes to use. If None, a new figure will be created.</p></li>
+<li><p><strong>title</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – title of the figure.</p></li>
+<li><p><strong>figsize</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – size of the figure.</p></li>
+<li><p><strong>frames_per_row</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – number of frames to display in each row. If None, sqrt(firstdim) will be used.</p></li>
+<li><p><strong>frame_dim</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – for higher dimensional arrays, which dimension from (<cite>-1</cite>, <cite>-2</cite>, <cite>-3</cite>) is moved to
+the <cite>-3</cite> dimension. dim and reshape to (-1, H, W) shape to construct frames, default to <cite>-3</cite>.</p></li>
+<li><p><strong>channel_dim</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – if not None, explicitly specify the channel dimension to be transposed to the
+last dimensionas shape (-1, H, W, C). this can be used to plot RGB color image.
+if None, the channel dimension will be flattened with <cite>frame_dim</cite> and <cite>batch_dim</cite> as shape (-1, H, W).
+note that it can only support 3D input image. default is None.</p></li>
+<li><p><strong>vmin</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – <cite>vmin</cite> for the matplotlib <cite>imshow</cite>.</p></li>
+<li><p><strong>vmax</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – <cite>vmax</cite> for the matplotlib <cite>imshow</cite>.</p></li>
+<li><p><strong>every_n</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – factor to subsample the frames so that only every n-th frame is displayed.</p></li>
+<li><p><strong>interpolation</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – interpolation to use for the matplotlib <cite>matshow</cite>.</p></li>
+<li><p><strong>show</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if True, show the figure.</p></li>
+<li><p><strong>fill_value</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – value to use for the empty part of the grid.</p></li>
+<li><p><strong>margin</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – margin to use for the grid.</p></li>
+<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – data type of the output stacked frames.</p></li>
+<li><p><strong>kwargs</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – additional keyword arguments to matplotlib <cite>matshow</cite> and <cite>imshow</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.matshow.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.matshow.html</a></p></li>
+</ul>
+</div>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">monai.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">matshow3d</span>
+<span class="go"># create a figure of a 3D volume</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">volume</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matshow3d</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;3D Volume&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="go"># create a figure of a list of channel-first 3D volumes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">volumes</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matshow3d</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;List of Volumes&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="handlers.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Event handlers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="utils.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Utilities</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-monai.visualize.img2tensorboard">Tensorboard visuals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.img2tensorboard.add_animated_gif"><code class="docutils literal notranslate"><span class="pre">add_animated_gif()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.img2tensorboard.make_animated_gif_summary"><code class="docutils literal notranslate"><span class="pre">make_animated_gif_summary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.img2tensorboard.plot_2d_or_3d_image"><code class="docutils literal notranslate"><span class="pre">plot_2d_or_3d_image()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-monai.visualize.class_activation_maps">Class activation map</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.CAM"><code class="docutils literal notranslate"><span class="pre">CAM</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.CAM.__init__"><code class="docutils literal notranslate"><span class="pre">CAM.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.CAM.compute_map"><code class="docutils literal notranslate"><span class="pre">CAM.compute_map()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.GradCAM"><code class="docutils literal notranslate"><span class="pre">GradCAM</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.GradCAM.compute_map"><code class="docutils literal notranslate"><span class="pre">GradCAM.compute_map()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.GradCAMpp"><code class="docutils literal notranslate"><span class="pre">GradCAMpp</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.GradCAMpp.compute_map"><code class="docutils literal notranslate"><span class="pre">GradCAMpp.compute_map()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.ModelWithHooks"><code class="docutils literal notranslate"><span class="pre">ModelWithHooks</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.ModelWithHooks.__init__"><code class="docutils literal notranslate"><span class="pre">ModelWithHooks.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.ModelWithHooks.get_layer"><code class="docutils literal notranslate"><span class="pre">ModelWithHooks.get_layer()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.class_activation_maps.default_normalizer"><code class="docutils literal notranslate"><span class="pre">default_normalizer()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-monai.visualize.occlusion_sensitivity">Occlusion sensitivity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity"><code class="docutils literal notranslate"><span class="pre">OcclusionSensitivity</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.__init__"><code class="docutils literal notranslate"><span class="pre">OcclusionSensitivity.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.constant_occlusion"><code class="docutils literal notranslate"><span class="pre">OcclusionSensitivity.constant_occlusion()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.crop_meshgrid"><code class="docutils literal notranslate"><span class="pre">OcclusionSensitivity.crop_meshgrid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.gaussian_occlusion"><code class="docutils literal notranslate"><span class="pre">OcclusionSensitivity.gaussian_occlusion()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.occlusion_sensitivity.OcclusionSensitivity.predictor"><code class="docutils literal notranslate"><span class="pre">OcclusionSensitivity.predictor()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-monai.visualize.gradient_based">Gradient-based saliency maps</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.gradient_based.GuidedBackpropGrad"><code class="docutils literal notranslate"><span class="pre">GuidedBackpropGrad</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.gradient_based.GuidedBackpropSmoothGrad"><code class="docutils literal notranslate"><span class="pre">GuidedBackpropSmoothGrad</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.gradient_based.SmoothGrad"><code class="docutils literal notranslate"><span class="pre">SmoothGrad</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.gradient_based.VanillaGrad"><code class="docutils literal notranslate"><span class="pre">VanillaGrad</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-monai.visualize.utils">Utilities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.utils.blend_images"><code class="docutils literal notranslate"><span class="pre">blend_images()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.visualize.utils.matshow3d"><code class="docutils literal notranslate"><span class="pre">matshow3d()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/visualize.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright MONAI Consortium.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

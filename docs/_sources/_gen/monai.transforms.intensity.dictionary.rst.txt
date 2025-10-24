@@ -1,0 +1,113 @@
+monai.transforms.intensity.dictionary
+=====================================
+
+.. automodule:: monai.transforms.intensity.dictionary
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      AdjustContrastD
+      AdjustContrastDict
+      AdjustContrastd
+      ClipIntensityPercentilesD
+      ClipIntensityPercentilesDict
+      ClipIntensityPercentilesd
+      ComputeHoVerMapsD
+      ComputeHoVerMapsDict
+      ComputeHoVerMapsd
+      ForegroundMaskD
+      ForegroundMaskDict
+      ForegroundMaskd
+      GaussianSharpenD
+      GaussianSharpenDict
+      GaussianSharpend
+      GaussianSmoothD
+      GaussianSmoothDict
+      GaussianSmoothd
+      GibbsNoiseD
+      GibbsNoiseDict
+      GibbsNoised
+      HistogramNormalizeD
+      HistogramNormalizeDict
+      HistogramNormalized
+      KSpaceSpikeNoiseD
+      KSpaceSpikeNoiseDict
+      KSpaceSpikeNoised
+      MaskIntensityD
+      MaskIntensityDict
+      MaskIntensityd
+      MedianSmoothD
+      MedianSmoothDict
+      MedianSmoothd
+      NormalizeIntensityD
+      NormalizeIntensityDict
+      NormalizeIntensityd
+      RandAdjustContrastD
+      RandAdjustContrastDict
+      RandAdjustContrastd
+      RandBiasFieldD
+      RandBiasFieldDict
+      RandBiasFieldd
+      RandCoarseDropoutD
+      RandCoarseDropoutDict
+      RandCoarseDropoutd
+      RandCoarseShuffleD
+      RandCoarseShuffleDict
+      RandCoarseShuffled
+      RandGaussianNoiseD
+      RandGaussianNoiseDict
+      RandGaussianNoised
+      RandGaussianSharpenD
+      RandGaussianSharpenDict
+      RandGaussianSharpend
+      RandGaussianSmoothD
+      RandGaussianSmoothDict
+      RandGaussianSmoothd
+      RandGibbsNoiseD
+      RandGibbsNoiseDict
+      RandGibbsNoised
+      RandHistogramShiftD
+      RandHistogramShiftDict
+      RandHistogramShiftd
+      RandKSpaceSpikeNoiseD
+      RandKSpaceSpikeNoiseDict
+      RandKSpaceSpikeNoised
+      RandRicianNoiseD
+      RandRicianNoiseDict
+      RandRicianNoised
+      RandScaleIntensityD
+      RandScaleIntensityDict
+      RandScaleIntensityFixedMeanD
+      RandScaleIntensityFixedMeanDict
+      RandScaleIntensityFixedMeand
+      RandScaleIntensityd
+      RandShiftIntensityD
+      RandShiftIntensityDict
+      RandShiftIntensityd
+      RandStdShiftIntensityD
+      RandStdShiftIntensityDict
+      RandStdShiftIntensityd
+      SavitzkyGolaySmoothD
+      SavitzkyGolaySmoothDict
+      SavitzkyGolaySmoothd
+      ScaleIntensityD
+      ScaleIntensityDict
+      ScaleIntensityRangeD
+      ScaleIntensityRangeDict
+      ScaleIntensityRangePercentilesD
+      ScaleIntensityRangePercentilesDict
+      ScaleIntensityRangePercentilesd
+      ScaleIntensityRanged
+      ScaleIntensityd
+      ShiftIntensityD
+      ShiftIntensityDict
+      ShiftIntensityd
+      StdShiftIntensityD
+      StdShiftIntensityDict
+      StdShiftIntensityd
+      ThresholdIntensityD
+      ThresholdIntensityDict
+      ThresholdIntensityd
+   

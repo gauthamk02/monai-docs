@@ -1,0 +1,14 @@
+monai.transforms.lazy.dictionary
+================================
+
+.. automodule:: monai.transforms.lazy.dictionary
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ApplyPendingD
+      ApplyPendingDict
+      ApplyPendingd
+   

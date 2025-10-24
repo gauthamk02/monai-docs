@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>What’s new in 0.6 &#8212; MONAI 1.5.1 Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=26ac546f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=cb7e6255"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew_0_6';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What’s new in 0.5" href="whatsnew_0_5.html" />
+    <link rel="prev" title="What’s new in 0.7" href="whatsnew_0_7.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-light" alt="MONAI 1.5.1 Documentation - Home"/>
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-dark pst-js-only" alt="MONAI 1.5.1 Documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_1_5_1.html">What’s new in 1.5.1 🎉🎉</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_1_5.html">What’s new in 1.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_1_4.html">What’s new in 1.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_1_3.html">What’s new in 1.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_1_2.html">What’s new in 1.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_1_1.html">What’s new in 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_1_0.html">What’s new in 1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_0_9.html">What’s new in 0.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_0_8.html">What’s new in 0.8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_0_7.html">What’s new in 0.7</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">What’s new in 0.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew_0_5.html">What’s new in 0.5</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="whatsnew.html" class="nav-link">What’s New</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">What’s new in 0.6</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="what-s-new-in-0-6">
+<h1>What’s new in 0.6<a class="headerlink" href="#what-s-new-in-0-6" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Decollating mini-batches as an essential post-processing step</p></li>
+<li><p>Pythonic APIs to load the pretrained models from Clara Train MMARs</p></li>
+<li><p>UNETR: Transformers for Medical Image Segmentation</p></li>
+<li><p>Enhancements of the base metric interfaces</p></li>
+<li><p>C++/CUDA extension modules via PyTorch JIT compilation</p></li>
+<li><p>Backward compatibility and enhanced continuous integration/continuous delivery</p></li>
+<li><p>Collaboration with Project-MONAI/MONAILabel for smooth integration</p></li>
+</ul>
+<section id="decollating-mini-batches-as-an-essential-post-processing-step">
+<h2>Decollating mini-batches as an essential post-processing step<a class="headerlink" href="#decollating-mini-batches-as-an-essential-post-processing-step" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">decollate</span> <span class="pre">batch</span></code> is introduced in MONAI v0.6, to simplify the post-processing transforms and enable flexible operations on a batch of model outputs.
+It can decollate batched data (e.g. model inference results) into a list of tensors – as an ‘inverse’ operation of <code class="docutils literal notranslate"><span class="pre">collate_fn</span></code> of the PyTorch data loader. It has the benefits such as:</p>
+<ul class="simple">
+<li><p>enabling postprocessing transforms for each item independently, for example, randomised transforms could be applied differently for each predicted item in a batch.</p></li>
+<li><p>simplifying the transform APIs and reducing the input validation burdens, because both the preprocessing and postprocessing transforms now only support the “channel-first” input format.</p></li>
+<li><p>enabling the transform inverse operation for data items in different original shapes, as the inverted items are in a list, instead of being stacked in a single tensor.</p></li>
+<li><p>allowing for both a “batch-first” tensor and a list of “channel-first” tensors for flexible metric computation.</p></li>
+</ul>
+<p>A typical process of <code class="docutils literal notranslate"><span class="pre">decollate</span> <span class="pre">batch</span></code> is illustrated as follows (with a <code class="docutils literal notranslate"><span class="pre">batch_size=N</span></code> model predictions and labels as an example):
+<img alt="decollate_batch" src="_images/decollate_batch.png" /></p>
+<p><a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/master/modules/decollate_batch.ipynb">decollate batch tutorial</a> shows a detailed usage example based on a PyTorch native workflow.</p>
+<p><a class="reference external" href="https://github.com/Project-MONAI/MONAI/wiki/v0.5-to-v0.6-migration-guide">Migrating your v0.5 code to v0.6</a> wiki shows how to migrate an existing program from v0.5 to v0.6 to adapt to the <code class="docutils literal notranslate"><span class="pre">decollate</span> <span class="pre">batch</span></code> logic.</p>
+</section>
+<section id="unetr-transformers-for-medical-image-segmentation">
+<h2>UNETR: Transformers for Medical Image Segmentation<a class="headerlink" href="#unetr-transformers-for-medical-image-segmentation" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/2103.10504">UNETR</a> is a transformer-based model for volumetric (3D) medical image segmentation and is currently the state-of-the-art on <a class="reference external" href="https://www.synapse.org/#%21Synapse:syn3193805/wiki/217752">BTCV dataset</a> test server for the task of multi-organ semantic segmentation. UNETR is introduced in MONAI v0.6 and its flexible implementation supports various segmentation tasks.
+<img alt="UNETR" src="_images/UNETR.png" /></p>
+<p>A tutorial for the task of 3D multi-organ semantic segmentation using UNETR is provided within
+<a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/master/3d_segmentation/unetr_btcv_segmentation_3d.ipynb"><code class="docutils literal notranslate"><span class="pre">project-monai/tutorials</span></code></a>.
+And it contains the following features:</p>
+<ul class="simple">
+<li><p>Transforms for dictionary format data,</p></li>
+<li><p>Defining a new transform according to MONAI transform API,</p></li>
+<li><p>Loading Nifti image with metadata, loading a list of images and stacking them,</p></li>
+<li><p>Randomly adjusting the intensity for data augmentation,</p></li>
+<li><p>Optimized cache IO and transforms to accelerate training and validation,</p></li>
+<li><p>3D UNETR model, DiceCE loss function and Mean Dice metric for multi-organ segmentation task,</p></li>
+</ul>
+<p>The following illustrates target body organs that are segmentation in this tutorial:
+<img alt="BTCV_organs" src="_images/BTCV_organs.png" /></p>
+<p>Please visit UNETR repository for more details:
+https://monai.io/research/unetr-btcv-multi-organ-segmentation</p>
+</section>
+<section id="pythonic-apis-to-load-the-pretrained-models-from-clara-train-mmars">
+<h2>Pythonic APIs to load the pretrained models from Clara Train MMARs<a class="headerlink" href="#pythonic-apis-to-load-the-pretrained-models-from-clara-train-mmars" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.nvidia.com/clara/clara-train-sdk/pt/mmar.html">The MMAR (Medical Model ARchive)</a>
+defines a data structure for organizing all artifacts produced during the model development life cycle.
+NVIDIA Clara provides <a class="reference external" href="https://ngc.nvidia.com/catalog/models?orderBy=scoreDESC&amp;pageNumber=0&amp;query=clara_pt&amp;quickFilter=&amp;filters=">various MMARs of medical domain-specific models</a>.
+These MMARs include all the information about the model including configurations and scripts to provide a workspace to perform model development tasks. To better leverage the trained MMARs released on Nvidia GPU cloud, MONAI provides pythonic APIs to access them.</p>
+<p>To demonstrate this new feature, a medical image segmentation tutorial is created within
+<a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/master/modules/transfer_mmar.ipynb"><code class="docutils literal notranslate"><span class="pre">project-monai/tutorials</span></code></a>.
+It mainly produces the following figure to compare the loss curves and validation scores for</p>
+<ul class="simple">
+<li><p>training from scratch (the green line),</p></li>
+<li><p>applying pretrained MMAR weights without training (the magenta line),</p></li>
+<li><p>training from the MMAR model weights (the blue line),</p></li>
+</ul>
+<p>according to the number of training epochs:</p>
+<p><img alt="transfer_mmar" src="_images/transfer_mmar.png" /></p>
+<p>The tutorial shows the capability of encapsulating the details of MMAR parsing, as well as the potential of using pretrained MMARs for transfer learning.
+These APIs are also being integrated into AI-assisted interactive workflows to accelerate the manual annotating processes (e.g. via <a class="reference external" href="https://github.com/Project-MONAI/MONAILabel">project-MONAI/MONAILabel</a>).</p>
+</section>
+<section id="enhancements-of-the-base-metric-interfaces">
+<h2>Enhancements of the base metric interfaces<a class="headerlink" href="#enhancements-of-the-base-metric-interfaces" title="Link to this heading">#</a></h2>
+<p>The base API for metrics is now enhanced to support the essential computation logic for both iteration and epoch-based metrics.
+With this update, the MONAI metrics module becomes more extensible, and thus a good starting point for customised metrics.
+The APIs also by default support data parallel computation and consider the computation efficiency:  with a <code class="docutils literal notranslate"><span class="pre">Cumulative</span></code> base class, intermediate metric outcomes can be automatically buffered, cumulated, synced across distributed processes, and aggregated for the final results. The <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/master/modules/compute_metric.py">multi-processing computation example</a> shows how to compute metrics based on saved predictions and labels in multi-processing environment.</p>
+</section>
+<section id="c-cuda-extension-modules-via-pytorch-jit-compilation">
+<h2>C++/CUDA extension modules via PyTorch JIT compilation<a class="headerlink" href="#c-cuda-extension-modules-via-pytorch-jit-compilation" title="Link to this heading">#</a></h2>
+<p>To further accelerate the domain-specific routines in the workflows, MONAI C++/CUDA modules are introduced as extensions of the PyTorch native implementation.
+It now provides modules using <a class="reference external" href="https://pytorch.org/tutorials/advanced/cpp_extension.html#custom-c-and-cuda-extensions">the two ways of building C++ extensions from PyTorch</a>:</p>
+<ul class="simple">
+<li><p>via <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> (since MONAI v0.5), for modules including <code class="docutils literal notranslate"><span class="pre">Resampler</span></code>, <code class="docutils literal notranslate"><span class="pre">Conditional</span> <span class="pre">random</span> <span class="pre">field</span> <span class="pre">(CRF)</span></code>, <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">bilateral</span> <span class="pre">filtering</span> <span class="pre">using</span> <span class="pre">the</span> <span class="pre">permutohedral</span> <span class="pre">lattice</span></code>.</p></li>
+<li><p>via just-in-time (JIT) compilation (since MONAI v0.6), for the <code class="docutils literal notranslate"><span class="pre">Gaussian</span> <span class="pre">mixtures</span></code> module. This approach allows for dynamic optimisation according to the user-specified parameters and local system environments.
+The following figure shows results of MONAI’s Gaussian mixture models applied to a tissue and surgical tools segmentation task:
+<img alt="Gaussian mixture models as a postprocessing step" src="_images/gmm_feature_set_comparison_s.png" /></p></li>
+</ul>
+</section>
+<section id="backward-compatibility-and-enhanced-continuous-integration-continuous-delivery">
+<h2>Backward compatibility and enhanced continuous integration/continuous delivery<a class="headerlink" href="#backward-compatibility-and-enhanced-continuous-integration-continuous-delivery" title="Link to this heading">#</a></h2>
+<p>Starting from this version, we experiment with basic policies of backward compatibility.
+New utilities are introduced on top of the existing semantic versioning modules, and the git branching model.</p>
+<p>At the same time, we actively analyze efficient, scalable, and secure CI/CD solutions to accommodate fast and collaborative codebase development.</p>
+<p>Although a complete mechanism is still under development, these provide another essential step towards API-stable versions of MONAI, sustainable release cycles, and efficient open-source collaborations.</p>
+</section>
+<section id="collaboration-with-project-monai-monailabel-for-smooth-integration">
+<h2>Collaboration with <a class="reference external" href="https://github.com/Project-MONAI/MONAILabel"><code class="docutils literal notranslate"><span class="pre">Project-MONAI/MONAILabel</span></code></a> for smooth integration<a class="headerlink" href="#collaboration-with-project-monai-monailabel-for-smooth-integration" title="Link to this heading">#</a></h2>
+<p>Since MONAI v0.6, we welcome <a class="reference external" href="https://github.com/Project-MONAI/MONAILabel"><code class="docutils literal notranslate"><span class="pre">MONAILabel</span></code></a> under <a class="reference external" href="https://github.com/Project-MONAI"><code class="docutils literal notranslate"><span class="pre">Project-MONAI</span></code></a>.</p>
+<p>MONAI Label is an intelligent open source image labeling and learning tool that enables users to create annotated datasets and build AI annotation models for clinical evaluation.
+MONAI Label enables application developers to build labeling apps in a serverless way,
+where custom labeling apps are exposed as a service through the MONAI Label Server.</p>
+<p>Please visit MONAILabel documentation website for details:
+https://docs.monai.io/projects/label/en/latest/</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="whatsnew_0_7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">What’s new in 0.7</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="whatsnew_0_5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">What’s new in 0.5</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decollating-mini-batches-as-an-essential-post-processing-step">Decollating mini-batches as an essential post-processing step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unetr-transformers-for-medical-image-segmentation">UNETR: Transformers for Medical Image Segmentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pythonic-apis-to-load-the-pretrained-models-from-clara-train-mmars">Pythonic APIs to load the pretrained models from Clara Train MMARs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancements-of-the-base-metric-interfaces">Enhancements of the base metric interfaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-cuda-extension-modules-via-pytorch-jit-compilation">C++/CUDA extension modules via PyTorch JIT compilation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-compatibility-and-enhanced-continuous-integration-continuous-delivery">Backward compatibility and enhanced continuous integration/continuous delivery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaboration-with-project-monai-monailabel-for-smooth-integration">Collaboration with <code class="docutils literal notranslate"><span class="pre">Project-MONAI/MONAILabel</span></code> for smooth integration</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/whatsnew_0_6.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright MONAI Consortium.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

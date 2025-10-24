@@ -1,0 +1,15 @@
+monai.transforms.regularization.array
+=====================================
+
+.. automodule:: monai.transforms.regularization.array
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CutMix
+      CutOut
+      MixUp
+      Mixer
+   

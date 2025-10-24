@@ -1,0 +1,861 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MONAI Bundle Configuration &#8212; MONAI 1.5.1 Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=26ac546f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=cb7e6255"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'config_syntax';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MONAI Bundle Properties" href="mb_properties.html" />
+    <link rel="prev" title="MONAI Bundle Specification" href="mb_specification.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-light" alt="MONAI 1.5.1 Documentation - Home"/>
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-dark pst-js-only" alt="MONAI 1.5.1 Documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mb_specification.html">MONAI Bundle Specification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MONAI Bundle Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mb_properties.html">MONAI Bundle Properties</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="bundle_intro.html" class="nav-link">Bundle</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">MONAI Bundle Configuration</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="monai-bundle-configuration">
+<h1>MONAI Bundle Configuration<a class="headerlink" href="#monai-bundle-configuration" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">monai.bundle</span></code> module supports building Python-based workflows via structured configurations.</p>
+<p>The main benefits are threefold:</p>
+<ul class="simple">
+<li><p>it provides good readability and usability by separating system parameter settings from the Python code.</p></li>
+<li><p>it describes workflow at a relatively high level and allows for different low-level implementations.</p></li>
+<li><p>learning paradigms at a higher level such as federated learning and AutoML can be decoupled from the component details.</p></li>
+</ul>
+<p>Content:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#a-basic-example">A basic example</a></p></li>
+<li><p><a class="reference external" href="#syntax-examples-explained">Syntax examples explained</a></p>
+<ul>
+<li><p><a class="reference external" href="#to-reference-python-objects-in-configurations"><code class="docutils literal notranslate"><span class="pre">&#64;</span></code> to reference Python objects in configurations</a></p></li>
+<li><p><a class="reference external" href="#to-evaluate-as-python-expressions"><code class="docutils literal notranslate"><span class="pre">$</span></code> to evaluate as Python expressions</a></p></li>
+<li><p><a class="reference external" href="#to-textually-replace-configuration-elements"><code class="docutils literal notranslate"><span class="pre">%</span></code> to textually replace configuration elements</a></p></li>
+<li><p><a class="reference external" href="#instantiate-a-python-object"><code class="docutils literal notranslate"><span class="pre">_target_</span></code> (<code class="docutils literal notranslate"><span class="pre">_disabled_</span></code>, <code class="docutils literal notranslate"><span class="pre">_desc_</span></code>, <code class="docutils literal notranslate"><span class="pre">_requires_</span></code>, <code class="docutils literal notranslate"><span class="pre">_mode_</span></code>) to instantiate a Python object</a></p></li>
+<li><p><a class="reference external" href="#multiple-config-files"><code class="docutils literal notranslate"><span class="pre">+</span></code> to alter semantics of merging config keys from multiple configuration files</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#the-command-line-interface">The command line interface</a></p></li>
+<li><p><a class="reference external" href="#recommendations">Recommendations</a></p></li>
+</ul>
+<section id="a-basic-example">
+<h2>A basic example<a class="headerlink" href="#a-basic-example" title="Link to this heading">#</a></h2>
+<p>Components as part of a workflow can be specified using <code class="docutils literal notranslate"><span class="pre">JSON</span></code> or <code class="docutils literal notranslate"><span class="pre">YAML</span></code> syntax, for example, a network architecture
+definition could be stored in a <code class="docutils literal notranslate"><span class="pre">demo_config.json</span></code> file with the following content:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;demo_net&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;_target_&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;monai.networks.nets.BasicUNet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;spatial_dims&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;in_channels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;out_channels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;features&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>or alternatively, in <code class="docutils literal notranslate"><span class="pre">YAML</span></code> format (<code class="docutils literal notranslate"><span class="pre">demo_config.yaml</span></code>):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">demo_net</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monai.networks.nets.BasicUNet</span>
+<span class="w">  </span><span class="nt">spatial_dims</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">  </span><span class="nt">in_channels</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">out_channels</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">features</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">16</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">16</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">32</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">32</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">64</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">64</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>The configuration parser can instantiate the component as a Python object:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">monai.bundle</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigParser</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="o">.</span><span class="n">read_config</span><span class="p">(</span><span class="s2">&quot;demo_config.json&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_parsed_content</span><span class="p">(</span><span class="s2">&quot;demo_net&quot;</span><span class="p">,</span> <span class="n">instantiate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">BasicUNet features: (16, 16, 32, 32, 64, 64).</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">net</span><span class="p">))</span>
+<span class="go">&lt;class &#39;monai.networks.nets.basic_unet.BasicUNet&#39;&gt;</span>
+</pre></div>
+</div>
+<p>or additionally, tune the input parameters then instantiate the component:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;demo_net&quot;</span><span class="p">][</span><span class="s2">&quot;features&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_parsed_content</span><span class="p">(</span><span class="s2">&quot;demo_net&quot;</span><span class="p">,</span> <span class="n">instantiate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">BasicUNet features: (32, 32, 32, 64, 64, 64).</span>
+</pre></div>
+</div>
+<p>For more details on the <code class="docutils literal notranslate"><span class="pre">ConfigParser</span></code> API, please see <a class="reference external" href="https://docs.monai.io/en/latest/bundle.html#config-parser"><code class="docutils literal notranslate"><span class="pre">monai.bundle.ConfigParser</span></code></a>.</p>
+</section>
+<section id="syntax-examples-explained">
+<h2>Syntax examples explained<a class="headerlink" href="#syntax-examples-explained" title="Link to this heading">#</a></h2>
+<p>A few characters and keywords are interpreted beyond the plain texts, here are examples of the syntax:</p>
+<section id="to-reference-python-objects-in-configurations">
+<h3>To reference Python objects in configurations<a class="headerlink" href="#to-reference-python-objects-in-configurations" title="Link to this heading">#</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;@preprocessing::transforms::keys&quot;</span>
+</pre></div>
+</div>
+<p><em>Description:</em> <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> character indicates a reference to another configuration value defined at <code class="docutils literal notranslate"><span class="pre">preprocessing::transforms::keys</span></code>.
+where <code class="docutils literal notranslate"><span class="pre">::</span></code> indicates a sub-structure of this configuration file. (<code class="docutils literal notranslate"><span class="pre">#</span></code> is a synonym for <code class="docutils literal notranslate"><span class="pre">::</span></code>, <code class="docutils literal notranslate"><span class="pre">preprocessing#transforms#keys</span></code>
+refers to the same object.)</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;@preprocessing::1&quot;</span>
+</pre></div>
+</div>
+<p><em>Description:</em> <code class="docutils literal notranslate"><span class="pre">1</span></code> is referencing as an integer, which is used to index (zero-based indexing) the <code class="docutils literal notranslate"><span class="pre">preprocessing</span></code> sub-structure.</p>
+<p>Relative reference is supported by starting the reference with <code class="docutils literal notranslate"><span class="pre">#</span></code>. For example, <code class="docutils literal notranslate"><span class="pre">&#64;#A</span></code> is to use <code class="docutils literal notranslate"><span class="pre">A</span></code> at the
+same config structure level, and <code class="docutils literal notranslate"><span class="pre">&#64;##A</span></code> refers to <code class="docutils literal notranslate"><span class="pre">A</span></code> at one level above.</p>
+</section>
+<section id="to-evaluate-as-python-expressions">
+<h3>To evaluate as Python expressions<a class="headerlink" href="#to-evaluate-as-python-expressions" title="Link to this heading">#</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;$print(42)&quot;</span>
+</pre></div>
+</div>
+<p><em>Description:</em> <code class="docutils literal notranslate"><span class="pre">$</span></code> is a special character to indicate evaluating <code class="docutils literal notranslate"><span class="pre">print(42)</span></code> at runtime.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;$[i for i in @datalist]&quot;</span>
+</pre></div>
+</div>
+<p><em>Description:</em> Create a list at runtime using the values in <code class="docutils literal notranslate"><span class="pre">datalist</span></code> as input.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;$from torchvision.models import resnet18&quot;</span>
+</pre></div>
+</div>
+<p><em>Description:</em> <code class="docutils literal notranslate"><span class="pre">$</span></code> followed by an import statement is handled slightly differently from the
+Python expressions. The imported module <code class="docutils literal notranslate"><span class="pre">resnet18</span></code> will be available as a global variable
+to the other configuration sections. This is to simplify the use of external modules in the configuration.</p>
+<p>The config expressions may use <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> to reference other config items. For example, in <code class="docutils literal notranslate"><span class="pre">$lambda</span> <span class="pre">x:</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">&#64;a</span> <span class="pre">+</span> <span class="pre">&#64;b</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&#64;a</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;b</span></code> are references to other Python objects and are made available to the anonymous function
+as ‘globals’.
+It’s therefore possible to modify the Python objects within an expression, for example,
+<code class="docutils literal notranslate"><span class="pre">$lambda</span> <span class="pre">x:</span> <span class="pre">&#64;my_list.pop()</span> <span class="pre">+</span> <span class="pre">x</span></code> will pop the last element from <code class="docutils literal notranslate"><span class="pre">&#64;my_list</span></code> and add it to <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</section>
+<section id="to-textually-replace-configuration-elements">
+<h3>To textually replace configuration elements<a class="headerlink" href="#to-textually-replace-configuration-elements" title="Link to this heading">#</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;%demo_config.json::demo_net::in_channels&quot;</span>
+</pre></div>
+</div>
+<p><em>Description:</em> <code class="docutils literal notranslate"><span class="pre">%</span></code> character indicates a macro to replace the current configuration element with the texts at <code class="docutils literal notranslate"><span class="pre">demo_net::in_channels</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">demo_config.json</span></code> file. The replacement is done before instantiating or evaluating the components.</p>
+</section>
+<section id="instantiate-a-python-object">
+<h3>Instantiate a Python object<a class="headerlink" href="#instantiate-a-python-object" title="Link to this heading">#</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;demo_name&quot;</span><span class="p">:{</span>
+<span class="w">    </span><span class="nt">&quot;_target_&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my.python.module.Class&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;args1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;args2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><em>Description:</em> This dictionary defines an object with a reference name <code class="docutils literal notranslate"><span class="pre">demo_name</span></code>, with an instantiable type
+specified at <code class="docutils literal notranslate"><span class="pre">_target_</span></code> and with input arguments <code class="docutils literal notranslate"><span class="pre">args1</span></code> and <code class="docutils literal notranslate"><span class="pre">args2</span></code>.
+This dictionary will be instantiated as a Pytorch object at runtime.</p>
+<p><code class="docutils literal notranslate"><span class="pre">_target_</span></code> is a required key by monai bundle syntax for the Python object name.
+<code class="docutils literal notranslate"><span class="pre">args1</span></code> and <code class="docutils literal notranslate"><span class="pre">args2</span></code> should be compatible with the Python object to instantiate.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;component_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;_target_&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my.module.Class&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;_desc_&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;this is a customized class which also triggers &#39;cudnn_opt&#39; reference&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;_requires_&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@cudnn_opt&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;_disabled_&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;_mode_&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;default&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><em>Description:</em> <code class="docutils literal notranslate"><span class="pre">_requires_</span></code>, <code class="docutils literal notranslate"><span class="pre">_disabled_</span></code>, <code class="docutils literal notranslate"><span class="pre">_desc_</span></code>, and <code class="docutils literal notranslate"><span class="pre">_mode_</span></code> are optional keys.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_requires_</span></code> specifies references (string starts with <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>) or
+Python expression that will be evaluated/instantiated before <code class="docutils literal notranslate"><span class="pre">_target_</span></code> object is instantiated.
+It is useful when the component does not explicitly depend on the other ConfigItems via
+its arguments, but requires the dependencies to be instantiated/evaluated beforehand.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_disabled_</span></code> specifies a flag to indicate whether to skip the instantiation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_desc_</span></code> can be used for providing free text descriptions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_mode_</span></code> specifies the operating mode when the component is instantiated or the callable is called.
+it currently supports the following values:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code> (default) – return the return value of <code class="docutils literal notranslate"><span class="pre">_target_(**kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;callable&quot;</span></code> – return a callable, either as <code class="docutils literal notranslate"><span class="pre">_target_</span></code> itself or, if <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> are provided, as a
+partial function of <code class="docutils literal notranslate"><span class="pre">functools.partial(_target_,</span> <span class="pre">**kwargs)</span></code>. Useful for defining a class or function
+that will be instantied or called later. User can pre-define some arguments to the <code class="docutils literal notranslate"><span class="pre">_target_</span></code> and call
+it with additional arguments later.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;debug&quot;</span></code> – execute with debug prompt and return the return value of <code class="docutils literal notranslate"><span class="pre">pdb.runcall(_target_,</span> <span class="pre">**kwargs)</span></code>,
+see also <a class="reference external" href="https://docs.python.org/3/library/pdb.html#pdb.runcall"><code class="docutils literal notranslate"><span class="pre">pdb.runcall</span></code></a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="multiple-config-files">
+<h2>Multiple config files<a class="headerlink" href="#multiple-config-files" title="Link to this heading">#</a></h2>
+<p><em>Description:</em> Multiple config files may be specified on the command line.
+The content of those config files is being merged. When same keys are specifiled in more than one config file,
+the value associated with the key is being overridden, in the order config files are specified.
+If the desired behaviour is to merge values from both files, the key in second config file should be prefixed with <code class="docutils literal notranslate"><span class="pre">+</span></code>.
+The value types for the merged contents must match and be both of <code class="docutils literal notranslate"><span class="pre">dict</span></code> or both of <code class="docutils literal notranslate"><span class="pre">list</span></code> type.
+<code class="docutils literal notranslate"><span class="pre">dict</span></code> values will be merged via update(), <code class="docutils literal notranslate"><span class="pre">list</span></code> values - concatenated via extend().
+Here’s an example. In this case, “amp” value will be overridden by extra_config.json.
+<code class="docutils literal notranslate"><span class="pre">imports</span></code> and <code class="docutils literal notranslate"><span class="pre">preprocessing#transforms</span></code> lists will be merged. An error would be thrown if the value type in <code class="docutils literal notranslate"><span class="pre">&quot;+imports&quot;</span></code> is not <code class="docutils literal notranslate"><span class="pre">list</span></code>:</p>
+<p>config.json:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;amp&quot;</span><span class="p">:</span><span class="w"> </span><span class="nt">&quot;$True&quot;</span>
+<span class="w">    </span><span class="nt">&quot;imports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">	</span><span class="s2">&quot;$import torch&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;preprocessing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;_target_&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Compose&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;transforms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">	  </span><span class="s2">&quot;$@t1&quot;</span><span class="p">,</span>
+<span class="w">	  </span><span class="s2">&quot;$@t2&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>extra_config.json:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;amp&quot;</span><span class="p">:</span><span class="w"> </span><span class="nt">&quot;$False&quot;</span>
+<span class="w">    </span><span class="nt">&quot;+imports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">	</span><span class="s2">&quot;$from monai.networks import trt_compile&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;+preprocessing#transforms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;$@t3&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="the-command-line-interface">
+<h2>The command line interface<a class="headerlink" href="#the-command-line-interface" title="Link to this heading">#</a></h2>
+<p>In addition to the Pythonic APIs, a few command line interfaces (CLI) are provided to interact with the bundle.
+The primary usage is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>monai.bundle<span class="w"> </span>COMMANDS
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">COMMANDS</span></code> is one of the following: <code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">verify_metadata</span></code>, <code class="docutils literal notranslate"><span class="pre">ckpt_export</span></code>, …
+(please see <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">monai.bundle</span> <span class="pre">--help</span></code> for a list of available options).</p>
+<p>The CLI supports flexible use cases, such as overriding configs at runtime and predefining arguments in a file.
+To display a usage page for a command, for example <code class="docutils literal notranslate"><span class="pre">run</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>monai.bundle<span class="w"> </span>run<span class="w"> </span>--<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>The support is provided by <a class="reference external" href="https://github.com/google/python-fire">Python Fire</a>, please
+make sure the optional dependency is installed, for example,
+using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">monai[fire]</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">fire</span></code>.
+Details on the CLI argument parsing is provided in the
+<a class="reference external" href="https://github.com/google/python-fire/blob/master/docs/guide.md#argument-parsing">Python Fire Guide</a>.</p>
+</section>
+<section id="recommendations">
+<h2>Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Both <code class="docutils literal notranslate"><span class="pre">YAML</span></code> and <code class="docutils literal notranslate"><span class="pre">JSON</span></code> are supported, but the advanced features of these formats are not supported.</p></li>
+<li><p>Using meaningful names for the configuration elements can improve the readability.</p></li>
+<li><p>While it is possible to build complex configurations with the bundle syntax,
+simple structures with sparse uses of expressions or references are preferred.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">$import</span> <span class="pre">&lt;module&gt;</span></code> in the configuration, please make sure there are instructions for the users to install
+the <code class="docutils literal notranslate"><span class="pre">&lt;module&gt;</span></code> if it is not a (optional) dependency of MONAI.</p></li>
+<li><p>As <code class="docutils literal notranslate"><span class="pre">#</span></code>, <code class="docutils literal notranslate"><span class="pre">::</span></code>, and <code class="docutils literal notranslate"><span class="pre">$</span></code> might be interpreted differently by the <code class="docutils literal notranslate"><span class="pre">shell</span></code> or <code class="docutils literal notranslate"><span class="pre">CLI</span></code> tools, may need to add escape characters
+or quotes for them in the command line, like: <code class="docutils literal notranslate"><span class="pre">&quot;\$torch.device('cuda:1')&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;'train_part#trainer'&quot;</span></code>.</p></li>
+<li><p>For more details and examples, please see <a class="reference external" href="https://github.com/Project-MONAI/tutorials/tree/main/bundle">the tutorials</a>.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mb_specification.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MONAI Bundle Specification</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mb_properties.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MONAI Bundle Properties</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-basic-example">A basic example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-examples-explained">Syntax examples explained</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-reference-python-objects-in-configurations">To reference Python objects in configurations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-evaluate-as-python-expressions">To evaluate as Python expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-textually-replace-configuration-elements">To textually replace configuration elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiate-a-python-object">Instantiate a Python object</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-config-files">Multiple config files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-command-line-interface">The command line interface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommendations">Recommendations</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/config_syntax.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright MONAI Consortium.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

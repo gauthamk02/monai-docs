@@ -1,0 +1,22 @@
+monai.transforms.signal.array
+=============================
+
+.. automodule:: monai.transforms.signal.array
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SignalContinuousWavelet
+      SignalFillEmpty
+      SignalRandAddGaussianNoise
+      SignalRandAddSine
+      SignalRandAddSinePartial
+      SignalRandAddSquarePulse
+      SignalRandAddSquarePulsePartial
+      SignalRandDrop
+      SignalRandScale
+      SignalRandShift
+      SignalRemoveFrequency
+   

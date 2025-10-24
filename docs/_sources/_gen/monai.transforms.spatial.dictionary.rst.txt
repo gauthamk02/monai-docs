@@ -1,0 +1,89 @@
+monai.transforms.spatial.dictionary
+===================================
+
+.. automodule:: monai.transforms.spatial.dictionary
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      AffineD
+      AffineDict
+      Affined
+      ConvertBoxToPointsD
+      ConvertBoxToPointsDict
+      ConvertBoxToPointsd
+      ConvertPointsToBoxesD
+      ConvertPointsToBoxesDict
+      ConvertPointsToBoxesd
+      FlipD
+      FlipDict
+      Flipd
+      GridDistortionD
+      GridDistortionDict
+      GridDistortiond
+      GridPatchD
+      GridPatchDict
+      GridPatchd
+      GridSplitD
+      GridSplitDict
+      GridSplitd
+      OrientationD
+      OrientationDict
+      Orientationd
+      Rand2DElasticD
+      Rand2DElasticDict
+      Rand2DElasticd
+      Rand3DElasticD
+      Rand3DElasticDict
+      Rand3DElasticd
+      RandAffineD
+      RandAffineDict
+      RandAffined
+      RandAxisFlipD
+      RandAxisFlipDict
+      RandAxisFlipd
+      RandFlipD
+      RandFlipDict
+      RandFlipd
+      RandGridDistortionD
+      RandGridDistortionDict
+      RandGridDistortiond
+      RandGridPatchD
+      RandGridPatchDict
+      RandGridPatchd
+      RandRotate90D
+      RandRotate90Dict
+      RandRotate90d
+      RandRotateD
+      RandRotateDict
+      RandRotated
+      RandSimulateLowResolutionD
+      RandSimulateLowResolutionDict
+      RandSimulateLowResolutiond
+      RandZoomD
+      RandZoomDict
+      RandZoomd
+      ResampleToMatchD
+      ResampleToMatchDict
+      ResampleToMatchd
+      ResizeD
+      ResizeDict
+      Resized
+      Rotate90D
+      Rotate90Dict
+      Rotate90d
+      RotateD
+      RotateDict
+      Rotated
+      SpacingD
+      SpacingDict
+      Spacingd
+      SpatialResampleD
+      SpatialResampleDict
+      SpatialResampled
+      ZoomD
+      ZoomDict
+      Zoomd
+   

@@ -1,0 +1,1022 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Optimizers &#8212; MONAI 1.5.1 Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=26ac546f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=cb7e6255"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'optimizers';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data" href="data.html" />
+    <link rel="prev" title="Metrics" href="metrics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-light" alt="MONAI 1.5.1 Documentation - Home"/>
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-dark pst-js-only" alt="MONAI 1.5.1 Documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="apps.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto3dseg.html">Auto3dseg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fl.html">Federated Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bundle.html">Model Bundle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="losses.html">Loss functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks.html">Network architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="engines.html">Engines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inferers.html">Inference methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Event handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualize.html">Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="api.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Optimizers</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="optimizers">
+<span id="id1"></span><h1>Optimizers<a class="headerlink" href="#optimizers" title="Link to this heading">#</a></h1>
+<section id="learningratefinder">
+<h2><cite>LearningRateFinder</cite><a class="headerlink" href="#learningratefinder" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.optimizers.LearningRateFinder">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.optimizers.</span></span><span class="sig-name descname"><span class="pre">LearningRateFinder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory_cache=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickle_module=&lt;module</span> <span class="pre">'pickle'</span> <span class="pre">from</span> <span class="pre">'/usr/lib/python3.12/pickle.py'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickle_protocol=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose=True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_finder.py#L145-L548"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LearningRateFinder" title="Link to this definition">#</a></dt>
+<dd><p>Learning rate range test.</p>
+<p>The learning rate range test increases the learning rate in a pre-training run
+between two boundaries in a linear or exponential manner. It provides valuable
+information on how well the network can be trained over a range of learning rates
+and what is the optimal learning rate.</p>
+<p>Example (fastai approach):
+&gt;&gt;&gt; lr_finder = LearningRateFinder(net, optimizer, criterion)
+&gt;&gt;&gt; lr_finder.range_test(data_loader, end_lr=100, num_iter=100)
+&gt;&gt;&gt; lr_finder.get_steepest_gradient()
+&gt;&gt;&gt; lr_finder.plot() # to inspect the loss-learning rate graph</p>
+<p>Example (Leslie Smith’s approach):
+&gt;&gt;&gt; lr_finder = LearningRateFinder(net, optimizer, criterion)
+&gt;&gt;&gt; lr_finder.range_test(train_loader, val_loader=val_loader, end_lr=1, num_iter=100, step_mode=”linear”)</p>
+<p>Gradient accumulation is supported; example:
+&gt;&gt;&gt; train_data = …    # prepared dataset
+&gt;&gt;&gt; desired_bs, real_bs = 32, 4         # batch size
+&gt;&gt;&gt; accumulation_steps = desired_bs // real_bs     # required steps for accumulation
+&gt;&gt;&gt; data_loader = torch.utils.data.DataLoader(train_data, batch_size=real_bs, shuffle=True)
+&gt;&gt;&gt; acc_lr_finder = LearningRateFinder(net, optimizer, criterion)
+&gt;&gt;&gt; acc_lr_finder.range_test(data_loader, end_lr=10, num_iter=100, accumulation_steps=accumulation_steps)</p>
+<p>By default, image will be extracted from data loader with x[“image”] and x[0], depending on whether
+batch data is a dictionary or not (and similar behaviour for extracting the label). If your data loader
+returns something other than this, pass a callable function to extract it, e.g.:
+&gt;&gt;&gt; image_extractor = lambda x: x[“input”]
+&gt;&gt;&gt; label_extractor = lambda x: x[100]
+&gt;&gt;&gt; lr_finder = LearningRateFinder(net, optimizer, criterion)
+&gt;&gt;&gt; lr_finder.range_test(train_loader, val_loader, image_extractor, label_extractor)</p>
+<p>References:
+Modified from: <a class="github reference external" href="https://github.com/davidtvs/pytorch-lr-finder">davidtvs/pytorch-lr-finder</a>.
+Cyclical Learning Rates for Training Neural Networks: <a class="reference external" href="https://arxiv.org/abs/1506.01186">https://arxiv.org/abs/1506.01186</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.LearningRateFinder.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory_cache=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickle_module=&lt;module</span> <span class="pre">'pickle'</span> <span class="pre">from</span> <span class="pre">'/usr/lib/python3.12/pickle.py'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickle_protocol=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose=True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_finder.py#L184-L246"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LearningRateFinder.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – wrapped model.</p></li>
+<li><p><strong>optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – wrapped optimizer.</p></li>
+<li><p><strong>criterion</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – wrapped loss function.</p></li>
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – device on which to test. run a string (“cpu” or “cuda”) with an
+optional ordinal for the device type (e.g. “cuda:X”, where is the ordinal).
+Alternatively, can be an object representing the device on which the
+computation will take place. Default: None, uses the same device as <cite>model</cite>.</p></li>
+<li><p><strong>memory_cache</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if this flag is set to True, <cite>state_dict</cite> of
+model and optimizer will be cached in memory. Otherwise, they will be saved
+to files under the <cite>cache_dir</cite>.</p></li>
+<li><p><strong>cache_dir</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – path for storing temporary files. If no path is
+specified, system-wide temporary directory is used. Notice that this
+parameter will be ignored if <cite>memory_cache</cite> is True.</p></li>
+<li><p><strong>amp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – use Automatic Mixed Precision</p></li>
+<li><p><strong>pickle_module</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">module</span></code>) – module used for pickling metadata and objects, default to <cite>pickle</cite>.
+this arg is used by <cite>torch.save</cite>, for more details, please check:
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.save.html#torch.save">https://pytorch.org/docs/stable/generated/torch.save.html#torch.save</a>.</p></li>
+<li><p><strong>pickle_protocol</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – can be specified to override the default protocol, default to <cite>2</cite>.
+this arg is used by <cite>torch.save</cite>, for more details, please check:
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.save.html#torch.save">https://pytorch.org/docs/stable/generated/torch.save.html#torch.save</a>.</p></li>
+<li><p><strong>verbose</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – verbose output</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.LearningRateFinder.get_lrs_and_losses">
+<span class="sig-name descname"><span class="pre">get_lrs_and_losses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_finder.py#L447-L465"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LearningRateFinder.get_lrs_and_losses" title="Link to this definition">#</a></dt>
+<dd><p>Get learning rates and their corresponding losses</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>skip_start</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of batches to trim from the start.</p></li>
+<li><p><strong>skip_end</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of batches to trim from the end.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.LearningRateFinder.get_steepest_gradient">
+<span class="sig-name descname"><span class="pre">get_steepest_gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_finder.py#L467-L484"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LearningRateFinder.get_steepest_gradient" title="Link to this definition">#</a></dt>
+<dd><p>Get learning rate which has steepest gradient and its corresponding loss</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>skip_start</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of batches to trim from the start.</p></li>
+<li><p><strong>skip_end</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of batches to trim from the end.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Learning rate which has steepest gradient and its corresponding loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.LearningRateFinder.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steepest_lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_finder.py#L486-L548"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LearningRateFinder.plot" title="Link to this definition">#</a></dt>
+<dd><p>Plots the learning rate range test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>skip_start</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of batches to trim from the start.</p></li>
+<li><p><strong>skip_end</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of batches to trim from the start.</p></li>
+<li><p><strong>log_lr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – True to plot the learning rate in a logarithmic
+scale; otherwise, plotted in a linear scale.</p></li>
+<li><p><strong>ax</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the plot is created in the specified matplotlib axes object and the
+figure is not be shown. If <cite>None</cite>, then the figure and axes object are
+created in this method and the figure is shown.</p></li>
+<li><p><strong>steepest_lr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – plot the learning rate which had the steepest gradient.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <cite>matplotlib.axes.Axes</cite> object that contains the plot. Returns <cite>None</cite> if
+<cite>matplotlib</cite> is not installed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.LearningRateFinder.range_test">
+<span class="sig-name descname"><span class="pre">range_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_loader=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_extractor=&lt;function</span> <span class="pre">default_image_extractor&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_extractor=&lt;function</span> <span class="pre">default_label_extractor&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_lr=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_lr=10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iter=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_mode='exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_f=0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diverge_th=5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accumulation_steps=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking_transfer=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_reset=True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_finder.py#L255-L375"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LearningRateFinder.range_test" title="Link to this definition">#</a></dt>
+<dd><p>Performs the learning rate range test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>) – training set data loader.</p></li>
+<li><p><strong>val_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – validation data loader (if desired).</p></li>
+<li><p><strong>image_extractor</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – callable function to get the image from a batch of data.
+Default: <cite>x[“image”] if isinstance(x, dict) else x[0]</cite>.</p></li>
+<li><p><strong>label_extractor</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – callable function to get the label from a batch of data.
+Default: <cite>x[“label”] if isinstance(x, dict) else x[1]</cite>.</p></li>
+<li><p><strong>start_lr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the starting learning rate for the range test.
+The default is the optimizer’s learning rate.</p></li>
+<li><p><strong>end_lr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – the maximum learning rate to test. The test may stop earlier than
+this if the result starts diverging.</p></li>
+<li><p><strong>num_iter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the max number of iterations for test.</p></li>
+<li><p><strong>step_mode</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – schedule for increasing learning rate: (<cite>linear</cite> or <cite>exp</cite>).</p></li>
+<li><p><strong>smooth_f</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – the loss smoothing factor within the <cite>[0, 1[</cite> interval. Disabled
+if set to <cite>0</cite>, otherwise loss is smoothed using exponential smoothing.</p></li>
+<li><p><strong>diverge_th</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – test is stopped when loss surpasses threshold:
+<cite>diverge_th * best_loss</cite>.</p></li>
+<li><p><strong>accumulation_steps</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – steps for gradient accumulation. If set to <cite>1</cite>,
+gradients are not accumulated.</p></li>
+<li><p><strong>non_blocking_transfer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – when <cite>True</cite>, moves data to device asynchronously if
+possible, e.g., moving CPU Tensors with pinned memory to CUDA devices.</p></li>
+<li><p><strong>auto_reset</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if <cite>True</cite>, returns model and optimizer to original states at end
+of test.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.LearningRateFinder.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_finder.py#L248-L253"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LearningRateFinder.reset" title="Link to this definition">#</a></dt>
+<dd><p>Restores the model and optimizer to their initial states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="novograd">
+<h2><cite>Novograd</cite><a class="headerlink" href="#novograd" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.optimizers.Novograd">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.optimizers.</span></span><span class="sig-name descname"><span class="pre">Novograd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">betas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.9,</span> <span class="pre">0.98)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_averaging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amsgrad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/novograd.py#L23-L136"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.Novograd" title="Link to this definition">#</a></dt>
+<dd><p>Novograd based on <a class="reference external" href="https://arxiv.org/pdf/1905.11286.pdf">Stochastic Gradient Methods with Layer-wise Adaptive Moments for Training of Deep Networks</a>.
+The code is adapted from the implementations in <a class="reference external" href="https://github.com/NVIDIA/DeepLearningExamples/blob/master/PyTorch/SpeechRecognition/Jasper/common/optimizers.py">Jasper for PyTorch</a>,
+and <a class="reference external" href="https://github.com/NVIDIA/OpenSeq2Seq/blob/master/open_seq2seq/optimizers/novograd.py">OpenSeq2Seq</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>) – iterable of parameters to optimize or dicts defining parameter groups.</p></li>
+<li><p><strong>lr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – learning rate. Defaults to 1e-3.</p></li>
+<li><p><strong>betas</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – coefficients used for computing running averages of gradient and its square. Defaults to (0.9, 0.98).</p></li>
+<li><p><strong>eps</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – term added to the denominator to improve numerical stability. Defaults to 1e-8.</p></li>
+<li><p><strong>weight_decay</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – weight decay (L2 penalty). Defaults to 0.</p></li>
+<li><p><strong>grad_averaging</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – gradient averaging. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>amsgrad</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to use the AMSGrad variant of this algorithm from the paper
+<a class="reference external" href="https://arxiv.org/pdf/1904.09237.pdf">On the Convergence of Adam and Beyond</a>. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.Novograd.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">closure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/novograd.py#L73-L136"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.Novograd.step" title="Link to this definition">#</a></dt>
+<dd><p>Performs a single optimization step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>closure</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[~T], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – A closure that reevaluates the model and returns the loss. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[~T, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="generate-parameter-groups">
+<h2><cite>Generate parameter groups</cite><a class="headerlink" href="#generate-parameter-groups" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.optimizers.generate_param_groups">
+<span class="sig-prename descclassname"><span class="pre">monai.optimizers.</span></span><span class="sig-name descname"><span class="pre">generate_param_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_matches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_others</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/utils.py#L23-L103"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.generate_param_groups" title="Link to this definition">#</a></dt>
+<dd><p>Utility function to generate parameter groups with different LR values for optimizer.
+The output parameter groups have the same order as <cite>layer_match</cite> functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>network</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – source network to generate parameter groups from.</p></li>
+<li><p><strong>layer_matches</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – a list of callable functions to select or filter out network layer groups,
+for “select” type, the input will be the <cite>network</cite>, for “filter” type,
+the input will be every item of <cite>network.named_parameters()</cite>.
+for “select”, the parameters will be
+<cite>select_func(network).parameters()</cite>.
+for “filter”, the parameters will be
+<cite>(x[1] for x in filter(f, network.named_parameters()))</cite></p></li>
+<li><p><strong>match_types</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – a list of tags to identify the matching type corresponding to the <cite>layer_matches</cite> functions,
+can be “select” or “filter”.</p></li>
+<li><p><strong>lr_values</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – a list of LR values corresponding to the <cite>layer_matches</cite> functions.</p></li>
+<li><p><strong>include_others</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to include the rest layers as the last group, default to True.</p></li>
+</ul>
+</dd>
+</dl>
+<p>It’s mainly used to set different LR values for different network elements, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">Unet</span><span class="p">(</span><span class="n">spatial_dims</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>  <span class="c1"># print out network components to select expected items</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">())</span>  <span class="c1"># print out all the named parameters to filter out expected items</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">generate_param_groups</span><span class="p">(</span>
+    <span class="n">network</span><span class="o">=</span><span class="n">net</span><span class="p">,</span>
+    <span class="n">layer_matches</span><span class="o">=</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;2.0.conv&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+    <span class="n">match_types</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;select&quot;</span><span class="p">,</span> <span class="s2">&quot;filter&quot;</span><span class="p">],</span>
+    <span class="n">lr_values</span><span class="o">=</span><span class="p">[</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="c1"># the groups will be a list of dictionaries:</span>
+<span class="c1"># [{&#39;params&#39;: &lt;generator object Module.parameters at 0x7f9090a70bf8&gt;, &#39;lr&#39;: 0.01},</span>
+<span class="c1">#  {&#39;params&#39;: &lt;filter object at 0x7f9088fd0dd8&gt;, &#39;lr&#39;: 0.001},</span>
+<span class="c1">#  {&#39;params&#39;: &lt;filter object at 0x7f9088fd0da0&gt;}]</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="exponentiallr">
+<h2><cite>ExponentialLR</cite><a class="headerlink" href="#exponentiallr" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.optimizers.ExponentialLR">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.optimizers.</span></span><span class="sig-name descname"><span class="pre">ExponentialLR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_lr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_scheduler.py#L51-L58"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.ExponentialLR" title="Link to this definition">#</a></dt>
+<dd><p>Exponentially increases the learning rate between two boundaries over a number of
+iterations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.ExponentialLR.get_lr">
+<span class="sig-name descname"><span class="pre">get_lr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_scheduler.py#L56-L58"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.ExponentialLR.get_lr" title="Link to this definition">#</a></dt>
+<dd><p>Compute learning rate using chainable form of the scheduler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="linearlr">
+<h2><cite>LinearLR</cite><a class="headerlink" href="#linearlr" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.optimizers.LinearLR">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.optimizers.</span></span><span class="sig-name descname"><span class="pre">LinearLR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_lr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_scheduler.py#L41-L48"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LinearLR" title="Link to this definition">#</a></dt>
+<dd><p>Linearly increases the learning rate between two boundaries over a number of
+iterations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.LinearLR.get_lr">
+<span class="sig-name descname"><span class="pre">get_lr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_scheduler.py#L46-L48"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.LinearLR.get_lr" title="Link to this definition">#</a></dt>
+<dd><p>Compute learning rate using chainable form of the scheduler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="warmupcosineschedule">
+<h2><cite>WarmupCosineSchedule</cite><a class="headerlink" href="#warmupcosineschedule" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.optimizers.WarmupCosineSchedule">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.optimizers.</span></span><span class="sig-name descname"><span class="pre">WarmupCosineSchedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_total</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup_multiplier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_scheduler.py#L61-L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.WarmupCosineSchedule" title="Link to this definition">#</a></dt>
+<dd><p>Linear warmup and then cosine decay.
+Based on <a class="reference external" href="https://huggingface.co/">https://huggingface.co/</a> implementation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.WarmupCosineSchedule.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_total</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup_multiplier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_scheduler.py#L66-L96"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.WarmupCosineSchedule.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – wrapped optimizer.</p></li>
+<li><p><strong>warmup_steps</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of warmup iterations.</p></li>
+<li><p><strong>t_total</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – total number of training iterations.</p></li>
+<li><p><strong>end_lr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – the final learning rate. Defaults to 0.0.</p></li>
+<li><p><strong>cycles</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – cosine cycles parameter.</p></li>
+<li><p><strong>last_epoch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the index of last epoch.</p></li>
+<li><p><strong>warmup_multiplier</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – if provided, starts the linear warmup from this fraction of the initial lr.
+Must be in 0..1 interval. Defaults to 0</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.optimizers.WarmupCosineSchedule.get_lr">
+<span class="sig-name descname"><span class="pre">get_lr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/optimizers/lr_scheduler.py#L105-L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.optimizers.WarmupCosineSchedule.get_lr" title="Link to this definition">#</a></dt>
+<dd><p>Compute learning rate.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="metrics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Metrics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learningratefinder"><cite>LearningRateFinder</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LearningRateFinder"><code class="docutils literal notranslate"><span class="pre">LearningRateFinder</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LearningRateFinder.__init__"><code class="docutils literal notranslate"><span class="pre">LearningRateFinder.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LearningRateFinder.get_lrs_and_losses"><code class="docutils literal notranslate"><span class="pre">LearningRateFinder.get_lrs_and_losses()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LearningRateFinder.get_steepest_gradient"><code class="docutils literal notranslate"><span class="pre">LearningRateFinder.get_steepest_gradient()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LearningRateFinder.plot"><code class="docutils literal notranslate"><span class="pre">LearningRateFinder.plot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LearningRateFinder.range_test"><code class="docutils literal notranslate"><span class="pre">LearningRateFinder.range_test()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LearningRateFinder.reset"><code class="docutils literal notranslate"><span class="pre">LearningRateFinder.reset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#novograd"><cite>Novograd</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.Novograd"><code class="docutils literal notranslate"><span class="pre">Novograd</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.Novograd.step"><code class="docutils literal notranslate"><span class="pre">Novograd.step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-parameter-groups"><cite>Generate parameter groups</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.generate_param_groups"><code class="docutils literal notranslate"><span class="pre">generate_param_groups()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exponentiallr"><cite>ExponentialLR</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.ExponentialLR"><code class="docutils literal notranslate"><span class="pre">ExponentialLR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.ExponentialLR.get_lr"><code class="docutils literal notranslate"><span class="pre">ExponentialLR.get_lr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearlr"><cite>LinearLR</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LinearLR"><code class="docutils literal notranslate"><span class="pre">LinearLR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.LinearLR.get_lr"><code class="docutils literal notranslate"><span class="pre">LinearLR.get_lr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warmupcosineschedule"><cite>WarmupCosineSchedule</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.WarmupCosineSchedule"><code class="docutils literal notranslate"><span class="pre">WarmupCosineSchedule</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.WarmupCosineSchedule.__init__"><code class="docutils literal notranslate"><span class="pre">WarmupCosineSchedule.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.optimizers.WarmupCosineSchedule.get_lr"><code class="docutils literal notranslate"><span class="pre">WarmupCosineSchedule.get_lr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/optimizers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright MONAI Consortium.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

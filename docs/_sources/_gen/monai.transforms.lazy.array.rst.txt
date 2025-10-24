@@ -1,0 +1,12 @@
+monai.transforms.lazy.array
+===========================
+
+.. automodule:: monai.transforms.lazy.array
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ApplyPending
+   

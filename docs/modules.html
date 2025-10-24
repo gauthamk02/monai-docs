@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modules &#8212; MONAI 1.5.1 Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=26ac546f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=cb7e6255"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Research and Application Highlights" href="applications.html" />
+    <link rel="prev" title="Highlights" href="highlights.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-light" alt="MONAI 1.5.1 Documentation - Home"/>
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-dark pst-js-only" alt="MONAI 1.5.1 Documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Research and Application Highlights</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="highlights.html" class="nav-link">Highlights</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Modules</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Link to this heading">#</a></h1>
+<p>MONAI aims at facilitating deep learning in medical image analysis at multiple granularities. This document provides an
+overview of the modules and highlights the key capabilities.</p>
+<p>The core codebase is designed as a library of lightweight, flexible, and comprehensive APIs for users with varying expertise.
+The building blocks are made easy to understand and use, they are carefully decoupled and can be readily integrated
+into existing PyTorch programs and larger systems. By leveraging the workflow and bundle APIs, users can also quickly
+set up efficient and robust model training or evaluation pipelines for various domain-specific applications.</p>
+<p>The overall architecture and modules are shown in the following figure:</p>
+<p><img alt="architecture overview" src="_images/arch_modules.png" /></p>
+<ul class="simple">
+<li><p><a class="reference external" href="#i-o-processing-and-augmentation">I/O, processing and augmentation</a></p></li>
+<li><p><a class="reference external" href="#datasets-and-data-loading">Datasets and Data Loading</a></p></li>
+<li><p><a class="reference external" href="#differentiable-components-networks-losses-and-optimizers">Differentiable components, networks, losses and optimizers</a></p></li>
+<li><p><a class="reference external" href="#evaluation">Evaluation</a></p></li>
+<li><p><a class="reference external" href="#visualization">Visualization</a></p></li>
+<li><p><a class="reference external" href="#workflows">Workflows</a></p></li>
+<li><p><a class="reference external" href="#bundle">Bundle</a></p></li>
+<li><p><a class="reference external" href="#federated-learning">Federated Learning</a></p></li>
+<li><p><a class="reference external" href="#auto3dseg">Auto3dseg</a></p></li>
+<li><p><a class="reference external" href="#gpu-acceleration-performance-profiling-and-optimization">GPU acceleration, performance profiling and optimization</a></p></li>
+</ul>
+<section id="i-o-processing-and-augmentation">
+<h2>I/O, processing and augmentation<a class="headerlink" href="#i-o-processing-and-augmentation" title="Link to this heading">#</a></h2>
+<p>Medical images require specialized methods for I/O, preprocessing and augmentation. They often follow specific formats,
+are handled with specific protocols, and the data arrays are often high-dimensional.
+<a class="reference external" href="https://github.com/Project-MONAI/MONAI/tree/dev/monai/transforms"><code class="docutils literal notranslate"><span class="pre">monai.transforms</span></code></a> and
+<a class="reference external" href="https://github.com/Project-MONAI/MONAI/tree/dev/monai/data"><code class="docutils literal notranslate"><span class="pre">monai.data</span></code></a> modules include a set of domain-specific APIs
+for various deep learning applications:</p>
+<section id="transforms-with-data-in-array-and-dictionary-styles">
+<h3>Transforms with data in array and dictionary styles<a class="headerlink" href="#transforms-with-data-in-array-and-dictionary-styles" title="Link to this heading">#</a></h3>
+<p><img alt="3d transform examples" src="_images/affine.png" /></p>
+<p>This enables basic image transformations, as well as more complex preprocessing pipelines such as synchronized operations
+across different modalities and model supervision inputs. <a class="reference external" href="https://github.com/Project-MONAI/tutorials/tree/main/3d_segmentation/torch">[array and dict examples]</a></p>
+</section>
+<section id="various-image-patch-based-sampling-mechanisms">
+<h3>Various image patch-based sampling mechanisms<a class="headerlink" href="#various-image-patch-based-sampling-mechanisms" title="Link to this heading">#</a></h3>
+<p><img alt="2d transform examples" src="_images/medical_transforms.png" /></p>
+<p>Advanced patch sampling methods are implemented for selective preprocessing, such as weighted, class-balanced sampling
+from user-specified sampling weight maps.
+The output can be in a sequence or iterator pattern which allows for different types of shuffling strategies.</p>
+</section>
+<section id="image-io-with-third-party-library-integrations">
+<h3>Image IO with third-party library integrations<a class="headerlink" href="#image-io-with-third-party-library-integrations" title="Link to this heading">#</a></h3>
+<p>Several backends are built-in and can support various formats. It is easily extensible for customized format readers.</p>
+</section>
+<section id="monai-data-metatensor">
+<h3>monai.data.MetaTensor<a class="headerlink" href="#monai-data-metatensor" title="Link to this heading">#</a></h3>
+<p>Core data structure combines PyTorch native Tensor APIs with metadata handling,
+so that the deep learning models and pipelines can readily incorporate the meta information. <a class="reference external" href="https://colab.research.google.com/drive/1T4iAys-cC2qL80oJkIbAXAPlWNPwp4H7">[MetaTensor]</a></p>
+</section>
+<section id="gpu-based-accelerations">
+<h3>GPU-based accelerations<a class="headerlink" href="#gpu-based-accelerations" title="Link to this heading">#</a></h3>
+<p>Implementations are provided to ensure optimal usage of the underlying hardware resources. <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/acceleration">[fast training guide]</a></p>
+</section>
+<section id="determinism-and-reproducibility">
+<h3>Determinism and reproducibility<a class="headerlink" href="#determinism-and-reproducibility" title="Link to this heading">#</a></h3>
+<p>They can be achieved with fine-level of local controls via the <code class="docutils literal notranslate"><span class="pre">Randomizable</span></code> API as well as globally
+using <code class="docutils literal notranslate"><span class="pre">set_determinism</span></code>.</p>
+</section>
+<section id="decollating-and-invertible-transforms">
+<h3>Decollating and invertible transforms<a class="headerlink" href="#decollating-and-invertible-transforms" title="Link to this heading">#</a></h3>
+<p><img alt="invert transform" src="_images/invert_transforms.png" />
+The mini-batch data output from a model can be decollated, post-processed independently, including inverting
+the outputs to an earlier step of the preprocessing according to the tracked metadata and applied operations.
+<a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/modules/inverse_transforms_and_test_time_augmentations.ipynb">[inverse transform demo]</a></p>
+</section>
+<section id="enhanced-usability">
+<h3>Enhanced usability<a class="headerlink" href="#enhanced-usability" title="Link to this heading">#</a></h3>
+<p>Additionally, utilities such as <code class="docutils literal notranslate"><span class="pre">DataStats</span></code> transform, <code class="docutils literal notranslate"><span class="pre">dev_collate</span></code>, and <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/modules/transform_visualization.ipynb">visualization
+methods</a> are provided as
+extensions to PyTorch for improved overall debugability.</p>
+</section>
+</section>
+<section id="datasets-and-data-loading">
+<h2>Datasets and Data Loading<a class="headerlink" href="#datasets-and-data-loading" title="Link to this heading">#</a></h2>
+<p>Following PyTorch’s design pattern, MONAI extends the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> APIs as major enhancements in terms of
+domain-specific usability and pipeline performance.</p>
+<section id="cache-io-and-transforms-data-to-accelerate-training">
+<h3>Cache IO and transforms data to accelerate training<a class="headerlink" href="#cache-io-and-transforms-data-to-accelerate-training" title="Link to this heading">#</a></h3>
+<p>Data-driven methods require many (potentially thousands of) epochs of training data reading and preprocessing. MONAI
+provides multi-threaded cache-based datasets to accelerate the process <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/acceleration/dataset_type_performance.ipynb">[Datasets experiment]</a>. The
+cache can be persistent and dynamic (<code class="docutils literal notranslate"><span class="pre">SmartCacheDataset</span></code>) and reused across different experiments <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/acceleration/distributed_training/unet_training_smartcache.py">[SmartCache example]</a>.
+The following figure illustrates the training speedup compared with a regular PyTorch program.</p>
+<p><img alt="cachedataset speed" src="_images/datasets_speed.png" /></p>
+</section>
+<section id="threaddataloader-vs-dataloader">
+<h3><code class="docutils literal notranslate"><span class="pre">ThreadDataLoader</span></code> vs. <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code><a class="headerlink" href="#threaddataloader-vs-dataloader" title="Link to this heading">#</a></h3>
+<p>If the transforms are light-weighted, especially when we cache all the data in RAM, the multiprocessing of PyTorch
+<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> may cause unnecessary IPC time and decrease GPU utilization. MONAI provides <code class="docutils literal notranslate"><span class="pre">ThreadDataLoader</span></code> which
+executes the transforms in a separate thread:</p>
+<p><img alt="threaddataloader" src="_images/threaddataloader.png" /></p>
+<p>a <code class="docutils literal notranslate"><span class="pre">ThreadDataLoader</span></code> example is within the <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/acceleration/fast_training_tutorial.ipynb">Spleen fast training tutorial</a>.</p>
+</section>
+<section id="public-datasets">
+<h3>Public datasets<a class="headerlink" href="#public-datasets" title="Link to this heading">#</a></h3>
+<p>To quickly get started with popular training data, MONAI provides several ready-to-integrate Dataset classes
+(such as <code class="docutils literal notranslate"><span class="pre">MedNISTDataset</span></code>, <code class="docutils literal notranslate"><span class="pre">DecathlonDataset</span></code>, <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/modules/tcia_dataset.ipynb"><code class="docutils literal notranslate"><span class="pre">TciaDataset</span></code></a>), which include data downloading, and support training/evaluation splits generation with transforms.
+<a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/modules/public_datasets.ipynb">[Public datasets tutorial]</a>
+The common workflow of predefined datasets:</p>
+<p><img alt="pre-defined dataset" src="_images/dataset_progress.png" /></p>
+</section>
+<section id="dataset-type-extensions">
+<h3>Dataset type extensions<a class="headerlink" href="#dataset-type-extensions" title="Link to this heading">#</a></h3>
+<p>Other extensions of the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> API include: <code class="docutils literal notranslate"><span class="pre">ZipDataset</span></code> for associating multiple data sources, <code class="docutils literal notranslate"><span class="pre">PatchDataset</span></code> for
+handling both image- and patch-level preprocessing, <code class="docutils literal notranslate"><span class="pre">CSVDataset</span></code> for multi-modal inputs, and <code class="docutils literal notranslate"><span class="pre">partition_dataset</span></code> for
+cross-validation data preparations.</p>
+</section>
+</section>
+<section id="differentiable-components-networks-losses-and-optimizers">
+<h2>Differentiable components, networks, losses and optimizers<a class="headerlink" href="#differentiable-components-networks-losses-and-optimizers" title="Link to this heading">#</a></h2>
+<p>Some deep neural network architectures have shown to be particularly effective for medical imaging analysis tasks.
+MONAI implements reference networks with the aim of both flexibility and code readability.</p>
+<section id="predefined-layers-and-blocks">
+<h3>Predefined layers and blocks<a class="headerlink" href="#predefined-layers-and-blocks" title="Link to this heading">#</a></h3>
+<p>Network layers and blocks are in general implemented to be compatible with spatial 1D, 2D and 3D inputs.
+Users can easily integrate the layers, blocks and networks as part of their customised pipelines.
+Various utilities are provided to leverage the existing model weights, e.g. <a class="reference external" href="https://github.com/Project-MONAI/tutorials/tree/main/model_zoo">from a bundle in MONAI model-zoo</a>.</p>
+</section>
+<section id="c-cuda-optimized-modules">
+<h3>C++/CUDA optimized modules<a class="headerlink" href="#c-cuda-optimized-modules" title="Link to this heading">#</a></h3>
+<p>To further accelerate the domain-specific routines, MONAI C++/CUDA implementation is introduced as extensions of the PyTorch native implementations.
+MONAI provides the modules using <a class="reference external" href="https://pytorch.org/tutorials/advanced/cpp_extension.html#custom-c-and-cuda-extensions">the two ways of building C++ extensions from PyTorch</a>:</p>
+<ul class="simple">
+<li><p>via <code class="docutils literal notranslate"><span class="pre">setuptools</span></code>, for modules including <code class="docutils literal notranslate"><span class="pre">Resampler</span></code>, <code class="docutils literal notranslate"><span class="pre">Conditional</span> <span class="pre">random</span> <span class="pre">field</span> <span class="pre">(CRF)</span></code>, <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">bilateral</span> <span class="pre">filtering</span> <span class="pre">using</span> <span class="pre">the</span> <span class="pre">permutohedral</span> <span class="pre">lattice</span></code>.</p></li>
+<li><p>via just-in-time (JIT) compilation, for the <code class="docutils literal notranslate"><span class="pre">Gaussian</span> <span class="pre">mixtures</span></code> module. This approach allows for dynamic optimisation according to the user-specified parameters and local system environments.
+The following figure shows results of MONAI’s Gaussian mixture models applied to tissue and surgical tools segmentation:
+<img alt="Gaussian mixture models as a postprocessing step" src="_images/gmm_feature_set_comparison_s.png" /></p></li>
+</ul>
+</section>
+<section id="losses-and-optimizers">
+<h3>Losses and optimizers<a class="headerlink" href="#losses-and-optimizers" title="Link to this heading">#</a></h3>
+<p>Commonly used loss functions for various applications are (re-)implemented from the literature, such as <code class="docutils literal notranslate"><span class="pre">DiceLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">GeneralizedDiceLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">TverskyLoss</span></code>, <code class="docutils literal notranslate"><span class="pre">DiceFocalLoss</span></code>.
+The numerical optimizations and relevant utilities include <code class="docutils literal notranslate"><span class="pre">Novograd</span></code> and <code class="docutils literal notranslate"><span class="pre">LearningRateFinder</span></code>.
+The following figure shows a learning rate search process.</p>
+<p><img alt="learning rate finder plot" src="_images/lr_finder.png" /></p>
+</section>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">#</a></h2>
+<p>To run model inferences and evaluate the model quality, MONAI provides reference implementations for the relevant
+widely-used approaches. Currently, several popular evaluation metrics and inference patterns are included:</p>
+<section id="sliding-window-inference">
+<h3>Sliding window inference<a class="headerlink" href="#sliding-window-inference" title="Link to this heading">#</a></h3>
+<p>For model inferences on large volumes, the sliding window approach is a popular choice to achieve high performance while
+having flexible memory requirements (_alternatively, please check out the latest research on <a class="reference external" href="https://github.com/Project-MONAI/research-contributions/tree/main/lamp-automated-model-parallelism">model parallel
+training</a>. It also supports
+<code class="docutils literal notranslate"><span class="pre">overlap</span></code> and <code class="docutils literal notranslate"><span class="pre">blending_mode</span></code> configurations to handle the overlapped windows for better performances.</p>
+<p><img alt="sliding window scheme" src="_images/sliding_window.png" /></p>
+</section>
+<section id="metrics-for-medical-tasks">
+<h3>Metrics for medical tasks<a class="headerlink" href="#metrics-for-medical-tasks" title="Link to this heading">#</a></h3>
+<p>Various useful evaluation metrics have been implemented to measure the quality of medical image specific models.
+These include <code class="docutils literal notranslate"><span class="pre">Mean</span> <span class="pre">Dice</span></code>, <code class="docutils literal notranslate"><span class="pre">ROCAUC</span></code>, <code class="docutils literal notranslate"><span class="pre">Confusion</span> <span class="pre">Matrices</span></code>, <code class="docutils literal notranslate"><span class="pre">Hausdorff</span> <span class="pre">Distance</span></code>, <code class="docutils literal notranslate"><span class="pre">Surface</span> <span class="pre">Distance</span></code>, <code class="docutils literal notranslate"><span class="pre">Occlusion</span> <span class="pre">Sensitivity</span></code>.
+The APIs also support <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/modules/compute_metric.py">multi-processing computation</a>.</p>
+</section>
+<section id="report-generation">
+<h3>Report generation<a class="headerlink" href="#report-generation" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">MetricsSaver</span></code> is provided to write the final metric summary report: <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;int&gt;percentile</span></code>, <code class="docutils literal notranslate"><span class="pre">std</span></code>:</p>
+<p><img alt="metrics report example" src="_images/metrics_report.png" /></p>
+</section>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h2>
+<p>Beyond the simple point and curve plotting, intuitive interfaces are provided to visualize multidimensional data as GIF animations in TensorBoard. This could provide a quick qualitative assessment of the model by visualizing, for example, the volumetric inputs, segmentation maps, and intermediate feature maps. A runnable example with visualization is available at <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/3d_segmentation/torch/unet_training_dict.py">UNet training example</a>. To work with ignite program, MONAI also provides several ignite handlers to visualize training curve and metrics with <code class="docutils literal notranslate"><span class="pre">TensorBoard</span></code> or <code class="docutils literal notranslate"><span class="pre">MLFlow</span></code>, more details is available in <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/3d_segmentation/unet_segmentation_3d_ignite.ipynb">TensorBoard and MLFlow handlers example</a>.</p>
+<p>To easily visualize a 3D image as frames of 2D images, MONAI provides the utility <code class="docutils literal notranslate"><span class="pre">matshow3d</span></code> based on <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> library. It can plot frames of image for the specified dimension, showing a spleen 3D image as example:
+<code class="docutils literal notranslate"><span class="pre">matshow3d(volume=image,</span> <span class="pre">figsize=(100,</span> <span class="pre">100),</span> <span class="pre">every_n=10,</span> <span class="pre">frame_dim=-1</span> <span class="pre">show=True,</span> <span class="pre">cmap=&quot;gray&quot;)</span></code></p>
+<p><img alt="matshow3d example" src="_images/matshow3d.png" /></p>
+<p>MONAI also provides the <code class="docutils literal notranslate"><span class="pre">blend_images</span></code> utility to blend the <code class="docutils literal notranslate"><span class="pre">image</span></code> and <code class="docutils literal notranslate"><span class="pre">label</span></code> to an RGB color image to better visualize the segmentation regions with the specified <code class="docutils literal notranslate"><span class="pre">cmap</span></code> mode and weights, etc. Showing a spleen segmentation <code class="docutils literal notranslate"><span class="pre">image</span></code> and the corresponding <code class="docutils literal notranslate"><span class="pre">label</span></code> as example:</p>
+<p><img alt="blend example" src="_images/blend.png" /></p>
+<p>For more details of <code class="docutils literal notranslate"><span class="pre">TensorBoard</span> <span class="pre">utility</span></code>, <code class="docutils literal notranslate"><span class="pre">matshow3d</span></code> and <code class="docutils literal notranslate"><span class="pre">blend_images</span></code>, please check the <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/modules/transform_visualization.ipynb">visualization tutorial</a>.</p>
+<p>And to visualize the class activation mapping for a trained classification model, MONAI provides CAM, GradCAM, GradCAM++ APIs for both 2D and 3D models:</p>
+<p><img alt="CAM visualization example" src="_images/cam.png" /></p>
+<p>The above example is generated by computing <a class="reference external" href="https://github.com/Project-MONAI/tutorials/tree/main/modules/interpretability">GradCAM/GradCAM++ from a lung CT lesion classification model</a>.</p>
+</section>
+<section id="workflows">
+<h2>Workflows<a class="headerlink" href="#workflows" title="Link to this heading">#</a></h2>
+<p>MONAI engines and workflows enable quick start of training and evaluation experiments.</p>
+<p>These features decouple the domain-specific components and the generic machine learning processes.
+They also provide a set of unify APIs for higher level applications (such as AutOML, Federated Learning).
+The trainers and evaluators of the workflows are compatible with pytorch-ignite <code class="docutils literal notranslate"><span class="pre">Engine</span></code> and <code class="docutils literal notranslate"><span class="pre">Event-Handler</span></code> mechanism.</p>
+<section id="general-workflows-pipeline">
+<h3>General workflows pipeline<a class="headerlink" href="#general-workflows-pipeline" title="Link to this heading">#</a></h3>
+<p>The workflow and some of MONAI event handlers are shown as below <a class="reference external" href="https://github.com/Project-MONAI/tutorials/tree/main/modules/engines">[Workflow examples]</a>:</p>
+<p><img alt="workflow pipeline" src="_images/workflows.png" /></p>
+</section>
+<section id="ensembleevaluator">
+<h3>EnsembleEvaluator<a class="headerlink" href="#ensembleevaluator" title="Link to this heading">#</a></h3>
+<p>A typical ensemble procoess is implemented as a ready-to-use workflow <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/modules/cross_validation_models_ensemble.ipynb">[Cross validation and model ensemble tutorial]</a>:</p>
+<ol class="simple">
+<li><p>Split all the training dataset into K folds.</p></li>
+<li><p>Train K models with every K-1 folds data.</p></li>
+<li><p>Execute inference on the test data with all the K models.</p></li>
+<li><p>Compute the average values with weights or vote the most common value as the final result.</p></li>
+</ol>
+<p><img alt="model ensemble" src="_images/models_ensemble.png" /></p>
+</section>
+<section id="decollate-batch-data-for-flexible-post-processings">
+<h3>Decollate batch data for flexible post-processings<a class="headerlink" href="#decollate-batch-data-for-flexible-post-processings" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">decollate</span> <span class="pre">batch</span></code> is introduced since MONAI v0.6, which simplifies the post-processing transforms and provides flexible following operations on a batch of data with various data shapes. It can decollate batched data (e.g. model predictions) into a list of tensors, for the benefits such as:</p>
+<ol class="simple">
+<li><p>enabling postprocessing transforms for each item independently – randomised transforms could be applied differently for each predicted item in a batch.</p></li>
+<li><p>simplifying the transform APIs and reducing the input validation burdens because both the preprocessing and postprocessing transforms now only need to support the “channel-first” input format.</p></li>
+<li><p>enabling the <code class="docutils literal notranslate"><span class="pre">Invertd</span></code> transform for the predictions and the inverted data with different shapes, as the data items are in a list, not stacked in a single tensor.</p></li>
+<li><p>allowing for both batch-first tensor and list of channel-first tensors in a flexible metric computation. <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/modules/decollate_batch.ipynb">[decollate batch tutorial]</a></p></li>
+</ol>
+<p>A typical process of <code class="docutils literal notranslate"><span class="pre">decollate</span> <span class="pre">batch</span></code> is illustrated as follows (with a <code class="docutils literal notranslate"><span class="pre">batch_size=N</span></code> model predictions and labels as an example):</p>
+<p><img alt="decollate_batch" src="_images/decollate_batch.png" /></p>
+</section>
+<section id="easy-to-integrate-into-popular-workflows">
+<h3>Easy to integrate into popular workflows<a class="headerlink" href="#easy-to-integrate-into-popular-workflows" title="Link to this heading">#</a></h3>
+<p>Except for the pytorch-ignite based <code class="docutils literal notranslate"><span class="pre">monai.engines</span></code>, most of the MONAI modules could be used independently or combined
+with other software packages. For example, MONAI can be easily integrated into popular frameworks such as
+<a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/3d_segmentation/spleen_segmentation_3d_lightning.ipynb">PyTorch-Lightning</a>
+and <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/experiment_management/spleen_segmentation_mlflow.ipynb">MLflow</a>.</p>
+</section>
+</section>
+<section id="bundle">
+<h2>Bundle<a class="headerlink" href="#bundle" title="Link to this heading">#</a></h2>
+<p>The objective of a MONAI bundle is to define a packaged model which includes the critical information necessary to allow
+users and programs to understand how the model is used and for what purpose. A bundle includes the stored weights of a
+single network as a pickled state dictionary plus optionally a Torchscript object and/or an ONNX object. Additional JSON
+files are included to store metadata about the model, information for constructing training, inference, and
+post-processing transform sequences, plain-text description, legal information, and other data the model creator wishes
+to include. More details are available at <a class="reference external" href="https://docs.monai.io/en/latest/mb_specification.html">bundle specification</a>.</p>
+<p>The key benefits of bundle are to define the model package and support building Python-based workflows via structured configurations:</p>
+<ul class="simple">
+<li><p>Self-contained model package include all the necessary information.</p></li>
+<li><p>Structured config can be used to easily reconstruct or prototype deep learning workflows.</p></li>
+<li><p>Config files can provide good readability and usability by separating parameter settings from the Python code.</p></li>
+<li><p>Config files can describe flexible workflow and components, allows for different low-level Python implementations</p></li>
+<li><p>Learning paradigms at a higher level such as federated learning and AutoML can be decoupled from the component details.</p></li>
+</ul>
+<p>A typical bundle example can include:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  ModelName
+  ┣━ configs
+  ┃  ┗━ metadata.json
+  ┣━ models
+  ┃  ┣━ model.pt
+  ┃  ┣━ *model.ts
+  ┃  ┗━ *model.onnx
+  ┗━ docs
+     ┣━ *README.md
+     ┗━ *license.txt
+</pre></div>
+</div>
+<p>Details about the bundle config definition and syntax &amp; examples are at <a class="reference external" href="https://docs.monai.io/en/latest/config_syntax.html">config syntax</a>.
+A step-by-step <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/bundle/README">get started</a> tutorial notebook can help users quickly set up a bundle. [<a class="reference external" href="https://github.com/Project-MONAI/tutorials/tree/main/bundle">bundle examples</a>, <a class="reference external" href="https://github.com/Project-MONAI/model-zoo">model-zoo</a>]</p>
+</section>
+<section id="federated-learning">
+<h2>Federated Learning<a class="headerlink" href="#federated-learning" title="Link to this heading">#</a></h2>
+<p><img alt="federated-learning" src="_images/federated.svg" /></p>
+<p>Using the MONAI bundle configurations, we can use MONAI’s <a class="reference external" href="https://docs.monai.io/en/latest/fl.html#monai.fl.client.MonaiAlgo"><code class="docutils literal notranslate"><span class="pre">MonaiAlgo</span></code></a>
+class, an implementation of the abstract <a class="reference external" href="https://docs.monai.io/en/latest/fl.html#clientalgo"><code class="docutils literal notranslate"><span class="pre">ClientAlgo</span></code></a> class for federated learning (FL),
+to execute bundles from the <a class="reference external" href="https://github.com/Project-MONAI/model-zoo">MONAI model zoo</a>.
+Note that <a class="reference external" href="https://docs.monai.io/en/latest/fl.html#clientalgo"><code class="docutils literal notranslate"><span class="pre">ClientAlgo</span></code></a> is provided as an abstract base class for
+defining an algorithm to be run on any federated learning platform.
+<a class="reference external" href="https://docs.monai.io/en/latest/fl.html#monai.fl.client.MonaiAlgo"><code class="docutils literal notranslate"><span class="pre">MonaiAlgo</span></code></a> implements the main functionalities needed
+to run federated learning experiments, namely <code class="docutils literal notranslate"><span class="pre">train()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_weights()</span></code>, and <code class="docutils literal notranslate"><span class="pre">evaluate()</span></code>, that can be run using single- or multi-GPU training.
+On top, it provides implementations for life-cycle management of the component such as <code class="docutils literal notranslate"><span class="pre">initialize()</span></code>, <code class="docutils literal notranslate"><span class="pre">abort()</span></code>, and <code class="docutils literal notranslate"><span class="pre">finalize()</span></code>.
+The MONAI FL client also allows computing summary data statistics (e.g., intensity histograms) on the datasets defined in the bundle configs
+using the <a class="reference external" href="https://docs.monai.io/en/latest/fl.html#monai.fl.client.MonaiAlgoStats"><code class="docutils literal notranslate"><span class="pre">MonaiAlgoStats</span></code></a> class.
+These statistics can be shared and visualized on the FL server.
+<a class="reference external" href="https://github.com/NVIDIA/NVFlare">NVIDIA FLARE</a>, the federated learning platform developed by NVIDIA, has already built <a class="reference external" href="https://github.com/NVIDIA/NVFlare/tree/2.2/integration/monai">the integration piece</a>
+with <a class="reference external" href="https://docs.monai.io/en/latest/fl.html#clientalgo"><code class="docutils literal notranslate"><span class="pre">ClientAlgo</span></code></a> to allow easy experimentation with MONAI bundles within their federated environment.
+Our <a class="reference external" href="https://github.com/Project-MONAI/tutorials/tree/main/federated_learning/nvflare">[federated learning tutorials]</a> shows
+examples of single- &amp; multi-GPU training and federated statistics workflows.</p>
+</section>
+<section id="auto3dseg">
+<h2>Auto3dseg<a class="headerlink" href="#auto3dseg" title="Link to this heading">#</a></h2>
+<p><img alt="auto3dseg" src="_images/auto3dseg.png" /></p>
+<p><a class="reference external" href="https://monai.io/apps/auto3dseg.html">Auto3DSeg</a> is a comprehensive solution for large-scale 3D medical image segmentation.
+It leverages the latest advances in MONAI
+and GPUs to efficiently develop and deploy algorithms with state-of-the-art performance.
+It first analyzes the global information such as intensity, dimensionality, and resolution of the dataset,
+then generates algorithms in MONAI bundle format based on data statistics and <a class="reference external" href="https://github.com/Project-MONAI/research-contributions/tree/main/auto3dseg">algorithm templates</a>.
+Next, all algorithms initiate model training to obtain checkpoints with the best validation performance.
+Finally, the ensemble module selects the algorithms via ranking trained checkpoints and creates ensemble predictions.</p>
+<p>The solution offers different levels of user experience for beginners and advanced researchers.
+It has been tested on large-scale 3D medical imaging datasets in different modalities.</p>
+</section>
+<section id="gpu-acceleration-performance-profiling-and-optimization">
+<h2>GPU acceleration, performance profiling and optimization<a class="headerlink" href="#gpu-acceleration-performance-profiling-and-optimization" title="Link to this heading">#</a></h2>
+<p>MONAI provides state-of-the-art performance optimization methods including:</p>
+<section id="auto-mixed-precision-amp">
+<h3>Auto mixed precision (AMP)<a class="headerlink" href="#auto-mixed-precision-amp" title="Link to this heading">#</a></h3>
+<p>Simply set <code class="docutils literal notranslate"><span class="pre">amp=True/False</span></code> in <code class="docutils literal notranslate"><span class="pre">SupervisedTrainer</span></code> or <code class="docutils literal notranslate"><span class="pre">SupervisedEvaluator</span></code> during training or evaluation to enable/disable AMP
+Example benchmark results are as follows <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/acceleration/automatic_mixed_precision.ipynb">[AMP training tutorial]</a>:</p>
+<p>training with AMP ON/OFF on a NVIDIA V100 GPU with CUDA 11 and PyTorch 1.6:</p>
+<p><img alt="amp v100 results" src="_images/amp_training_v100.png" /></p>
+<p>training with AMP ON/OFF on a NVIDIA A100 GPU with CUDA 11 and PyTorch 1.6:</p>
+<p><img alt="amp a100 results" src="_images/amp_training_a100.png" /></p>
+<p>Several tools including <code class="docutils literal notranslate"><span class="pre">DLProf</span></code>, <code class="docutils literal notranslate"><span class="pre">Nsight</span></code>, <code class="docutils literal notranslate"><span class="pre">NVTX</span></code> and <code class="docutils literal notranslate"><span class="pre">NVML</span></code> can be used with MONAI to identify the performance bottleneck. <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/performance_profiling/radiology/profiling_train_base_nvtx">[profiling tutorial]</a></p>
+</section>
+<section id="distributed-training">
+<h3>Distributed training<a class="headerlink" href="#distributed-training" title="Link to this heading">#</a></h3>
+<p>The distributed data-parallel APIs of MONAI are compatible with the native PyTorch distributed module, pytorch-ignite distributed module, Horovod, XLA, and the SLURM platform.
+<a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/acceleration/distributed_training/brats_training_ddp.py">[distributed training tutorial]</a></p>
+<p><img alt="distributed training results" src="_images/brats_distributed.png" /></p>
+<p>The <a class="reference external" href="https://github.com/Project-MONAI/tutorials/blob/main/acceleration/fast_training_tutorial.ipynb">fast training tutorial</a>
+combines <code class="docutils literal notranslate"><span class="pre">AMP</span></code> with <code class="docutils literal notranslate"><span class="pre">CacheDataset</span></code>, <code class="docutils literal notranslate"><span class="pre">GPU</span> <span class="pre">cache</span></code>, <code class="docutils literal notranslate"><span class="pre">GPU</span> <span class="pre">transforms</span></code>, <code class="docutils literal notranslate"><span class="pre">ThreadDataLoader</span></code>, tuning of networks and optimizers, can achieve substantial speedup compared
+with a PyTorch regular implementation.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="highlights.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Highlights</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="applications.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Research and Application Highlights</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-processing-and-augmentation">I/O, processing and augmentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transforms-with-data-in-array-and-dictionary-styles">Transforms with data in array and dictionary styles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#various-image-patch-based-sampling-mechanisms">Various image patch-based sampling mechanisms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-io-with-third-party-library-integrations">Image IO with third-party library integrations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai-data-metatensor">monai.data.MetaTensor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-based-accelerations">GPU-based accelerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinism-and-reproducibility">Determinism and reproducibility</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decollating-and-invertible-transforms">Decollating and invertible transforms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhanced-usability">Enhanced usability</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-data-loading">Datasets and Data Loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cache-io-and-transforms-data-to-accelerate-training">Cache IO and transforms data to accelerate training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#threaddataloader-vs-dataloader"><code class="docutils literal notranslate"><span class="pre">ThreadDataLoader</span></code> vs. <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#public-datasets">Public datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-type-extensions">Dataset type extensions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differentiable-components-networks-losses-and-optimizers">Differentiable components, networks, losses and optimizers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predefined-layers-and-blocks">Predefined layers and blocks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-cuda-optimized-modules">C++/CUDA optimized modules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#losses-and-optimizers">Losses and optimizers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sliding-window-inference">Sliding window inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-for-medical-tasks">Metrics for medical tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#report-generation">Report generation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflows">Workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-workflows-pipeline">General workflows pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensembleevaluator">EnsembleEvaluator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decollate-batch-data-for-flexible-post-processings">Decollate batch data for flexible post-processings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#easy-to-integrate-into-popular-workflows">Easy to integrate into popular workflows</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bundle">Bundle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#federated-learning">Federated Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auto3dseg">Auto3dseg</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-acceleration-performance-profiling-and-optimization">GPU acceleration, performance profiling and optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-mixed-precision-amp">Auto mixed precision (AMP)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-training">Distributed training</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modules.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright MONAI Consortium.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

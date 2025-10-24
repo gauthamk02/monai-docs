@@ -1,0 +1,1407 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Engines &#8212; MONAI 1.5.1 Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=26ac546f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=cb7e6255"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'engines';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Inference methods" href="inferers.html" />
+    <link rel="prev" title="Data" href="data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-light" alt="MONAI 1.5.1 Documentation - Home"/>
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-dark pst-js-only" alt="MONAI 1.5.1 Documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="apps.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto3dseg.html">Auto3dseg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fl.html">Federated Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bundle.html">Model Bundle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="losses.html">Loss functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks.html">Network architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Engines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inferers.html">Inference methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Event handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualize.html">Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="api.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Engines</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="engines">
+<span id="id1"></span><h1>Engines<a class="headerlink" href="#engines" title="Link to this heading">#</a></h1>
+<section id="workflows">
+<h2>Workflows<a class="headerlink" href="#workflows" title="Link to this heading">#</a></h2>
+<section id="workflow">
+<h3><cite>Workflow</cite><a class="headerlink" href="#workflow" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.Workflow">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.</span></span><span class="sig-name descname"><span class="pre">Workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepare_batch=&lt;function</span> <span class="pre">default_prepare_batch&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration_update=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_metric=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_metrics=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_cmp_fn=&lt;function</span> <span class="pre">default_metric_cmp_fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handlers=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_to_attr=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decollate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_kwargs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/workflow.py#L47-L308"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Workflow" title="Link to this definition">#</a></dt>
+<dd><p>Workflow defines the core work process inheriting from Ignite engine.
+All trainer, validator and evaluator share this same workflow as base class,
+because they all can be treated as same Ignite engine loops.
+It initializes all the sharable data in Ignite engine.state.
+And attach additional processing logics to Ignite engine based on Event-Handler mechanism.</p>
+<p>Users should consider inheriting from <cite>trainer</cite> or <cite>evaluator</cite> to develop more trainers or evaluators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – an object representing the device on which to run.</p></li>
+<li><p><strong>max_epochs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the total epoch number for engine to run, validator and evaluator have only 1 epoch.</p></li>
+<li><p><strong>data_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>]) – Ignite engine use data_loader to run, must be Iterable or torch.DataLoader.</p></li>
+<li><p><strong>epoch_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – number of iterations for one epoch, default to <cite>len(data_loader)</cite>.</p></li>
+<li><p><strong>non_blocking</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if True and this copy is between CPU and GPU, the copy may occur asynchronously
+with respect to the host. For other cases, this argument has no effect.</p></li>
+<li><p><strong>prepare_batch</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to parse expected data (usually <cite>image</cite>, <cite>label</cite> and other network args)
+from <cite>engine.state.batch</cite> for every iteration, for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html</a>.</p></li>
+<li><p><strong>iteration_update</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the callable function for every iteration, expect to accept <cite>engine</cite>
+and <cite>engine.state.batch</cite> as inputs, return data will be stored in <cite>engine.state.output</cite>.
+if not provided, use <cite>self._iteration()</cite> instead. for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>.</p></li>
+<li><p><strong>postprocessing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – execute additional transformation for the model output data.
+Typically, several Tensor based transforms composed by <cite>Compose</cite>.</p></li>
+<li><p><strong>key_metric</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – compute metric when every iteration completed, and save average value to
+engine.state.metrics when epoch completed. key_metric is the main metric to compare and save the
+checkpoint into files.</p></li>
+<li><p><strong>additional_metrics</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – more Ignite metrics that also attach to Ignite Engine.</p></li>
+<li><p><strong>metric_cmp_fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to compare current key metric with previous best key metric value,
+it must accept 2 args (current_metric, previous_best) and return a bool result: if <cite>True</cite>, will update
+<cite>best_metric</cite> and <cite>best_metric_epoch</cite> with current metric and epoch, default to <cite>greater than</cite>.</p></li>
+<li><p><strong>handlers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – every handler is a set of Ignite Event-Handlers, must have <cite>attach</cite> function, like:
+CheckpointHandler, StatsHandler, etc.</p></li>
+<li><p><strong>amp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to enable auto-mixed-precision training or inference, default is False.</p></li>
+<li><p><strong>event_names</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – additional custom ignite events that will register to the engine.
+new events can be a list of str or <cite>ignite.engine.events.EventEnum</cite>.</p></li>
+<li><p><strong>event_to_attr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a dictionary to map an event to a state attribute, then add to <cite>engine.state</cite>.
+for more details, check: <a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>
+#ignite.engine.engine.Engine.register_events.</p></li>
+<li><p><strong>decollate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to decollate the batch-first data to a list of data after model computation,
+recommend <cite>decollate=True</cite> when <cite>postprocessing</cite> uses components from <cite>monai.transforms</cite>.
+default to <cite>True</cite>.</p></li>
+<li><p><strong>to_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of other args for <cite>prepare_batch</cite> API when converting the input data, except for
+<cite>device</cite>, <cite>non_blocking</cite>.</p></li>
+<li><p><strong>amp_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.autocast(“cuda”)</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/amp.html#torch.autocast">https://pytorch.org/docs/stable/amp.html#torch.autocast</a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – When <code class="docutils literal notranslate"><span class="pre">data_loader</span></code> is not a <code class="docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader</span></code>.</p></li>
+<li><p><strong>TypeError</strong> – When <code class="docutils literal notranslate"><span class="pre">key_metric</span></code> is not a <code class="docutils literal notranslate"><span class="pre">Optional[dict]</span></code>.</p></li>
+<li><p><strong>TypeError</strong> – When <code class="docutils literal notranslate"><span class="pre">additional_metrics</span></code> is not a <code class="docutils literal notranslate"><span class="pre">Optional[dict]</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.Workflow.get_stats">
+<span class="sig-name descname"><span class="pre">get_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">vars</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/workflow.py#L299-L308"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Workflow.get_stats" title="Link to this definition">#</a></dt>
+<dd><p>Get the statistics information of the workflow process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vars</strong> – variables name in the <cite>self.state</cite>, will use the variable name as the key
+and the state content as the value. if the variable doesn’t exist, default value is <cite>None</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.Workflow.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/workflow.py#L271-L282"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Workflow.run" title="Link to this definition">#</a></dt>
+<dd><p>Execute training, validation or evaluation based on Ignite Engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="trainer">
+<h3><cite>Trainer</cite><a class="headerlink" href="#trainer" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.Trainer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.</span></span><span class="sig-name descname"><span class="pre">Trainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepare_batch=&lt;function</span> <span class="pre">default_prepare_batch&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration_update=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_metric=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_metrics=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_cmp_fn=&lt;function</span> <span class="pre">default_metric_cmp_fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handlers=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_to_attr=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decollate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_kwargs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/trainer.py#L42-L77"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Trainer" title="Link to this definition">#</a></dt>
+<dd><p>Base class for all kinds of trainers, inherits from Workflow.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.Trainer.get_stats">
+<span class="sig-name descname"><span class="pre">get_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">vars</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/trainer.py#L57-L77"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Trainer.get_stats" title="Link to this definition">#</a></dt>
+<dd><p>Get the statistics information of the training process.
+Default to return the <cite>rank</cite>, <cite>current_epoch</cite>, <cite>current_iteration</cite>, <cite>total_epochs</cite>, <cite>total_iterations</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vars</strong> – except for the default stats, other variables name in the <cite>self.state</cite> to return,
+will use the variable name as the key and the state content as the value.
+if the variable doesn’t exist, default value is <cite>None</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.Trainer.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/trainer.py#L48-L55"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Trainer.run" title="Link to this definition">#</a></dt>
+<dd><p>Execute training based on Ignite Engine.
+If call this function multiple times, it will continuously run from the previous state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="supervisedtrainer">
+<h3><cite>SupervisedTrainer</cite><a class="headerlink" href="#supervisedtrainer" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.SupervisedTrainer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.</span></span><span class="sig-name descname"><span class="pre">SupervisedTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepare_batch=&lt;function</span> <span class="pre">default_prepare_batch&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration_update=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inferer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_train_metric=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_metrics=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_cmp_fn=&lt;function</span> <span class="pre">default_metric_cmp_fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_handlers=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_to_attr=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decollate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optim_set_to_none=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compile=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compile_kwargs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/trainer.py#L80-L278"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.SupervisedTrainer" title="Link to this definition">#</a></dt>
+<dd><p>Standard supervised training method with image and label, inherits from <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> and <code class="docutils literal notranslate"><span class="pre">Workflow</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>]) – an object representing the device on which to run.</p></li>
+<li><p><strong>max_epochs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the total epoch number for trainer to run.</p></li>
+<li><p><strong>train_data_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>]) – Ignite engine use data_loader to run, must be Iterable or torch.DataLoader.</p></li>
+<li><p><strong>network</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – network to train in the trainer, should be regular PyTorch <cite>torch.nn.Module</cite>.</p></li>
+<li><p><strong>optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – the optimizer associated to the network, should be regular PyTorch optimizer from <cite>torch.optim</cite>
+or its subclass.</p></li>
+<li><p><strong>loss_function</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – the loss function associated to the optimizer, should be regular PyTorch loss,
+which inherit from <cite>torch.nn.modules.loss</cite>.</p></li>
+<li><p><strong>epoch_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – number of iterations for one epoch, default to <cite>len(train_data_loader)</cite>.</p></li>
+<li><p><strong>non_blocking</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if True and this copy is between CPU and GPU, the copy may occur asynchronously
+with respect to the host. For other cases, this argument has no effect.</p></li>
+<li><p><strong>prepare_batch</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to parse expected data (usually <cite>image</cite>, <cite>label</cite> and other network args)
+from <cite>engine.state.batch</cite> for every iteration, for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html</a>.</p></li>
+<li><p><strong>iteration_update</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the callable function for every iteration, expect to accept <cite>engine</cite>
+and <cite>engine.state.batch</cite> as inputs, return data will be stored in <cite>engine.state.output</cite>.
+if not provided, use <cite>self._iteration()</cite> instead. for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>.</p></li>
+<li><p><strong>inferer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="inferers.html#monai.inferers.Inferer" title="monai.inferers.inferer.Inferer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inferer</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – inference method that execute model forward on input data, like: SlidingWindow, etc.</p></li>
+<li><p><strong>postprocessing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="transforms.html#monai.transforms.Transform" title="monai.transforms.transform.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – execute additional transformation for the model output data.
+Typically, several Tensor based transforms composed by <cite>Compose</cite>.</p></li>
+<li><p><strong>key_train_metric</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – compute metric when every iteration completed, and save average value to
+engine.state.metrics when epoch completed. key_train_metric is the main metric to compare and save the
+checkpoint into files.</p></li>
+<li><p><strong>additional_metrics</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – more Ignite metrics that also attach to Ignite Engine.</p></li>
+<li><p><strong>metric_cmp_fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to compare current key metric with previous best key metric value,
+it must accept 2 args (current_metric, previous_best) and return a bool result: if <cite>True</cite>, will update
+<cite>best_metric</cite> and <cite>best_metric_epoch</cite> with current metric and epoch, default to <cite>greater than</cite>.</p></li>
+<li><p><strong>train_handlers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – every handler is a set of Ignite Event-Handlers, must have <cite>attach</cite> function, like:
+CheckpointHandler, StatsHandler, etc.</p></li>
+<li><p><strong>amp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to enable auto-mixed-precision training, default is False.</p></li>
+<li><p><strong>event_names</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – additional custom ignite events that will register to the engine.
+new events can be a list of str or <cite>ignite.engine.events.EventEnum</cite>.</p></li>
+<li><p><strong>event_to_attr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a dictionary to map an event to a state attribute, then add to <cite>engine.state</cite>.
+for more details, check: <a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>
+#ignite.engine.engine.Engine.register_events.</p></li>
+<li><p><strong>decollate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to decollate the batch-first data to a list of data after model computation,
+recommend <cite>decollate=True</cite> when <cite>postprocessing</cite> uses components from <cite>monai.transforms</cite>.
+default to <cite>True</cite>.</p></li>
+<li><p><strong>optim_set_to_none</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – when calling <cite>optimizer.zero_grad()</cite>, instead of setting to zero, set the grads to None.
+more details: <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html">https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html</a>.</p></li>
+<li><p><strong>to_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of other args for <cite>prepare_batch</cite> API when converting the input data, except for
+<cite>device</cite>, <cite>non_blocking</cite>.</p></li>
+<li><p><strong>amp_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.autocast(“cuda”)</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/amp.html#torch.autocast">https://pytorch.org/docs/stable/amp.html#torch.autocast</a>.</p></li>
+<li><p><strong>compile</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to use <cite>torch.compile</cite>, default is False. If True, MetaTensor inputs will be converted to
+<cite>torch.Tensor</cite> before forward pass,  then converted back afterward with copied meta information.</p></li>
+<li><p><strong>compile_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.compile()</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.compile.html#torch-compile">https://pytorch.org/docs/stable/generated/torch.compile.html#torch-compile</a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="gantrainer">
+<h3><cite>GanTrainer</cite><a class="headerlink" href="#gantrainer" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.GanTrainer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.</span></span><span class="sig-name descname"><span class="pre">GanTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_loss_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_loss_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_inferer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_inferer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_train_steps=1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent_shape=64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_prepare_batch=&lt;function</span> <span class="pre">default_prepare_batch&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_prepare_batch=&lt;function</span> <span class="pre">default_make_latent&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_update_latents=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration_update=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_train_metric=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_metrics=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_cmp_fn=&lt;function</span> <span class="pre">default_metric_cmp_fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_handlers=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decollate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optim_set_to_none=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_kwargs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/trainer.py#L281-L467"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.GanTrainer" title="Link to this definition">#</a></dt>
+<dd><p>Generative adversarial network training based on Goodfellow et al. 2014 <a class="reference external" href="https://arxiv.org/abs/1406.266">https://arxiv.org/abs/1406.266</a>,
+inherits from <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> and <code class="docutils literal notranslate"><span class="pre">Workflow</span></code>.</p>
+<dl class="simple">
+<dt>Training Loop: for each batch of data size <cite>m</cite></dt><dd><ol class="arabic simple">
+<li><p>Generate <cite>m</cite> fakes from random latent codes.</p></li>
+<li><p>Update discriminator with these fakes and current batch reals, repeated d_train_steps times.</p></li>
+<li><p>If g_update_latents, generate <cite>m</cite> fakes from new random latent codes.</p></li>
+<li><p>Update generator with these fakes using discriminator feedback.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>]) – an object representing the device on which to run.</p></li>
+<li><p><strong>max_epochs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the total epoch number for engine to run.</p></li>
+<li><p><strong>train_data_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>) – Core ignite engines uses <cite>DataLoader</cite> for training loop batchdata.</p></li>
+<li><p><strong>g_network</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – generator (G) network architecture.</p></li>
+<li><p><strong>g_optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – G optimizer function.</p></li>
+<li><p><strong>g_loss_function</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – G loss function for optimizer.</p></li>
+<li><p><strong>d_network</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – discriminator (D) network architecture.</p></li>
+<li><p><strong>d_optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – D optimizer function.</p></li>
+<li><p><strong>d_loss_function</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – D loss function for optimizer.</p></li>
+<li><p><strong>epoch_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – number of iterations for one epoch, default to <cite>len(train_data_loader)</cite>.</p></li>
+<li><p><strong>g_inferer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="inferers.html#monai.inferers.Inferer" title="monai.inferers.inferer.Inferer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inferer</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – inference method to execute G model forward. Defaults to <code class="docutils literal notranslate"><span class="pre">SimpleInferer()</span></code>.</p></li>
+<li><p><strong>d_inferer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="inferers.html#monai.inferers.Inferer" title="monai.inferers.inferer.Inferer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inferer</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – inference method to execute D model forward. Defaults to <code class="docutils literal notranslate"><span class="pre">SimpleInferer()</span></code>.</p></li>
+<li><p><strong>d_train_steps</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – number of times to update D with real data minibatch. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>latent_shape</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – size of G input latent code. Defaults to <code class="docutils literal notranslate"><span class="pre">64</span></code>.</p></li>
+<li><p><strong>non_blocking</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if True and this copy is between CPU and GPU, the copy may occur asynchronously
+with respect to the host. For other cases, this argument has no effect.</p></li>
+<li><p><strong>d_prepare_batch</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – callback function to prepare batchdata for D inferer.
+Defaults to return <code class="docutils literal notranslate"><span class="pre">GanKeys.REALS</span></code> in batchdata dict. for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html</a>.</p></li>
+<li><p><strong>g_prepare_batch</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – callback function to create batch of latent input for G inferer.
+Defaults to return random latents. for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html</a>.</p></li>
+<li><p><strong>g_update_latents</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Calculate G loss with new latent codes. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>iteration_update</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the callable function for every iteration, expect to accept <cite>engine</cite>
+and <cite>engine.state.batch</cite> as inputs, return data will be stored in <cite>engine.state.output</cite>.
+if not provided, use <cite>self._iteration()</cite> instead. for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>.</p></li>
+<li><p><strong>postprocessing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="transforms.html#monai.transforms.Transform" title="monai.transforms.transform.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – execute additional transformation for the model output data.
+Typically, several Tensor based transforms composed by <cite>Compose</cite>.</p></li>
+<li><p><strong>key_train_metric</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – compute metric when every iteration completed, and save average value to
+engine.state.metrics when epoch completed. key_train_metric is the main metric to compare and save the
+checkpoint into files.</p></li>
+<li><p><strong>additional_metrics</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – more Ignite metrics that also attach to Ignite Engine.</p></li>
+<li><p><strong>metric_cmp_fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to compare current key metric with previous best key metric value,
+it must accept 2 args (current_metric, previous_best) and return a bool result: if <cite>True</cite>, will update
+<cite>best_metric</cite> and <cite>best_metric_epoch</cite> with current metric and epoch, default to <cite>greater than</cite>.</p></li>
+<li><p><strong>train_handlers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – every handler is a set of Ignite Event-Handlers, must have <cite>attach</cite> function, like:
+CheckpointHandler, StatsHandler, etc.</p></li>
+<li><p><strong>decollate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to decollate the batch-first data to a list of data after model computation,
+recommend <cite>decollate=True</cite> when <cite>postprocessing</cite> uses components from <cite>monai.transforms</cite>.
+default to <cite>True</cite>.</p></li>
+<li><p><strong>optim_set_to_none</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – when calling <cite>optimizer.zero_grad()</cite>, instead of setting to zero, set the grads to None.
+more details: <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html">https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html</a>.</p></li>
+<li><p><strong>to_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of other args for <cite>prepare_batch</cite> API when converting the input data, except for
+<cite>device</cite>, <cite>non_blocking</cite>.</p></li>
+<li><p><strong>amp_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.autocast(“cuda”)</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/amp.html#torch.autocast">https://pytorch.org/docs/stable/amp.html#torch.autocast</a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="adversarialtrainer">
+<h3><cite>AdversarialTrainer</cite><a class="headerlink" href="#adversarialtrainer" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.AdversarialTrainer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.</span></span><span class="sig-name descname"><span class="pre">AdversarialTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_loss_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recon_loss_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_loss_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepare_batch=&lt;function</span> <span class="pre">default_prepare_batch&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration_update=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_inferer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_inferer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_train_metric=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_metrics=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_cmp_fn=&lt;function</span> <span class="pre">default_metric_cmp_fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_handlers=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_to_attr=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decollate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optim_set_to_none=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_kwargs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/trainer.py#L470-L746"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.AdversarialTrainer" title="Link to this definition">#</a></dt>
+<dd><p>Standard supervised training workflow for adversarial loss enabled neural networks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – an object representing the device on which to run.</p></li>
+<li><p><strong>max_epochs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the total epoch number for engine to run.</p></li>
+<li><p><strong>train_data_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>]) – Core ignite engines uses <cite>DataLoader</cite> for training loop batchdata.</p></li>
+<li><p><strong>g_network</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – ‘’generator’’ (G) network architecture.</p></li>
+<li><p><strong>g_optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – G optimizer function.</p></li>
+<li><p><strong>g_loss_function</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – G loss function for adversarial training.</p></li>
+<li><p><strong>recon_loss_function</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – G loss function for reconstructions.</p></li>
+<li><p><strong>d_network</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – discriminator (D) network architecture.</p></li>
+<li><p><strong>d_optimizer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Optimizer</span></code>) – D optimizer function.</p></li>
+<li><p><strong>d_loss_function</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – D loss function for adversarial training..</p></li>
+<li><p><strong>epoch_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – number of iterations for one epoch, default to <cite>len(train_data_loader)</cite>.</p></li>
+<li><p><strong>non_blocking</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if True and this copy is between CPU and GPU, the copy may occur asynchronously with respect to
+the host. For other cases, this argument has no effect.</p></li>
+<li><p><strong>prepare_batch</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to parse image and label for current iteration.</p></li>
+<li><p><strong>iteration_update</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the callable function for every iteration, expect to accept <cite>engine</cite> and <cite>batchdata</cite> as input
+parameters. if not provided, use <cite>self._iteration()</cite> instead.</p></li>
+<li><p><strong>g_inferer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="inferers.html#monai.inferers.Inferer" title="monai.inferers.inferer.Inferer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inferer</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – inference method to execute G model forward. Defaults to <code class="docutils literal notranslate"><span class="pre">SimpleInferer()</span></code>.</p></li>
+<li><p><strong>d_inferer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="inferers.html#monai.inferers.Inferer" title="monai.inferers.inferer.Inferer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inferer</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – inference method to execute D model forward. Defaults to <code class="docutils literal notranslate"><span class="pre">SimpleInferer()</span></code>.</p></li>
+<li><p><strong>postprocessing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="transforms.html#monai.transforms.Transform" title="monai.transforms.transform.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – execute additional transformation for the model output data. Typically, several Tensor based
+transforms composed by <cite>Compose</cite>. Defaults to None</p></li>
+<li><p><strong>key_train_metric</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – compute metric when every iteration completed, and save average value to engine.state.metrics
+when epoch completed. key_train_metric is the main metric to compare and save the checkpoint into files.</p></li>
+<li><p><strong>additional_metrics</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – more Ignite metrics that also attach to Ignite Engine.</p></li>
+<li><p><strong>metric_cmp_fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to compare current key metric with previous best key metric value, it must accept 2 args
+(current_metric, previous_best) and return a bool result: if <cite>True</cite>, will update ‘best_metric` and
+<cite>best_metric_epoch</cite> with current metric and epoch, default to <cite>greater than</cite>.</p></li>
+<li><p><strong>train_handlers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – every handler is a set of Ignite Event-Handlers, must have <cite>attach</cite> function, like:
+CheckpointHandler, StatsHandler, etc.</p></li>
+<li><p><strong>amp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to enable auto-mixed-precision training, default is False.</p></li>
+<li><p><strong>event_names</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – additional custom ignite events that will register to the engine.
+new events can be a list of str or <cite>ignite.engine.events.EventEnum</cite>.</p></li>
+<li><p><strong>event_to_attr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a dictionary to map an event to a state attribute, then add to <cite>engine.state</cite>.
+for more details, check: <a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>
+#ignite.engine.engine.Engine.register_events.</p></li>
+<li><p><strong>decollate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to decollate the batch-first data to a list of data after model computation, recommend
+<cite>decollate=True</cite> when <cite>postprocessing</cite> uses components from <cite>monai.transforms</cite>. default to <cite>True</cite>.</p></li>
+<li><p><strong>optim_set_to_none</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – when calling <cite>optimizer.zero_grad()</cite>, instead of setting to zero, set the grads to None.
+more details: <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html">https://pytorch.org/docs/stable/generated/torch.optim.Optimizer.zero_grad.html</a>.</p></li>
+<li><p><strong>to_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of other args for <cite>prepare_batch</cite> API when converting the input data, except for
+<cite>device</cite>, <cite>non_blocking</cite>.</p></li>
+<li><p><strong>amp_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.autocast(“cuda”)</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/amp.html#torch.autocast">https://pytorch.org/docs/stable/amp.html#torch.autocast</a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="evaluator">
+<h3><cite>Evaluator</cite><a class="headerlink" href="#evaluator" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.Evaluator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.</span></span><span class="sig-name descname"><span class="pre">Evaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepare_batch=&lt;function</span> <span class="pre">default_prepare_batch&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration_update=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_val_metric=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_metrics=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_cmp_fn=&lt;function</span> <span class="pre">default_metric_cmp_fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_handlers=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode=eval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_to_attr=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decollate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_kwargs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/evaluator.py#L44-L171"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Evaluator" title="Link to this definition">#</a></dt>
+<dd><p>Base class for all kinds of evaluators, inherits from Workflow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – an object representing the device on which to run.</p></li>
+<li><p><strong>val_data_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>]) – Ignite engine use data_loader to run, must be Iterable or torch.DataLoader.</p></li>
+<li><p><strong>epoch_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – number of iterations for one epoch, default to <cite>len(val_data_loader)</cite>.</p></li>
+<li><p><strong>non_blocking</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if True and this copy is between CPU and GPU, the copy may occur asynchronously
+with respect to the host. For other cases, this argument has no effect.</p></li>
+<li><p><strong>prepare_batch</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to parse expected data (usually <cite>image</cite>, <cite>label</cite> and other network args)
+from <cite>engine.state.batch</cite> for every iteration, for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html</a>.</p></li>
+<li><p><strong>iteration_update</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the callable function for every iteration, expect to accept <cite>engine</cite>
+and <cite>engine.state.batch</cite> as inputs, return data will be stored in <cite>engine.state.output</cite>.
+if not provided, use <cite>self._iteration()</cite> instead. for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>.</p></li>
+<li><p><strong>postprocessing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="transforms.html#monai.transforms.Transform" title="monai.transforms.transform.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – execute additional transformation for the model output data.
+Typically, several Tensor based transforms composed by <cite>Compose</cite>.</p></li>
+<li><p><strong>key_val_metric</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – compute metric when every iteration completed, and save average value to
+engine.state.metrics when epoch completed. key_val_metric is the main metric to compare and save the
+checkpoint into files.</p></li>
+<li><p><strong>additional_metrics</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – more Ignite metrics that also attach to Ignite Engine.</p></li>
+<li><p><strong>metric_cmp_fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to compare current key metric with previous best key metric value,
+it must accept 2 args (current_metric, previous_best) and return a bool result: if <cite>True</cite>, will update
+<cite>best_metric</cite> and <cite>best_metric_epoch</cite> with current metric and epoch, default to <cite>greater than</cite>.</p></li>
+<li><p><strong>val_handlers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – every handler is a set of Ignite Event-Handlers, must have <cite>attach</cite> function, like:
+CheckpointHandler, StatsHandler, etc.</p></li>
+<li><p><strong>amp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to enable auto-mixed-precision evaluation, default is False.</p></li>
+<li><p><strong>mode</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="utils.html#monai.utils.enums.ForwardMode" title="monai.utils.enums.ForwardMode"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardMode</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – model forward mode during evaluation, should be ‘eval’ or ‘train’,
+which maps to <cite>model.eval()</cite> or <cite>model.train()</cite>, default to ‘eval’.</p></li>
+<li><p><strong>event_names</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – additional custom ignite events that will register to the engine.
+new events can be a list of str or <cite>ignite.engine.events.EventEnum</cite>.</p></li>
+<li><p><strong>event_to_attr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a dictionary to map an event to a state attribute, then add to <cite>engine.state</cite>.
+for more details, check: <a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>
+#ignite.engine.engine.Engine.register_events.</p></li>
+<li><p><strong>decollate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to decollate the batch-first data to a list of data after model computation,
+recommend <cite>decollate=True</cite> when <cite>postprocessing</cite> uses components from <cite>monai.transforms</cite>.
+default to <cite>True</cite>.</p></li>
+<li><p><strong>to_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of other args for <cite>prepare_batch</cite> API when converting the input data, except for
+<cite>device</cite>, <cite>non_blocking</cite>.</p></li>
+<li><p><strong>amp_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.autocast(“cuda”)</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/amp.html#torch.autocast">https://pytorch.org/docs/stable/amp.html#torch.autocast</a>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.Evaluator.get_stats">
+<span class="sig-name descname"><span class="pre">get_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">vars</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/evaluator.py#L153-L171"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Evaluator.get_stats" title="Link to this definition">#</a></dt>
+<dd><p>Get the statistics information of the validation process.
+Default to return the <cite>rank</cite>, <cite>best_validation_epoch</cite> and <cite>best_validation_metric</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vars</strong> – except for the default stats, other variables name in the <cite>self.state</cite> to return,
+will use the variable name as the key and the state content as the value.
+if the variable doesn’t exist, default value is <cite>None</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.Evaluator.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">global_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/evaluator.py#L139-L151"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.Evaluator.run" title="Link to this definition">#</a></dt>
+<dd><p>Execute validation/evaluation based on Ignite Engine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>global_epoch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the overall epoch if during a training. evaluator engine can get it from trainer.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="supervisedevaluator">
+<h3><cite>SupervisedEvaluator</cite><a class="headerlink" href="#supervisedevaluator" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.SupervisedEvaluator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.</span></span><span class="sig-name descname"><span class="pre">SupervisedEvaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepare_batch=&lt;function</span> <span class="pre">default_prepare_batch&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration_update=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inferer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_val_metric=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_metrics=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_cmp_fn=&lt;function</span> <span class="pre">default_metric_cmp_fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_handlers=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode=eval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_to_attr=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decollate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compile=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compile_kwargs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/evaluator.py#L174-L347"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.SupervisedEvaluator" title="Link to this definition">#</a></dt>
+<dd><p>Standard supervised evaluation method with image and label(optional), inherits from evaluator and Workflow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>) – an object representing the device on which to run.</p></li>
+<li><p><strong>val_data_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>]) – Ignite engine use data_loader to run, must be Iterable, typically be torch.DataLoader.</p></li>
+<li><p><strong>network</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>) – network to evaluate in the evaluator, should be regular PyTorch <cite>torch.nn.Module</cite>.</p></li>
+<li><p><strong>epoch_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – number of iterations for one epoch, default to <cite>len(val_data_loader)</cite>.</p></li>
+<li><p><strong>non_blocking</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if True and this copy is between CPU and GPU, the copy may occur asynchronously
+with respect to the host. For other cases, this argument has no effect.</p></li>
+<li><p><strong>prepare_batch</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to parse expected data (usually <cite>image</cite>, <cite>label</cite> and other network args)
+from <cite>engine.state.batch</cite> for every iteration, for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html</a>.</p></li>
+<li><p><strong>iteration_update</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the callable function for every iteration, expect to accept <cite>engine</cite>
+and <cite>engine.state.batch</cite> as inputs, return data will be stored in <cite>engine.state.output</cite>.
+if not provided, use <cite>self._iteration()</cite> instead. for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>.</p></li>
+<li><p><strong>inferer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="inferers.html#monai.inferers.Inferer" title="monai.inferers.inferer.Inferer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inferer</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – inference method that execute model forward on input data, like: SlidingWindow, etc.</p></li>
+<li><p><strong>postprocessing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="transforms.html#monai.transforms.Transform" title="monai.transforms.transform.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – execute additional transformation for the model output data.
+Typically, several Tensor based transforms composed by <cite>Compose</cite>.</p></li>
+<li><p><strong>key_val_metric</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – compute metric when every iteration completed, and save average value to
+engine.state.metrics when epoch completed. key_val_metric is the main metric to compare and save the
+checkpoint into files.</p></li>
+<li><p><strong>additional_metrics</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – more Ignite metrics that also attach to Ignite Engine.</p></li>
+<li><p><strong>metric_cmp_fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to compare current key metric with previous best key metric value,
+it must accept 2 args (current_metric, previous_best) and return a bool result: if <cite>True</cite>, will update
+<cite>best_metric</cite> and <cite>best_metric_epoch</cite> with current metric and epoch, default to <cite>greater than</cite>.</p></li>
+<li><p><strong>val_handlers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – every handler is a set of Ignite Event-Handlers, must have <cite>attach</cite> function, like:
+CheckpointHandler, StatsHandler, etc.</p></li>
+<li><p><strong>amp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to enable auto-mixed-precision evaluation, default is False.</p></li>
+<li><p><strong>mode</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="utils.html#monai.utils.enums.ForwardMode" title="monai.utils.enums.ForwardMode"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardMode</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – model forward mode during evaluation, should be ‘eval’ or ‘train’,
+which maps to <cite>model.eval()</cite> or <cite>model.train()</cite>, default to ‘eval’.</p></li>
+<li><p><strong>event_names</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – additional custom ignite events that will register to the engine.
+new events can be a list of str or <cite>ignite.engine.events.EventEnum</cite>.</p></li>
+<li><p><strong>event_to_attr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a dictionary to map an event to a state attribute, then add to <cite>engine.state</cite>.
+for more details, check: <a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>
+#ignite.engine.engine.Engine.register_events.</p></li>
+<li><p><strong>decollate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to decollate the batch-first data to a list of data after model computation,
+recommend <cite>decollate=True</cite> when <cite>postprocessing</cite> uses components from <cite>monai.transforms</cite>.
+default to <cite>True</cite>.</p></li>
+<li><p><strong>to_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of other args for <cite>prepare_batch</cite> API when converting the input data, except for
+<cite>device</cite>, <cite>non_blocking</cite>.</p></li>
+<li><p><strong>amp_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.autocast(“cuda”)</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/amp.html#torch.autocast">https://pytorch.org/docs/stable/amp.html#torch.autocast</a>.</p></li>
+<li><p><strong>compile</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to use <cite>torch.compile</cite>, default is False. If True, MetaTensor inputs will be converted to
+<cite>torch.Tensor</cite> before forward pass,  then converted back afterward with copied meta information.</p></li>
+<li><p><strong>compile_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.compile()</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.compile.html#torch-compile">https://pytorch.org/docs/stable/generated/torch.compile.html#torch-compile</a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="ensembleevaluator">
+<h3><cite>EnsembleEvaluator</cite><a class="headerlink" href="#ensembleevaluator" title="Link to this heading">#</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.EnsembleEvaluator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.</span></span><span class="sig-name descname"><span class="pre">EnsembleEvaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_data_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">networks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_keys=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_length=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepare_batch=&lt;function</span> <span class="pre">default_prepare_batch&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration_update=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inferer=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">postprocessing=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_val_metric=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_metrics=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_cmp_fn=&lt;function</span> <span class="pre">default_metric_cmp_fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_handlers=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode=eval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_names=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_to_attr=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decollate=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_kwargs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amp_kwargs=None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/evaluator.py#L350-L503"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.EnsembleEvaluator" title="Link to this definition">#</a></dt>
+<dd><p>Ensemble evaluation for multiple models, inherits from evaluator and Workflow.
+It accepts a list of models for inference and outputs a list of predictions for further operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>) – an object representing the device on which to run.</p></li>
+<li><p><strong>val_data_loader</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code>]) – Ignite engine use data_loader to run, must be Iterable, typically be torch.DataLoader.</p></li>
+<li><p><strong>epoch_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – number of iterations for one epoch, default to <cite>len(val_data_loader)</cite>.</p></li>
+<li><p><strong>networks</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code>]) – networks to evaluate in order in the evaluator, should be regular PyTorch <cite>torch.nn.Module</cite>.</p></li>
+<li><p><strong>pred_keys</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Collection</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the keys to store every prediction data.
+the length must exactly match the number of networks.
+if None, use “pred_{index}” as key corresponding to N networks, index from <cite>0</cite> to <cite>N-1</cite>.</p></li>
+<li><p><strong>non_blocking</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – if True and this copy is between CPU and GPU, the copy may occur asynchronously
+with respect to the host. For other cases, this argument has no effect.</p></li>
+<li><p><strong>prepare_batch</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to parse expected data (usually <cite>image</cite>, <cite>label</cite> and other network args)
+from <cite>engine.state.batch</cite> for every iteration, for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/generated/ignite.engine.create_supervised_trainer.html</a>.</p></li>
+<li><p><strong>iteration_update</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the callable function for every iteration, expect to accept <cite>engine</cite>
+and <cite>engine.state.batch</cite> as inputs, return data will be stored in <cite>engine.state.output</cite>.
+if not provided, use <cite>self._iteration()</cite> instead. for more details please refer to:
+<a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>.</p></li>
+<li><p><strong>inferer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="inferers.html#monai.inferers.Inferer" title="monai.inferers.inferer.Inferer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inferer</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – inference method that execute model forward on input data, like: SlidingWindow, etc.</p></li>
+<li><p><strong>postprocessing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="transforms.html#monai.transforms.Transform" title="monai.transforms.transform.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – execute additional transformation for the model output data.
+Typically, several Tensor based transforms composed by <cite>Compose</cite>.</p></li>
+<li><p><strong>key_val_metric</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – compute metric when every iteration completed, and save average value to
+engine.state.metrics when epoch completed. key_val_metric is the main metric to compare and save the
+checkpoint into files.</p></li>
+<li><p><strong>additional_metrics</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – more Ignite metrics that also attach to Ignite Engine.</p></li>
+<li><p><strong>metric_cmp_fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – function to compare current key metric with previous best key metric value,
+it must accept 2 args (current_metric, previous_best) and return a bool result: if <cite>True</cite>, will update
+<cite>best_metric</cite> and <cite>best_metric_epoch</cite> with current metric and epoch, default to <cite>greater than</cite>.</p></li>
+<li><p><strong>val_handlers</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – every handler is a set of Ignite Event-Handlers, must have <cite>attach</cite> function, like:
+CheckpointHandler, StatsHandler, etc.</p></li>
+<li><p><strong>amp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to enable auto-mixed-precision evaluation, default is False.</p></li>
+<li><p><strong>mode</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="utils.html#monai.utils.enums.ForwardMode" title="monai.utils.enums.ForwardMode"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardMode</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – model forward mode during evaluation, should be ‘eval’ or ‘train’,
+which maps to <cite>model.eval()</cite> or <cite>model.train()</cite>, default to ‘eval’.</p></li>
+<li><p><strong>event_names</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">EventEnum</span></code>]]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – additional custom ignite events that will register to the engine.
+new events can be a list of str or <cite>ignite.engine.events.EventEnum</cite>.</p></li>
+<li><p><strong>event_to_attr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a dictionary to map an event to a state attribute, then add to <cite>engine.state</cite>.
+for more details, check: <a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html">https://pytorch.org/ignite/generated/ignite.engine.engine.Engine.html</a>
+#ignite.engine.engine.Engine.register_events.</p></li>
+<li><p><strong>decollate</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to decollate the batch-first data to a list of data after model computation,
+recommend <cite>decollate=True</cite> when <cite>postprocessing</cite> uses components from <cite>monai.transforms</cite>.
+default to <cite>True</cite>.</p></li>
+<li><p><strong>to_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of other args for <cite>prepare_batch</cite> API when converting the input data, except for
+<cite>device</cite>, <cite>non_blocking</cite>.</p></li>
+<li><p><strong>amp_kwargs</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – dict of the args for <cite>torch.autocast(“cuda”)</cite> API, for more details:
+<a class="reference external" href="https://pytorch.org/docs/stable/amp.html#torch.autocast">https://pytorch.org/docs/stable/amp.html#torch.autocast</a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-monai.engines.utils">
+<span id="utilities"></span><h2>Utilities<a class="headerlink" href="#module-monai.engines.utils" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.utils.DiffusionPrepareBatch">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">DiffusionPrepareBatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_train_timesteps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L243-L290"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.DiffusionPrepareBatch" title="Link to this definition">#</a></dt>
+<dd><p>This class is used as a callable for the <cite>prepare_batch</cite> parameter of engine classes for diffusion training.</p>
+<p>Assuming a supervised training process, it will generate a noise field using <cite>get_noise</cite> for an input image, and
+return the image and noise field as the image/target pair plus the noise field the kwargs under the key “noise”.
+This assumes the inferer being used in conjunction with this class expects a “noise” parameter to be provided.</p>
+<p>If the <cite>condition_name</cite> is provided, this must refer to a key in the input dictionary containing the condition
+field to be passed to the inferer. This will appear in the keyword arguments under the key “condition”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.utils.DiffusionPrepareBatch.get_noise">
+<span class="sig-name descname"><span class="pre">get_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L260-L262"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.DiffusionPrepareBatch.get_noise" title="Link to this definition">#</a></dt>
+<dd><p>Returns the noise tensor for input tensor <cite>images</cite>, override this for different noise distributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.utils.DiffusionPrepareBatch.get_target">
+<span class="sig-name descname"><span class="pre">get_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L268-L270"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.DiffusionPrepareBatch.get_target" title="Link to this definition">#</a></dt>
+<dd><p>Return the target for the loss function, this is the <cite>noise</cite> value by default.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.utils.DiffusionPrepareBatch.get_timesteps">
+<span class="sig-name descname"><span class="pre">get_timesteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L264-L266"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.DiffusionPrepareBatch.get_timesteps" title="Link to this definition">#</a></dt>
+<dd><p>Get a timestep, by default this is a random integer between 0 and <cite>self.num_train_timesteps</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.utils.IterationEvents">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">IterationEvents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L47-L65"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.IterationEvents" title="Link to this definition">#</a></dt>
+<dd><p>Additional Events engine can register and trigger in the iteration process.
+Refer to the example in ignite: <a class="reference external" href="https://pytorch.org/ignite/generated/ignite.engine.events.EventEnum.html">https://pytorch.org/ignite/generated/ignite.engine.events.EventEnum.html</a>.
+These Events can be triggered during training iteration:
+<cite>FORWARD_COMPLETED</cite> is the Event when <cite>network(image, label)</cite> completed.
+<cite>LOSS_COMPLETED</cite> is the Event when <cite>loss(pred, label)</cite> completed.
+<cite>BACKWARD_COMPLETED</cite> is the Event when <cite>loss.backward()</cite> completed.
+<cite>MODEL_COMPLETED</cite> is the Event when all the model related operations completed.
+<cite>INNER_ITERATION_STARTED</cite> is the Event when the iteration has an inner loop and the loop is started.
+<cite>INNER_ITERATION_COMPLETED</cite> is the Event when the iteration has an inner loop and the loop is completed.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.utils.PrepareBatch">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">PrepareBatch</span></span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L152-L169"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.PrepareBatch" title="Link to this definition">#</a></dt>
+<dd><p>Interface of customized prepare_batch in the trainer or evaluator workflows.
+It takes the data of current batch, target device and non_blocking flag as input.
+Args <cite>batchdata</cite>, <cite>device</cite>, <cite>non_blocking</cite> refer to the ignite API:
+<a class="reference external" href="https://pytorch.org/ignite/v0.4.8/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/v0.4.8/generated/ignite.engine.create_supervised_trainer.html</a>.
+<cite>kwargs</cite> supports other args for <cite>Tensor.to()</cite> API.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.utils.PrepareBatchDefault">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">PrepareBatchDefault</span></span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L172-L190"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.PrepareBatchDefault" title="Link to this definition">#</a></dt>
+<dd><p>This wraps <cite>default_prepare_batch</cite> to return <cite>image</cite> and <cite>label</cite> only, so is consistent with its API.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.utils.PrepareBatchExtraInput">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">PrepareBatchExtraInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_keys</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L193-L240"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.PrepareBatchExtraInput" title="Link to this definition">#</a></dt>
+<dd><p>Customized prepare batch callable for trainers or evaluators which support extra input data for the network.
+Extra items are specified by the <cite>extra_keys</cite> parameter and are extracted from the input dictionary (ie. the batch).
+This uses <cite>default_prepare_batch</cite> but requires dictionary inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>extra_keys</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – If a string or sequence of strings is provided, values from the input dictionary are extracted from
+those keys and passed to the network as extra positional arguments. If a dictionary is provided, every pair
+<cite>(k, v)</cite> in that dictionary will become a new keyword argument assigning to <cite>k</cite> the value in the input
+dictionary keyed to <cite>v</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.engines.utils.VPredictionPrepareBatch">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">VPredictionPrepareBatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scheduler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_train_timesteps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L293-L312"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.VPredictionPrepareBatch" title="Link to this definition">#</a></dt>
+<dd><p>This class is used as a callable for the <cite>prepare_batch</cite> parameter of engine classes for diffusion training.</p>
+<p>Assuming a supervised training process, it will generate a noise field using <cite>get_noise</cite> for an input image, and
+from this compute the velocity using the provided scheduler. This value is used as the target in place of the
+noise field itself although the noise is field is in the kwargs under the key “noise”. This assumes the inferer
+being used in conjunction with this class expects a “noise” parameter to be provided.</p>
+<p>If the <cite>condition_name</cite> is provided, this must refer to a key in the input dictionary containing the condition
+field to be passed to the inferer. This will appear in the keyword arguments under the key “condition”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.engines.utils.VPredictionPrepareBatch.get_target">
+<span class="sig-name descname"><span class="pre">get_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L311-L312"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.VPredictionPrepareBatch.get_target" title="Link to this definition">#</a></dt>
+<dd><p>Return the target for the loss function, this is the <cite>noise</cite> value by default.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.engines.utils.default_metric_cmp_fn">
+<span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">default_metric_cmp_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_best</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L353-L362"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.default_metric_cmp_fn" title="Link to this definition">#</a></dt>
+<dd><p>The default function to compare metric values between current metric and previous best metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_metric</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – metric value of current round computation.</p></li>
+<li><p><strong>prev_best</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – the best metric value of previous rounds to compare with.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.engines.utils.default_prepare_batch">
+<span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">default_prepare_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batchdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_blocking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L100-L149"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.default_prepare_batch" title="Link to this definition">#</a></dt>
+<dd><p>Default function to prepare the data for current iteration.</p>
+<p>The input <cite>batchdata</cite> is either a single tensor, a pair of tensors, or a dictionary of data. In the first case the
+return value is the tensor and None, in the second case the return value is the two tensors, and in the dictionary
+case the return value depends on what keys are present. if <cite>CommonKeys.IMAGE</cite> and <cite>CommonKeys.LABEL</cite> are present
+then the tensors they key to are returned, if only <cite>CommonKeys.IMAGE</cite> is present that tensor and None is returned.
+If <cite>CommonKeys.REALS</cite> is present this is returned with None. All returned tensors are moved to the given device
+using the given non-blocking argument before being returned.</p>
+<p>This function implements the expected API for a <cite>prepare_batch</cite> callable in Ignite:
+<a class="reference external" href="https://pytorch.org/ignite/v0.4.8/generated/ignite.engine.create_supervised_trainer.html">https://pytorch.org/ignite/v0.4.8/generated/ignite.engine.create_supervised_trainer.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batchdata</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]]) – input batch data which is either a single tensor, a pair, or a dictionary</p></li>
+<li><p><strong>device</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – device to move every returned tensor to</p></li>
+<li><p><strong>non_blocking</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – equivalent argument for <cite>Tensor.to</cite></p></li>
+<li><p><strong>kwargs</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – further arguments for <cite>Tensor.to</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>image, label(optional).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.engines.utils.engine_apply_transform">
+<span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">engine_apply_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L325-L350"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.engine_apply_transform" title="Link to this definition">#</a></dt>
+<dd><p>Apply transform on <cite>batch</cite> and <cite>output</cite>.
+If <cite>batch</cite> and <cite>output</cite> are dictionaries, temporarily combine them for the transform,
+otherwise, apply the transform for <cite>output</cite> data only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.engines.utils.get_devices_spec">
+<span class="sig-prename descclassname"><span class="pre">monai.engines.utils.</span></span><span class="sig-name descname"><span class="pre">get_devices_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">devices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/engines/utils.py#L68-L97"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.engines.utils.get_devices_spec" title="Link to this definition">#</a></dt>
+<dd><p>Get a valid specification for one or more devices. If <cite>devices</cite> is None get devices for all CUDA devices available.
+If <cite>devices</cite> is and zero-length structure a single CPU compute device is returned. In any other cases <cite>devices</cite> is
+returned unchanged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>devices</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – list of devices to request, None for all GPU devices, [] for CPU.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – When all GPUs are selected (<code class="docutils literal notranslate"><span class="pre">devices=None</span></code>) but no GPUs are available.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of devices.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of torch.device</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="inferers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Inference methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflows">Workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow"><cite>Workflow</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Workflow"><code class="docutils literal notranslate"><span class="pre">Workflow</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Workflow.get_stats"><code class="docutils literal notranslate"><span class="pre">Workflow.get_stats()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Workflow.run"><code class="docutils literal notranslate"><span class="pre">Workflow.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trainer"><cite>Trainer</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Trainer"><code class="docutils literal notranslate"><span class="pre">Trainer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Trainer.get_stats"><code class="docutils literal notranslate"><span class="pre">Trainer.get_stats()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Trainer.run"><code class="docutils literal notranslate"><span class="pre">Trainer.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervisedtrainer"><cite>SupervisedTrainer</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.SupervisedTrainer"><code class="docutils literal notranslate"><span class="pre">SupervisedTrainer</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gantrainer"><cite>GanTrainer</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.GanTrainer"><code class="docutils literal notranslate"><span class="pre">GanTrainer</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adversarialtrainer"><cite>AdversarialTrainer</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.AdversarialTrainer"><code class="docutils literal notranslate"><span class="pre">AdversarialTrainer</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluator"><cite>Evaluator</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Evaluator"><code class="docutils literal notranslate"><span class="pre">Evaluator</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Evaluator.get_stats"><code class="docutils literal notranslate"><span class="pre">Evaluator.get_stats()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.Evaluator.run"><code class="docutils literal notranslate"><span class="pre">Evaluator.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervisedevaluator"><cite>SupervisedEvaluator</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.SupervisedEvaluator"><code class="docutils literal notranslate"><span class="pre">SupervisedEvaluator</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensembleevaluator"><cite>EnsembleEvaluator</cite></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.EnsembleEvaluator"><code class="docutils literal notranslate"><span class="pre">EnsembleEvaluator</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-monai.engines.utils">Utilities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.DiffusionPrepareBatch"><code class="docutils literal notranslate"><span class="pre">DiffusionPrepareBatch</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.DiffusionPrepareBatch.get_noise"><code class="docutils literal notranslate"><span class="pre">DiffusionPrepareBatch.get_noise()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.DiffusionPrepareBatch.get_target"><code class="docutils literal notranslate"><span class="pre">DiffusionPrepareBatch.get_target()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.DiffusionPrepareBatch.get_timesteps"><code class="docutils literal notranslate"><span class="pre">DiffusionPrepareBatch.get_timesteps()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.IterationEvents"><code class="docutils literal notranslate"><span class="pre">IterationEvents</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.PrepareBatch"><code class="docutils literal notranslate"><span class="pre">PrepareBatch</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.PrepareBatchDefault"><code class="docutils literal notranslate"><span class="pre">PrepareBatchDefault</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.PrepareBatchExtraInput"><code class="docutils literal notranslate"><span class="pre">PrepareBatchExtraInput</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.VPredictionPrepareBatch"><code class="docutils literal notranslate"><span class="pre">VPredictionPrepareBatch</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.VPredictionPrepareBatch.get_target"><code class="docutils literal notranslate"><span class="pre">VPredictionPrepareBatch.get_target()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.default_metric_cmp_fn"><code class="docutils literal notranslate"><span class="pre">default_metric_cmp_fn()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.default_prepare_batch"><code class="docutils literal notranslate"><span class="pre">default_prepare_batch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.engine_apply_transform"><code class="docutils literal notranslate"><span class="pre">engine_apply_transform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.engines.utils.get_devices_spec"><code class="docutils literal notranslate"><span class="pre">get_devices_spec()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/engines.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright MONAI Consortium.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

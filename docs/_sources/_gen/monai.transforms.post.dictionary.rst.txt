@@ -1,0 +1,56 @@
+monai.transforms.post.dictionary
+================================
+
+.. automodule:: monai.transforms.post.dictionary
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ActivationsD
+      ActivationsDict
+      Activationsd
+      AsDiscreteD
+      AsDiscreteDict
+      AsDiscreted
+      DistanceTransformEDTD
+      DistanceTransformEDTDict
+      DistanceTransformEDTd
+      EnsembleD
+      EnsembleDict
+      Ensembled
+      FillHolesD
+      FillHolesDict
+      FillHolesd
+      InvertD
+      InvertDict
+      Invertd
+      KeepLargestConnectedComponentD
+      KeepLargestConnectedComponentDict
+      KeepLargestConnectedComponentd
+      LabelFilterD
+      LabelFilterDict
+      LabelFilterd
+      LabelToContourD
+      LabelToContourDict
+      LabelToContourd
+      MeanEnsembleD
+      MeanEnsembleDict
+      MeanEnsembled
+      ProbNMSD
+      ProbNMSDict
+      ProbNMSd
+      RemoveSmallObjectsD
+      RemoveSmallObjectsDict
+      RemoveSmallObjectsd
+      SaveClassificationD
+      SaveClassificationDict
+      SaveClassificationd
+      SobelGradientsD
+      SobelGradientsDict
+      SobelGradientsd
+      VoteEnsembleD
+      VoteEnsembleDict
+      VoteEnsembled
+   

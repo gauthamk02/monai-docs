@@ -1,0 +1,1483 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Auto3dseg &#8212; MONAI 1.5.1 Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=26ac546f" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=cb7e6255"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto3dseg';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Federated Learning" href="fl.html" />
+    <link rel="prev" title="Applications" href="apps.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-light" alt="MONAI 1.5.1 Documentation - Home"/>
+    <img src="_static/MONAI-logo-color.png" class="logo__image only-dark pst-js-only" alt="MONAI 1.5.1 Documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew.html">
+    What’s New
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="highlights.html">
+    Highlights
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="api.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="precision_accelerating.html">
+    Precision and Accelerating
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="contrib.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="bundle_intro.html">
+    Bundle
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lazy_resampling.html">
+    Lazy Resampling
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/Project-MONAI/tutorials">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-monai/monai" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/projectmonai" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="apps.html">Applications</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Auto3dseg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fl.html">Federated Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bundle.html">Model Bundle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms.html">Transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="losses.html">Loss functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks.html">Network architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="engines.html">Engines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inferers.html">Inference methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Event handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualize.html">Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="api.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Auto3dseg</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="auto3dseg">
+<span id="id1"></span><h1>Auto3dseg<a class="headerlink" href="#auto3dseg" title="Link to this heading">#</a></h1>
+<dl class="py class" id="module-monai.auto3dseg">
+<dt class="sig sig-object py" id="monai.auto3dseg.Algo">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">Algo</span></span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L18-L44"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Algo" title="Link to this definition">#</a></dt>
+<dd><p>An algorithm in this context is loosely defined as a data processing pipeline consisting of multiple components
+such as image preprocessing, followed by deep learning model training and evaluation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Algo.get_output_path">
+<span class="sig-name descname"><span class="pre">get_output_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L42-L44"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Algo.get_output_path" title="Link to this definition">#</a></dt>
+<dd><p>Returns the algo output paths for scripts location</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Algo.get_score">
+<span class="sig-name descname"><span class="pre">get_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L38-L40"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Algo.get_score" title="Link to this definition">#</a></dt>
+<dd><p>Returns the model quality measurement based on training and validation datasets.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Algo.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L34-L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Algo.predict" title="Link to this definition">#</a></dt>
+<dd><p>Read test data and output model predictions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Algo.set_data_stats">
+<span class="sig-name descname"><span class="pre">set_data_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L26-L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Algo.set_data_stats" title="Link to this definition">#</a></dt>
+<dd><p>Provide dataset (and summaries) so that the model creation can depend on the input datasets.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Algo.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L30-L32"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Algo.train" title="Link to this definition">#</a></dt>
+<dd><p>Read training/validation data and output a model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">AlgoGen</span></span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L47-L107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen" title="Link to this definition">#</a></dt>
+<dd><p>A data-driven algorithm generator. It optionally takes the following inputs:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>training dataset properties (such as data statistics from <code class="docutils literal notranslate"><span class="pre">monai.auto3dseg.analyzer</span></code>),</p></li>
+<li><p>previous algorithm’s scores measuring the model quality,</p></li>
+<li><p>computational budgets,</p></li>
+</ul>
+</div></blockquote>
+<p>and generates <code class="docutils literal notranslate"><span class="pre">Algo</span></code> instances. The generated algos are to be trained with the training datasets:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                          <span class="n">scores</span>
+                <span class="o">+------------------------+</span>
+                <span class="o">|</span>   <span class="o">+---------+</span>          <span class="o">|</span>
+<span class="o">+-----------+</span>   <span class="o">+--&gt;|</span>         <span class="o">|</span>    <span class="o">+-----+----+</span>
+<span class="o">|</span> <span class="n">Dataset</span><span class="p">,</span>  <span class="o">|</span>       <span class="o">|</span> <span class="n">AlgoGen</span> <span class="o">|---&gt;|</span>   <span class="n">Algo</span>   <span class="o">|</span>
+<span class="o">|</span> <span class="n">summaries</span> <span class="o">|------&gt;|</span>         <span class="o">|</span>    <span class="o">+----------+</span>
+<span class="o">+-----+-----+</span>       <span class="o">+---------+</span>          <span class="o">^</span>
+      <span class="o">|</span>                                  <span class="o">|</span>
+      <span class="o">+----------------------------------+</span>
+</pre></div>
+</div>
+<p>This class also maintains a history of previously generated Algo and their corresponding validation scores.
+The Algo generation process may be stochastic (using <code class="docutils literal notranslate"><span class="pre">Randomizable.R</span></code> as the source random state).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L95-L97"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen.generate" title="Link to this definition">#</a></dt>
+<dd><p>Generate new Algo – based on data_stats, budget, and history of previous algo generations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen.get_budget">
+<span class="sig-name descname"><span class="pre">get_budget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L87-L89"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen.get_budget" title="Link to this definition">#</a></dt>
+<dd><p>Get the current computational budget.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen.get_data_stats">
+<span class="sig-name descname"><span class="pre">get_data_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L83-L85"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen.get_data_stats" title="Link to this definition">#</a></dt>
+<dd><p>Get current dataset summaries.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen.get_history">
+<span class="sig-name descname"><span class="pre">get_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L91-L93"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen.get_history" title="Link to this definition">#</a></dt>
+<dd><p>Get the previously generated algo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen.run_algo">
+<span class="sig-name descname"><span class="pre">run_algo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L99-L107"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen.run_algo" title="Link to this definition">#</a></dt>
+<dd><p>Launch the Algos. This is useful for light-weight Algos where there’s no need to distribute the training jobs.</p>
+<p>If the generated Algos require significant scheduling of parallel executions, a job scheduler/controller
+implemented separately is preferred to run them. In this case the controller should also report back the
+scores and the algo history, so that the future <code class="docutils literal notranslate"><span class="pre">AlgoGen.generate</span></code> can leverage the information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen.set_budget">
+<span class="sig-name descname"><span class="pre">set_budget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L75-L77"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen.set_budget" title="Link to this definition">#</a></dt>
+<dd><p>Provide computational budget so that the generator outputs algorithms that requires reasonable resources.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen.set_data_stats">
+<span class="sig-name descname"><span class="pre">set_data_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L71-L73"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen.set_data_stats" title="Link to this definition">#</a></dt>
+<dd><p>Provide dataset summaries/properties so that the generator can be conditioned on the input datasets.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.AlgoGen.set_score">
+<span class="sig-name descname"><span class="pre">set_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/algo_gen.py#L79-L81"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.AlgoGen.set_score" title="Link to this definition">#</a></dt>
+<dd><p>Feedback from the previously generated algo, the score can be used for new Algo generations.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.Analyzer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">Analyzer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stats_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_format</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L58-L171"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Analyzer" title="Link to this definition">#</a></dt>
+<dd><p>The Analyzer component is a base class. Other classes inherit this class will provide a callable
+with the same class name and produces one pre-formatted dictionary for the input data. The format
+is pre-defined by the init function of the class that inherit this base class. Function operations
+can also be registered before the runtime of the callable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>report_format</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – a dictionary that outlines the key structures of the report format.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Analyzer.get_report_format">
+<span class="sig-name descname"><span class="pre">get_report_format</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L119-L128"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Analyzer.get_report_format" title="Link to this definition">#</a></dt>
+<dd><p>Get the report format by resolving the registered operations recursively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None} pairs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dictionary with {keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Analyzer.resolve_format">
+<span class="sig-name descname"><span class="pre">resolve_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L152-L166"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Analyzer.resolve_format" title="Link to this definition">#</a></dt>
+<dd><p>Resolve the format of the pre-defined report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>report</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – the dictionary to resolve. Values will be replaced in-place.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Analyzer.unwrap_ops">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unwrap_ops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L130-L150"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Analyzer.unwrap_ops" title="Link to this definition">#</a></dt>
+<dd><p>Unwrap a function value and generates the same set keys in a dict when the function is actually
+called in runtime</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> – Operation sub-class object that represents statistical operations. The func object
+should have a <cite>data</cite> dictionary which stores the statistical operation information.
+For some operations (ImageStats for example), it may also contain the data_addon
+property, which is part of the update process.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dict with a set of keys.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Analyzer.update_ops">
+<span class="sig-name descname"><span class="pre">update_ops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L77-L92"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Analyzer.update_ops" title="Link to this definition">#</a></dt>
+<dd><p>Register a statistical operation to the Analyzer and update the report_format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – value key in the report.</p></li>
+<li><p><strong>op</strong> (<a class="reference internal" href="#monai.auto3dseg.Operations" title="monai.auto3dseg.operations.Operations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operations</span></code></a>) – Operation sub-class object that represents statistical operations.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Analyzer.update_ops_nested_label">
+<span class="sig-name descname"><span class="pre">update_ops_nested_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nested_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L94-L117"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Analyzer.update_ops_nested_label" title="Link to this definition">#</a></dt>
+<dd><p>Update operations for nested label format. Operation value in report_format will be resolved
+to a dict with only keys.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nested_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str that has format of ‘key1#0#key2’.</p></li>
+<li><p><strong>op</strong> (<a class="reference internal" href="#monai.auto3dseg.Operations" title="monai.auto3dseg.operations.Operations"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operations</span></code></a>) – Operation sub-class object that represents statistical operations.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.FgImageStats">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">FgImageStats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">image_foreground_stats</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L292-L370"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.FgImageStats" title="Link to this definition">#</a></dt>
+<dd><p>Analyzer to extract foreground label properties for each case(image and label).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key to find image data in the callable function input (data)</p></li>
+<li><p><strong>label_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key to find label data in the callable function input (data)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.auto3dseg</span><span class="w"> </span><span class="kn">import</span> <span class="n">FgImageStats</span>
+
+<span class="nb">input</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nb">input</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">input</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">FgImageStats</span><span class="p">(</span><span class="n">image_key</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">label_key</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">analyzer</span><span class="p">(</span><span class="nb">input</span><span class="p">)[</span><span class="s2">&quot;image_foreground_stats&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.FgImageStatsSumm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">FgImageStatsSumm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stats_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">image_foreground_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L632-L693"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.FgImageStatsSumm" title="Link to this definition">#</a></dt>
+<dd><p>This summary analyzer processes the values of specific key <cite>stats_name</cite> in a list of
+dict. Typically, the list of dict is the output of case analyzer under the similar name
+(FgImageStats).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stats_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key of the to-process value in the dict.</p></li>
+<li><p><strong>average</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – whether to average the statistical value across different image modalities.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.FilenameStats">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">FilenameStats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats_name</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L827-L856"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.FilenameStats" title="Link to this definition">#</a></dt>
+<dd><p>This class finds the file path for the loaded image/label and writes the info
+into the data pipeline as a monai transforms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – the key to fetch the filename (for example, “image”, “label”).</p></li>
+<li><p><strong>stats_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key to store the filename in the output stats report.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.ImageStats">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">ImageStats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">image_stats</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L174-L289"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.ImageStats" title="Link to this definition">#</a></dt>
+<dd><p>Analyzer to extract image stats properties for each case(image).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>image_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key to find image data in the callable function input (data)</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.auto3dseg</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImageStats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">MetaTensor</span>
+
+<span class="nb">input</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nb">input</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">input</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MetaTensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>  <span class="c1"># MetaTensor</span>
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">ImageStats</span><span class="p">(</span><span class="n">image_key</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">analyzer</span><span class="p">(</span><span class="nb">input</span><span class="p">)[</span><span class="s2">&quot;image_stats&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>if the image data is NumPy array, the spacing stats will be [1.0] * <cite>ndims</cite> of the array,
+where the <cite>ndims</cite> is the lesser value between the image dimension and 3.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.ImageStatsSumm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">ImageStatsSumm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stats_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">image_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L542-L629"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.ImageStatsSumm" title="Link to this definition">#</a></dt>
+<dd><p>This summary analyzer processes the values of specific key <cite>stats_name</cite> in a list of dict.
+Typically, the list of dict is the output of case analyzer under the same prefix
+(ImageStats).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stats_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key of the to-process value in the dict.</p></li>
+<li><p><strong>average</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – whether to average the statistical value across different image modalities.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.LabelStats">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">LabelStats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">label_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_ccp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L373-L539"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.LabelStats" title="Link to this definition">#</a></dt>
+<dd><p>Analyzer to extract label stats properties for each case(image and label).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key to find image data in the callable function input (data)</p></li>
+<li><p><strong>label_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key to find label data in the callable function input (data)</p></li>
+<li><p><strong>do_ccp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – performs connected component analysis. Default is True.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.auto3dseg</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelStats</span>
+
+<span class="nb">input</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nb">input</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">input</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">LabelStats</span><span class="p">(</span><span class="n">image_key</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">label_key</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">analyzer</span><span class="p">(</span><span class="nb">input</span><span class="p">)[</span><span class="s2">&quot;label_stats&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.LabelStatsSumm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">LabelStatsSumm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stats_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">label_stats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_ccp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/analyzer.py#L696-L824"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.LabelStatsSumm" title="Link to this definition">#</a></dt>
+<dd><p>This summary analyzer processes the values of specific key <cite>stats_name</cite> in a list of
+dict. Typically, the list of dict is the output of case analyzer under the similar name
+(LabelStats).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stats_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the key of the to-process value in the dict.</p></li>
+<li><p><strong>average</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – whether to average the statistical value across different image modalities.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.Operations">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">Operations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/operations.py#L23-L41"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Operations" title="Link to this definition">#</a></dt>
+<dd><p>Base class of operation interface</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.Operations.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/operations.py#L28-L41"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.Operations.evaluate" title="Link to this definition">#</a></dt>
+<dd><p>For key-value pairs in the self.data, if the value is a callable,
+then this function will apply the callable to the input data.
+The result will be written under the same key under the output dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – input data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>a dictionary which has same keys as the self.data if the value</dt><dd><p>is callable.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.SampleOperations">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">SampleOperations</span></span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/operations.py#L44-L103"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.SampleOperations" title="Link to this definition">#</a></dt>
+<dd><p>Apply statistical operation to a sample (image/ndarray/tensor).</p>
+<p class="rubric">Notes</p>
+<p>Percentile operation uses a partial function that embeds different kwargs (q).
+In order to print the result nicely, data_addon is added to map the numbers
+generated by percentile to different keys (“percentile_00_5” for example).
+Annotation of the postfix means the percentage for percentile computation.
+For example, _00_5 means 0.5% and _99_5 means 99.5%.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the existing operations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">SampleOperations</span><span class="p">()</span>
+<span class="n">data_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">data_np</span><span class="p">))</span>
+
+<span class="c1"># add a new operation</span>
+<span class="n">op</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;sum&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">data_np</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.SampleOperations.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/operations.py#L86-L103"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.SampleOperations.evaluate" title="Link to this definition">#</a></dt>
+<dd><p>Applies the callables to the data, and convert the
+numerics to list or Python numeric types (int/float).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – input data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.SegSummarizer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">SegSummarizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_ccp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hist_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hist_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histogram_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/seg_summarizer.py#L34-L213"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.SegSummarizer" title="Link to this definition">#</a></dt>
+<dd><p>SegSummarizer serializes the operations for data analysis in Auto3Dseg pipeline. It loads
+two types of analyzer functions and execute differently. The first type of analyzer is
+CaseAnalyzer which is similar to traditional monai transforms. It can be composed with other
+transforms to process the data dict which has image/label keys. The second type of analyzer
+is SummaryAnalyzer which works only on a list of dictionary. Each dictionary is the output
+of the case analyzers on a single dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – a string that user specify for the image. The DataAnalyzer will look it up in the
+datalist to locate the image files of the dataset.</p></li>
+<li><p><strong>label_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a string that user specify for the label. The DataAnalyzer will look it up in the
+datalist to locate the label files of the dataset. If label_key is None, the DataAnalyzer
+will skip looking for labels and all label-related operations.</p></li>
+<li><p><strong>do_ccp</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – apply the connected component algorithm to process the labels/images.</p></li>
+<li><p><strong>hist_bins</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – list of positive integers (one for each channel) for setting the number of bins used to
+compute the histogram. Defaults to [100].</p></li>
+<li><p><strong>hist_range</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – list of lists of two floats (one for each channel) setting the intensity range to
+compute the histogram. Defaults to [-500, 500].</p></li>
+<li><p><strong>histogram_only</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – whether to only compute histograms. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports</span>
+
+<span class="n">summarizer</span> <span class="o">=</span> <span class="n">SegSummarizer</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">)</span>
+<span class="n">transform_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">LoadImaged</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="n">keys</span><span class="p">),</span>
+    <span class="n">EnsureChannelFirstd</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="n">keys</span><span class="p">),</span>  <span class="c1"># this creates label to be (1,H,W,D)</span>
+    <span class="n">ToDeviced</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="n">keys</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">Orientationd</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="n">keys</span><span class="p">,</span> <span class="n">axcodes</span><span class="o">=</span><span class="s2">&quot;RAS&quot;</span><span class="p">),</span>
+    <span class="n">EnsureTyped</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="n">keys</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s2">&quot;tensor&quot;</span><span class="p">),</span>
+    <span class="n">Lambdad</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">x</span><span class="p">),</span>
+    <span class="n">SqueezeDimd</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">summarizer</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="o">...</span>
+<span class="c1"># skip some steps to set up data loader</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">n_workers</span><span class="p">,</span> <span class="n">collate_fn</span><span class="o">=</span><span class="n">no_collation</span><span class="p">)</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">Compose</span><span class="p">(</span><span class="n">transform_list</span><span class="p">)</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">batch_data</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">batch_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">summarizer</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.SegSummarizer.add_analyzer">
+<span class="sig-name descname"><span class="pre">add_analyzer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">case_analyzer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary_analyzer</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/seg_summarizer.py#L123-L171"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.SegSummarizer.add_analyzer" title="Link to this definition">#</a></dt>
+<dd><p>Add new analyzers to the engine so that the callable and summarize functions will
+utilize the new analyzers for stats computations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>case_analyzer</strong> (<a class="reference internal" href="#monai.auto3dseg.Analyzer" title="monai.auto3dseg.analyzer.Analyzer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Analyzer</span></code></a>) – analyzer that works on each data.</p></li>
+<li><p><strong>summary_analyzer</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="#monai.auto3dseg.Analyzer" title="monai.auto3dseg.analyzer.Analyzer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Analyzer</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – analyzer that works on list of stats dict (output from case_analyzers).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">monai.auto3dseg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Analyzer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.auto3dseg.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">concat_val_to_np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">monai.auto3dseg.analyzer_engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">SegSummarizer</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserAnalyzer</span><span class="p">(</span><span class="n">Analyzer</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_key</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">stats_name</span><span class="o">=</span><span class="s2">&quot;user_stats&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_key</span> <span class="o">=</span> <span class="n">image_key</span>
+        <span class="n">report_format</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ndims&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">stats_name</span><span class="p">,</span> <span class="n">report_format</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_report_format</span><span class="p">())</span>
+        <span class="n">report</span><span class="p">[</span><span class="s2">&quot;ndims&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">image_key</span><span class="p">]</span><span class="o">.</span><span class="n">ndim</span>
+        <span class="n">d</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">report</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserSummaryAnalyzer</span><span class="p">(</span><span class="n">Analyzer</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="n">stats_name</span><span class="o">=</span><span class="s2">&quot;user_stats&quot;</span><span class="p">):</span>
+        <span class="n">report_format</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ndims&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">stats_name</span><span class="p">,</span> <span class="n">report_format</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_ops</span><span class="p">(</span><span class="s2">&quot;ndims&quot;</span><span class="p">,</span> <span class="n">SampleOperations</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_report_format</span><span class="p">())</span>
+        <span class="n">v_np</span> <span class="o">=</span> <span class="n">concat_val_to_np</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stats_name</span><span class="p">,</span> <span class="s2">&quot;ndims&quot;</span><span class="p">])</span>
+        <span class="n">report</span><span class="p">[</span><span class="s2">&quot;ndims&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ops</span><span class="p">[</span><span class="s2">&quot;ndims&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">v_np</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">report</span>
+
+<span class="n">summarizer</span> <span class="o">=</span> <span class="n">SegSummarizer</span><span class="p">()</span>
+<span class="n">summarizer</span><span class="o">.</span><span class="n">add_analyzer</span><span class="p">(</span><span class="n">UserAnalyzer</span><span class="p">,</span> <span class="n">UserSummaryAnalyzer</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.SegSummarizer.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/seg_summarizer.py#L173-L213"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.SegSummarizer.summarize" title="Link to this definition">#</a></dt>
+<dd><p>Summarize the input list of data and generates a report ready for json/yaml export.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – a list of data dicts.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a dict that summarizes the stats across data samples.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<dl class="simple">
+<dt>stats_summary:</dt><dd><dl class="simple">
+<dt>image_foreground_stats:</dt><dd><p>intensity: {…}</p>
+</dd>
+<dt>image_stats:</dt><dd><p>channels: {…}
+cropped_shape: {…}
+…</p>
+</dd>
+<dt>label_stats:</dt><dd><p>image_intensity: {…}
+label:
+- image_intensity: {…}
+- image_intensity: {…}
+- image_intensity: {…}
+- image_intensity: {…}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="monai.auto3dseg.SummaryOperations">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">SummaryOperations</span></span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/operations.py#L106-L152"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.SummaryOperations" title="Link to this definition">#</a></dt>
+<dd><p>Apply statistical operation to summarize a dict. The key-value looks like: {“max”, “min”
+,”mean”, ….}. The value may contain multiple values in a list format. Then this operation
+will apply the operation to the list. Typically, the dict is generated by multiple
+<cite>SampleOperation</cite> and <cite>concat_multikeys_to_dict</cite> functions.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s2">&quot;sum&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">SummaryOperations</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="c1"># &quot;sum&quot; is not registered yet, so it won&#39;t contain &quot;sum&quot;</span>
+
+<span class="n">op</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="c1"># output has &quot;sum&quot;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="monai.auto3dseg.SummaryOperations.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/operations.py#L144-L152"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.SummaryOperations.evaluate" title="Link to this definition">#</a></dt>
+<dd><p>Applies the callables to the data, and convert the numerics to list or Python
+numeric types (int/float).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – input data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.algo_from_pickle">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">algo_from_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pkl_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L300-L375"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.algo_from_pickle" title="Link to this definition">#</a></dt>
+<dd><p>Import the Algo object from a pickle file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pkl_filename</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the name of the pickle file.</p></li>
+<li><p><strong>template_path</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a folder containing files to instantiate the Algo. Besides the <cite>template_path</cite>,</p></li>
+<li><p><strong>directory</strong> (<em>this function will also attempt to use the template_path saved in the pickle file and a</em>)</p></li>
+<li><p><strong>file.</strong> (<em>named algorithm_templates in the parent folder</em><em> of </em><em>the folder containing the pickle</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the Algo object saved in the pickle file.
+algo_meta_data: additional keyword saved in the pickle file, for example, acc/best_metrics.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>algo</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError if the pkl_filename does not contain a dict</strong><strong>, or </strong><strong>the dict does not contain algo_bytes.</strong> – </p></li>
+<li><p><strong>ModuleNotFoundError if it is unable to instantiate the Algo class.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.algo_to_pickle">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">algo_to_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">algo_meta_data</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L277-L297"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.algo_to_pickle" title="Link to this definition">#</a></dt>
+<dd><p>Export the Algo object to pickle file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>algo</strong> (<a class="reference internal" href="#monai.auto3dseg.Algo" title="monai.auto3dseg.algo_gen.Algo"><code class="xref py py-class docutils literal notranslate"><span class="pre">Algo</span></code></a>) – Algo-like object.</p></li>
+<li><p><strong>template_path</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PathLike</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – a str path that is needed to be added to the sys.path to instantiate the class.</p></li>
+<li><p><strong>algo_meta_data</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – additional keyword to save into the dictionary, for example, model training info
+such as acc/best_metrics</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>filename of the pickled Algo object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.concat_multikeys_to_dict">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">concat_multikeys_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_insert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L186-L210"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.concat_multikeys_to_dict" title="Link to this definition">#</a></dt>
+<dd><p>Get the nested value in a list of dictionary that shares the same structure iteratively on all keys.
+It returns a dictionary with keys with the found values in nd.ndarray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – a list of dictionary {key1: {key2: np.ndarray}}.</p></li>
+<li><p><strong>fixed_keys</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]) – a list of keys that records to path to the value in the dict elements.</p></li>
+<li><p><strong>keys</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – a list of string keys that will be iterated to generate a dict output.</p></li>
+<li><p><strong>zero_insert</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – insert a zero in the list so that it can find the value in element 0 before getting the keys</p></li>
+<li><p><strong>flatten</strong> – if True, numbers are flattened before concat.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a dict with keys - nd.array of concatenated array pair.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.concat_val_to_np">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">concat_val_to_np</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ragged</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_missing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L129-L183"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.concat_val_to_np" title="Link to this definition">#</a></dt>
+<dd><p>Get the nested value in a list of dictionary that shares the same structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – a list of dictionary {key1: {key2: np.ndarray}}.</p></li>
+<li><p><strong>fixed_keys</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]) – a list of keys that records to path to the value in the dict elements.</p></li>
+<li><p><strong>ragged</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – if True, numbers can be in list of lists or ragged format so concat mode needs change.</p></li>
+<li><p><strong>allow_missing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]) – if True, it will return a None if the value cannot be found.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd.array of concatenated array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.datafold_read">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">datafold_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datalist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basedir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'training'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L213-L249"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.datafold_read" title="Link to this definition">#</a></dt>
+<dd><p>Read a list of data dictionary <cite>datalist</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datalist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – the name of a JSON file listing the data, or a dictionary.</p></li>
+<li><p><strong>basedir</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – directory of image files.</p></li>
+<li><p><strong>fold</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – which fold to use (0..1 if in training set).</p></li>
+<li><p><strong>key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – usually ‘training’ , but can try ‘validation’ or ‘testing’ to get the list data without labels (used in challenges).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple of two arrays (training, validation).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.get_foreground_image">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">get_foreground_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L50-L67"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.get_foreground_image" title="Link to this definition">#</a></dt>
+<dd><p>Get a foreground image by removing all-zero rectangles on the edges of the image
+Note for the developer: update select_fn if the foreground is defined differently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="data.html#monai.data.MetaTensor" title="monai.data.meta_tensor.MetaTensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">MetaTensor</span></code></a>) – ndarray image to segment.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray of foreground image by removing all-zero edges.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>the size of the output is smaller than the input.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.get_foreground_label">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">get_foreground_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L70-L83"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.get_foreground_label" title="Link to this definition">#</a></dt>
+<dd><p>Get foreground image pixel values and mask out the non-labeled area.</p>
+<dl class="simple">
+<dt>Args</dt><dd><p>image: ndarray image to segment.
+label: ndarray the image input and annotated with class IDs.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="data.html#monai.data.MetaTensor" title="monai.data.meta_tensor.MetaTensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">MetaTensor</span></code></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>1D array of foreground image with label &gt; 0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.get_label_ccp">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">get_label_ccp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_gpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L86-L126"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.get_label_ccp" title="Link to this definition">#</a></dt>
+<dd><p>Find all connected components and their bounding shape. Backend can be cuPy/cuCIM or Numpy
+depending on the hardware.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mask_index</strong> (<a class="reference internal" href="data.html#monai.data.MetaTensor" title="monai.data.meta_tensor.MetaTensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">MetaTensor</span></code></a>) – a binary mask.</p></li>
+<li><p><strong>use_gpu</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – a switch to use GPU/CUDA or not. If GPU is unavailable, CPU will be used
+regardless of this setting.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="monai.auto3dseg.verify_report_format">
+<span class="sig-prename descclassname"><span class="pre">monai.auto3dseg.</span></span><span class="sig-name descname"><span class="pre">verify_report_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_format</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Project-MONAI/MONAI/blob/dev/monai/auto3dseg/utils.py#L252-L274"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#monai.auto3dseg.verify_report_format" title="Link to this definition">#</a></dt>
+<dd><p>Compares the report and the report_format that has only keys.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>report</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – dict that has real values.</p></li>
+<li><p><strong>report_format</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – dict that only has keys and list-nested value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="apps.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Applications</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="fl.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Federated Learning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Algo"><code class="docutils literal notranslate"><span class="pre">Algo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Algo.get_output_path"><code class="docutils literal notranslate"><span class="pre">Algo.get_output_path()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Algo.get_score"><code class="docutils literal notranslate"><span class="pre">Algo.get_score()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Algo.predict"><code class="docutils literal notranslate"><span class="pre">Algo.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Algo.set_data_stats"><code class="docutils literal notranslate"><span class="pre">Algo.set_data_stats()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Algo.train"><code class="docutils literal notranslate"><span class="pre">Algo.train()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen"><code class="docutils literal notranslate"><span class="pre">AlgoGen</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen.generate"><code class="docutils literal notranslate"><span class="pre">AlgoGen.generate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen.get_budget"><code class="docutils literal notranslate"><span class="pre">AlgoGen.get_budget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen.get_data_stats"><code class="docutils literal notranslate"><span class="pre">AlgoGen.get_data_stats()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen.get_history"><code class="docutils literal notranslate"><span class="pre">AlgoGen.get_history()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen.run_algo"><code class="docutils literal notranslate"><span class="pre">AlgoGen.run_algo()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen.set_budget"><code class="docutils literal notranslate"><span class="pre">AlgoGen.set_budget()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen.set_data_stats"><code class="docutils literal notranslate"><span class="pre">AlgoGen.set_data_stats()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.AlgoGen.set_score"><code class="docutils literal notranslate"><span class="pre">AlgoGen.set_score()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Analyzer"><code class="docutils literal notranslate"><span class="pre">Analyzer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Analyzer.get_report_format"><code class="docutils literal notranslate"><span class="pre">Analyzer.get_report_format()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Analyzer.resolve_format"><code class="docutils literal notranslate"><span class="pre">Analyzer.resolve_format()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Analyzer.unwrap_ops"><code class="docutils literal notranslate"><span class="pre">Analyzer.unwrap_ops()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Analyzer.update_ops"><code class="docutils literal notranslate"><span class="pre">Analyzer.update_ops()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Analyzer.update_ops_nested_label"><code class="docutils literal notranslate"><span class="pre">Analyzer.update_ops_nested_label()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.FgImageStats"><code class="docutils literal notranslate"><span class="pre">FgImageStats</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.FgImageStatsSumm"><code class="docutils literal notranslate"><span class="pre">FgImageStatsSumm</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.FilenameStats"><code class="docutils literal notranslate"><span class="pre">FilenameStats</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.ImageStats"><code class="docutils literal notranslate"><span class="pre">ImageStats</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.ImageStatsSumm"><code class="docutils literal notranslate"><span class="pre">ImageStatsSumm</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.LabelStats"><code class="docutils literal notranslate"><span class="pre">LabelStats</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.LabelStatsSumm"><code class="docutils literal notranslate"><span class="pre">LabelStatsSumm</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Operations"><code class="docutils literal notranslate"><span class="pre">Operations</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.Operations.evaluate"><code class="docutils literal notranslate"><span class="pre">Operations.evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.SampleOperations"><code class="docutils literal notranslate"><span class="pre">SampleOperations</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.SampleOperations.evaluate"><code class="docutils literal notranslate"><span class="pre">SampleOperations.evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.SegSummarizer"><code class="docutils literal notranslate"><span class="pre">SegSummarizer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.SegSummarizer.add_analyzer"><code class="docutils literal notranslate"><span class="pre">SegSummarizer.add_analyzer()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.SegSummarizer.summarize"><code class="docutils literal notranslate"><span class="pre">SegSummarizer.summarize()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.SummaryOperations"><code class="docutils literal notranslate"><span class="pre">SummaryOperations</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.SummaryOperations.evaluate"><code class="docutils literal notranslate"><span class="pre">SummaryOperations.evaluate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.algo_from_pickle"><code class="docutils literal notranslate"><span class="pre">algo_from_pickle()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.algo_to_pickle"><code class="docutils literal notranslate"><span class="pre">algo_to_pickle()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.concat_multikeys_to_dict"><code class="docutils literal notranslate"><span class="pre">concat_multikeys_to_dict()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.concat_val_to_np"><code class="docutils literal notranslate"><span class="pre">concat_val_to_np()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.datafold_read"><code class="docutils literal notranslate"><span class="pre">datafold_read()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.get_foreground_image"><code class="docutils literal notranslate"><span class="pre">get_foreground_image()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.get_foreground_label"><code class="docutils literal notranslate"><span class="pre">get_foreground_label()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.get_label_ccp"><code class="docutils literal notranslate"><span class="pre">get_label_ccp()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monai.auto3dseg.verify_report_format"><code class="docutils literal notranslate"><span class="pre">verify_report_format()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/auto3dseg.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright MONAI Consortium.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
